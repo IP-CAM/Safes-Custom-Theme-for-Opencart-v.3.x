@@ -1,3 +1,5 @@
-const styles = require('./gulp-tasks/styles').default
+const serve = require('./gulp-tasks/serve').default
 
-exports.default = styles
+module.exports = {
+  serve,
+}

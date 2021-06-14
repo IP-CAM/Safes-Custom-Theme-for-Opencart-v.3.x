@@ -1,7 +1,13 @@
-var del = require('del');
+const del = require('del')
+const path = require('path')
 
-function remove(path, stats) {
-  console.log(`File ${path} was removed`)
+const { srcPath, destPath } = require('./paths')
+
+function remove(filePath) {
+  const filePathFromSrc = path.relative(path.resolve(srcPath), filePath)
+  const destFilePath = path.resolve(destPath, filePathFromSrc)
+
+  del.sync(destFilePath)
 }
 
 exports.default = remove
