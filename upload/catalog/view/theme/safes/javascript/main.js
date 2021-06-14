@@ -153,7 +153,7 @@ $('#js-quicklogin__login').on('click', function(event) {
 		success: function(json) {
 			$(' .ui__group').removeClass('has-error');
 			if (json['success'] || (json['islogged'])) {
-				location.reload();				
+				location.reload();
 			}
 			if (json['error']) {
 				$('#quicklogin .h-flex').after('<div class="quicklogin__error">' + json['error'] + '</div>');
@@ -183,7 +183,7 @@ function toggleSearch() {
 }
 function toggleMobilemenu() {
 	$('.l-mobile-menu').toggleClass('l-mobile-menu_visible');
-	return false;	
+	return false;
 }
 function toggleQuicklogin() {
 	$('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
