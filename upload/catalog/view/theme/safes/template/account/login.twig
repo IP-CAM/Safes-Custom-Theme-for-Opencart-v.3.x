@@ -1,0 +1,61 @@
+{{ header }}
+<div class="l-container l-container_padding">
+<div class="grid">
+{% if column_left %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_left }}
+</div>
+{% endif %}
+{% if column_left and column_right %}
+{% set class = 'grid__col--2-of-4' %}
+{% elseif column_left or column_right %}
+{% set class = 'grid__col--3-of-4' %}
+{% else %}
+{% set class = 'grid__col--4-of-4' %}
+{% endif %}
+<div class="grid__col {{ class }}">
+<ul class="breadcrumbs h-center">
+{% for breadcrumb in breadcrumbs %}
+<li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
+{% endfor %}
+</ul>
+{% if success %}
+<div class="ui__message">{{ success }}</div>
+{% endif %}
+{% if error_warning %}
+<div class="ui__message_error">{{ error_warning }}</div>
+{% endif %}
+{{ content_top }}
+  <h1 class="h-center">{{ text_returning_customer }}</h2>
+  {# Войти #}
+  <form action="{{ action }}" method="post" enctype="multipart/form-data">
+    <div class="ui__group h-center">
+      <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" class="ui__input" />
+    </div>
+    <div class="ui__group h-center">
+      <input type="password" name="password" value="{{ password }}" placeholder="{{ entry_password }}" id="input-password" class="ui__input" />
+    </div>
+    <div class="ui__group h-center">
+      <a class="link" href="{{ forgotten }}">{{ text_forgotten }}</a>
+    </div>
+    <div class="ui__group h-center">
+      <a href="{{ register }}" class="link" title="{{ text_register_account }}">{{ text_new_customer }}</a>
+    </div>
+    <div class="ui__buttons h-center">
+      <input type="submit" value="{{ button_login }}" class="button" />
+    </div>
+    {% if redirect %}
+    <input type="hidden" name="redirect" value="{{ redirect }}" />
+    {% endif %}
+  </form>
+</div>
+{{ content_bottom }}
+</div>
+{% if column_right %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_right }}
+</div>
+{% endif %}
+</div>
+</div>
+{{ footer }}

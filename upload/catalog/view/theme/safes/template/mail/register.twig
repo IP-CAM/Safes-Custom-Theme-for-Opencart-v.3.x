@@ -1,0 +1,10 @@
+{{ text_welcome }}
+{% if not approval %}
+{{ text_login }} {{ password }}
+{{ login }}
+{{ text_thanks }}
+{% else %}
+{{ text_approval }} {{ password }}
+{{ login }}
+{{ text_thanks }}
+{% endif %}

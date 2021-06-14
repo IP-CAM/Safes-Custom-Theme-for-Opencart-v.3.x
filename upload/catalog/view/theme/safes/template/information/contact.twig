@@ -1,0 +1,55 @@
+{{ header }}
+<div class="l-container l-container_padding">
+  <div class="grid">
+    {% if column_left %}
+    <div class="grid__col grid__col--1-of-4">
+    {{ column_left }}
+    </div>
+    {% endif %}
+    {% if column_left and column_right %}
+    {% set class = 'grid__col--2-of-4' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'grid__col--3-of-4' %}
+    {% else %}
+    {% set class = 'grid__col--4-of-4' %}
+    {% endif %}
+    <div class="grid__col {{ class }}">
+      <ul class="breadcrumbs">
+      {% for breadcrumb in breadcrumbs %}
+      <li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
+      {% endfor %}
+      </ul>
+      {{ content_top }}
+      <h1>{{ heading_title }}</h1>
+      <div class="grid">
+        <div class="grid__col grid__col--1-of-4 grid__col--m-1-of-2">
+          <div class="contact__col">
+            <span class="contact__row">«Твой сейф»</span>
+            <span class="contact__row">ИП Любчик И. В.</span>
+            <span class="contact__row">ОГРНИП: 312265130400124
+            <span class="contact__row">ИНН: 381903644166</span>
+          </div>
+        </div>
+        <div class="grid__col grid__col--1-of-4 grid__col--m-1-of-2">
+          <div class="contact__col">
+            <span class="contact__row">Москва, Танковый проезд, 4 А</span>
+            <span class="contact__row">
+              <svg class="address__icon"><use xlink:href="#i-metro"></use></svg>
+              &nbsp;Римская, Площадь Ильича
+            </span>
+          </div>
+        </div>
+      </div>
+      {{ content_bottom }}
+    </div>
+    {% if column_right %}
+    <div class="grid__col grid__col--1-of-4">
+    {{ column_right }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<div class="l-wrapper">
+  <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8cdb59b64817bb4655b0482a301a9bff0fdb1d10344c8836ea0dc2f650e0114a&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=false"></script>
+</div>
+{{ footer }}

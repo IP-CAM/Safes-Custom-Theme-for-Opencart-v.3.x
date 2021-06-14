@@ -1,0 +1,151 @@
+{{ header }}
+<div class="l-container l-container_padding">
+<div class="grid">
+{% if column_left %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_left }}
+</div>
+{% endif %}
+{% if column_left and column_right %}
+{% set class = 'grid__col--2-of-4' %}
+{% elseif column_left or column_right %}
+{% set class = 'grid__col--3-of-4' %}
+{% else %}
+{% set class = 'grid__col--4-of-4' %}
+{% endif %}
+<div class="grid__col {{ class }}">
+<ul class="breadcrumbs">
+{% for breadcrumb in breadcrumbs %}
+<li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
+{% endfor %}
+</ul>
+{{ content_top }}
+<h2>{{ text_address }}</h2>
+<form action="{{ action }}" method="post" enctype="multipart/form-data">
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-firstname">{{ entry_firstname }}</label>
+  <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-firstname" class="ui__input ui__input_fw" />
+  {% if error_firstname %}
+  <div class="ui__alert">{{ error_firstname }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-lastname">{{ entry_lastname }}</label>
+  <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-lastname" class="ui__input ui__input_fw" />
+  {% if error_lastname %}
+  <div class="ui__alert">{{ error_lastname }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-address-1">{{ entry_address_1 }}</label>
+  <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-address-1" class="ui__input ui__input_fw" />
+  {% if error_address_1 %}
+  <div class="ui__alert">{{ error_address_1 }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-country">{{ entry_country }}</label>
+  <select name="country_id" id="input-country" class="ui__input ui__input_fw">
+    <option value="">{{ text_select }}</option>
+    {% for country in countries %}
+    {% if country.country_id == country_id %}
+    <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
+    {% else %}
+    <option value="{{ country.country_id }}">{{ country.name }}</option>
+    {% endif %}
+    {% endfor %}
+  </select>
+  {% if error_country %}
+  <div class="ui__alert">{{ error_country }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-city">{{ entry_city }}</label>
+  <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-city" class="ui__input ui__input_fw" />
+  {% if error_city %}
+  <div class="ui__alert">{{ error_city }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-postcode">{{ entry_postcode }}</label>
+  <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-postcode" class="ui__input ui__input_fw" />
+  {% if error_postcode %}
+  <div class="ui__alert">{{ error_postcode }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-zone">{{ entry_zone }}</label>
+  <select name="zone_id" id="input-zone" class="ui__input ui__input_fw">
+  </select>
+  {% if error_zone %}
+  <div class="ui__alert">{{ error_zone }}</div>
+  {% endif %}
+</div>
+<div class="ui__group">
+  <label class="ui__label">{{ entry_default }}</label>  
+  <label>
+    <input type="radio" name="default" value="1" {% if default %}checked="checked"{% endif %} />
+    {{ text_yes }}
+  </label>
+  <label>
+    <input type="radio" name="default" value="0" {% if not default %}checked="checked"{% endif %} />
+    {{ text_no }}
+  </label>
+</div>
+<div class="ui__buttons">
+  <a href="{{ back }}" class="button button_cancel">&larr;&nbsp;{{ button_back }}</a>
+  <input type="submit" value="Сохранить" class="button" />
+</div>
+</form>
+{{ content_bottom }}
+</div>
+{% if column_right %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_right }}
+</div>
+{% endif %}
+</div>
+</div>
+<div class="l-container">
+</div>
+{{ footer }}
+
+<script type="text/javascript">
+  $('select[name=\'country_id\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=account/account/country&country_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'country_id\']').prop('disabled', true);
+		},
+		complete: function() {
+			$('select[name=\'country_id\']').prop('disabled', false);
+		},
+		success: function(json) {
+			if (json['postcode_required'] == '1') {
+				$('input[name=\'postcode\']').parent().addClass('required');
+			} else {
+				$('input[name=\'postcode\']').parent().removeClass('required');
+			}
+			html = '<option value="">{{ text_select }}</option>';
+			if (json['zone'] && json['zone'] != '') {
+				for (i = 0; i < json['zone'].length; i++) {
+					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+					if (json['zone'][i]['zone_id'] == '{{ zone_id }}') {
+						html += ' selected="selected"';
+					}
+					html += '>' + json['zone'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected">{{ text_none }}</option>';
+			}
+			$('select[name=\'zone_id\']').html(html);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'country_id\']').trigger('change');
+</script>

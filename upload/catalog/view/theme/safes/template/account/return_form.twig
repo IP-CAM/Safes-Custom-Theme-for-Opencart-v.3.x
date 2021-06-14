@@ -1,0 +1,120 @@
+{{ header }}
+<div class="l-container l-container_padding">
+<div class="grid">
+{% if column_left %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_left }}
+</div>
+{% endif %}
+{% if column_left and column_right %}
+{% set class = 'grid__col--2-of-4' %}
+{% elseif column_left or column_right %}
+{% set class = 'grid__col--3-of-4' %}
+{% else %}
+{% set class = 'grid__col--4-of-4' %}
+{% endif %}
+<div class="grid__col {{ class }}">
+<ul class="breadcrumbs">
+{% for breadcrumb in breadcrumbs %}
+<li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
+{% endfor %}
+</ul>
+{{ content_top }}
+<h1>{{ heading_title }}</h1>
+<p>{{ text_description }}</p>
+<form action="{{ action }}" method="post" enctype="multipart/form-data">
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-firstname">{{ entry_firstname }}</label>
+  <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-firstname" class="ui__input ui__input_fw" />
+  {% if error_firstname %}
+  <div class="ui__alert">{{ error_firstname }}</div>
+  {% endif %}
+</div>
+<div class="form-group required">
+  <label class="ui__label" for="input-email">{{ entry_email }}</label>
+  <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" class="ui__input ui__input_fw" />
+  {% if error_email %}
+  <div class="ui__alert">{{ error_email }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-telephone">{{ entry_telephone }}</label>
+  <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-telephone" class="ui__input ui__input_fw" />
+  {% if error_telephone %}
+  <div class="ui__alert">{{ error_telephone }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-order-id">{{ entry_order_id }}</label>
+  <input type="text" name="order_id" value="{{ order_id }}" placeholder="{{ entry_order_id }}" id="input-order-id" class="ui__input ui__input_fw" />
+  {% if error_order_id %}
+  <div class="ui__alert">{{ error_order_id }}</div>
+  {% endif %}
+</div>
+<div class="ui__group">
+  <label class="ui__label" for="input-date-ordered">{{ entry_date_ordered }}</label>
+     <input type="text" name="date_ordered" value="{{ date_ordered }}" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" placeholder="Год-Месяц-Число, например 2016-04-02" id="input-date-ordered" class="ui__input ui__input_fw" />
+</div>
+<h3>{{ text_product }}</h3>
+<div class="ui__group ui__group_required">
+  <label class="ui__label" for="input-product">{{ entry_product }}</label>
+  <input type="text" name="product" value="{{ product }}" placeholder="{{ entry_product }}" id="input-product" class="ui__input ui__input_fw" />
+  {% if error_product %}
+  <div class="ui__alert">{{ error_product }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label">{{ entry_reason }}</label>
+  {% for return_reason in return_reasons %}
+  <label>
+    <input type="radio" name="return_reason_id" value="{{ return_reason.return_reason_id }}" {% if return_reason.return_reason_id == return_reason_id %}checked="checked"{% endif %} />
+    {{ return_reason.name }}
+  </label>
+  {% endfor %}
+  {% if error_reason %}
+  <div class="ui__alert">{{ error_reason }}</div>
+  {% endif %}
+</div>
+<div class="ui__group ui__group_required">
+  <label class="ui__label">{{ entry_opened }}</label>
+  <label>
+    <input type="radio" name="opened" value="1" {% if opened %}checked="checked"{% endif %} />
+    {{ text_yes }}
+  </label>
+  <label>
+    <input type="radio" name="opened" value="0" {% if opened %}checked="checked"{%endif%} />
+    {{ text_no }}
+  </label>
+</div>
+<div class="ui__group">
+  <label class="ui__label" for="input-comment">{{ entry_fault_detail }}</label>
+  <textarea name="comment" rows="10" placeholder="{{ entry_fault_detail }}" id="input-comment" class="ui__textarea">{{ comment }}</textarea>
+</div>
+{{ captcha }}
+{% if text_agree %}
+<div class="ui__group">
+  {% if agree %}
+  <input type="checkbox" name="agree" value="1" checked="checked" />
+  {% else %}
+  <input type="checkbox" name="agree" value="1" />
+  {% endif %}
+  {{ text_agree }}
+</div>
+{% endif %}
+<div class="ui__buttons ui__buttons_al">
+  <a href="{{ back }}" class="button button_ui">&larr;&nbsp;{{ button_back }}</a>
+  <input type="submit" value="Отправить" class="button" />
+</div>
+</form>
+{{ content_bottom }}
+</div>
+{% if column_right %}
+<div class="grid__col grid__col--1-of-4">
+{{ column_right }}
+</div>
+{% endif %}
+</div>
+</div>
+<div class="l-container">
+</div>
+{{ footer }}

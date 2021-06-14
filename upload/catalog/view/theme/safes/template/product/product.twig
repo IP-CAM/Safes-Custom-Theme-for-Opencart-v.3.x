@@ -1,0 +1,534 @@
+{{ header }}
+<div class="l-wrapper">
+  <div class="l-container l-container_padding">
+    <div class="grid">
+      {% if column_left %}
+        <div class="grid__col grid__col--1-of-4">
+          {{ column_left }}
+        </div>
+      {% endif %}
+      {% if column_left and column_right %}
+        {% set class = 'grid__col--2-of-4' %}
+      {% elseif column_left or column_right %}
+        {% set class = 'grid__col--3-of-4' %}
+      {% else %}
+        {% set class = 'grid__col--4-of-4' %}
+      {% endif %}
+      <div class="grid__col {{ class }}">
+        {{ content_top }}
+        <div class="product">
+          <div class="product__col">
+            <div class="help">
+              <a href="/kak-vybrat" class="help__icon"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-help"></use></svg></a>
+              <a href="/kak-vybrat" class="link link_help">Как выбрать сейф?</a>
+            </div>
+          </div>
+          <div class="product__col">
+            {#Хлебные крошки#}
+            <ul class="breadcrumbs">
+              {% for breadcrumb in breadcrumbs %}
+                <li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="product" itemscope itemtype="http://schema.org/Product">
+          {#Изображения#}
+          <div class="product__col">
+            <div class="product__images">
+              {#Слайдер изображений товара#}
+              <div id="js-product-images" class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-src="{{ popup }}" class="swiper-lazy" title="{{ heading_title }}" alt="{{ heading_title }}" />
+                    <div class="swiper-lazy-preloader"></div>
+                  </div>
+                  {% for image in images %}
+                  <div class="swiper-slide">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-src="{{ image.popup }}" class="swiper-lazy" alt="{{ heading_title }}" />
+                    <div class="swiper-lazy-preloader"></div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {#Миниатюры#}
+              {% if images %}
+              <div class="product__thumbs">
+                <div id="js-product-thumbs" class="swiper-container">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img class="product__thumb" src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+                    </div>
+                    {% for image in images %}
+                    <div class="swiper-slide">
+                      <img class="product__thumb" src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          {# Карточка #}
+          <div class="product__col">
+            {# Производитель + модель - скрыто #}
+            <h1 class="visually-hidden" itemprop="name">{% if manufacturer %}{% endif %}{{ heading_title }}</h1>
+            <span itemprop="image" content="{{ popup }}" />
+            {# Производитель #}
+            <div class="ui__group">
+              {% if manufacturer %}
+              {# text_manufacturer #}
+              <a href="{{ manufacturers }}" class="link link__manufacturer" itemprop="manufacturer">{{ manufacturer }}</a>
+              {% endif %}
+              {# Модель #}
+              <p class="product__title">{{ model }}</p>
+              {# Наличие #}
+              <p class="product__stock">
+              {# text_stock #} {{ stock }}
+              </p>
+              {# Цена и быстрая покупка #}
+              {% if special %}
+              <button class="button" id="js-quickorder" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <span class="oneclick__title" onclick="toggleQuickorder">Купить в один клик</span>
+                <span class="oneclick__price" itemprop="price" content="{{ special|number_format(2, '.', '') }}">{{ special }}</span>
+                <span itemprop="priceCurrency" content="RUB" />
+              </button>
+              <div class="product__price_old">
+                <span class="h-block">Старая цена:</span>
+                <span class="h-block product__price_through">{{ price }}</span>
+              </div>
+              {% else %}
+              <button class="button" id="js-quickorder" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <span class="oneclick__title" onclick="toggleQuickorder">Купить в один клик</span>
+                <span class="oneclick__price" itemprop="price" content="{{ price|number_format(2, '.', '') }}">{{ price }}</span>
+                <span itemprop="priceCurrency" content="RUB" />
+              </button>
+              {% endif %}
+            {# Товар #}
+            </div>
+            <div class="ui__group" id="product">
+              {# Опции #}
+              {% if options %}
+                <h3 class="product__subtitle">{{ text_option }}</h3>
+                  {% for option in options %}
+                    {# Селект #}
+                    {% if option.type == 'select' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control">
+                        <option value="">{{ text_select }}</option>
+                        {% for option_value in option.product_option_value %}
+                        <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
+                        {% if option_value.price %}
+                        ({{ option_value.price_prefix }}{{ option_value.price }})
+                        {% endif %} </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    {% endif %}
+
+                    {# Радио #}
+                    {% if option.type == 'radio' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label">{{ option.name }}</label>
+                      <div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}                  
+                            {{ option_value.name }}
+                            {% if option_value.price %}
+                            ({{ option_value.price_prefix }}{{ option_value.price }})
+                            {% endif %} </label>
+                        </div>
+                        {% endfor %} </div>
+                    </div>
+                    {% endif %}
+
+                    {# Чекбокс #}
+                    {% if option.type == 'checkbox' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label">{{ option.name }}</label>
+                      <div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" />
+                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
+                            {{ option_value.name }}
+                            {% if option_value.price %}
+                            ({{ option_value.price_prefix }}{{ option_value.price }})
+                            {% endif %} </label>
+                        </div>
+                        {% endfor %} </div>
+                    </div>
+                    {% endif %}
+
+                    {# Инпут #}
+                    {% if option.type == 'text' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control" />
+                    </div>
+                    {% endif %}
+
+                    {# Текст #}
+                    {% if option.type == 'textarea' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <textarea name="option[{{ option.product_option_id }}]" rows="5" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control">{{ option.value }}</textarea>
+                    </div>
+                    {% endif %}
+
+                    {# Файл #}
+                    {% if option.type == 'file' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label">{{ option.name }}</label>
+                      <button type="button" id="button-upload{{ option.product_option_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+                      <input type="hidden" name="option[{{ option.product_option_id }}]" value="" id="input-option{{ option.product_option_id }}" />
+                    </div>
+                    {% endif %}
+
+                    {# Дата #}
+                    {% if option.type == 'date' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <div class="input-group date">
+                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD" id="input-option{{ option.product_option_id }}" class="form-control" />
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span></div>
+                    </div>
+                    {% endif %}
+
+                    {# Дата, время #}
+                    {% if option.type == 'datetime' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <div class="input-group datetime">
+                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                        </span></div>
+                    </div>
+                    {% endif %}
+
+                    {# Время #}
+                    {% if option.type == 'time' %}
+                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
+                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                      <div class="input-group time">
+                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                        </span></div>
+                    </div>
+                    {% endif %}
+
+                  {% endfor %}
+              {% endif %}
+
+              {% if recurrings %}
+              <div class="ui__group">
+                <h2 class="product__subtitle">{{ text_payment_recurring }}</h2>
+                <div class="ui__group ui__group_required">
+                  <select name="recurring_id" class="form-control">
+                    <option value="">{{ text_select }}</option>
+                    {% for recurring in recurrings %}
+                    <option value="{{ recurring.recurring_id }}">{{ recurring.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <div class="help-block" id="recurring-description"></div>
+                </div>
+              </div>
+              {% endif %}
+
+              <div class="ui__buttons ui__buttons_al">
+                <input type="hidden" name="product_id" value="{{ product_id }}" />
+                {# Количество #}
+                {# entry_qty #}
+                <div class="ui__quantity">
+                  <button class="ui-quantity__down">-</button>
+                  <input type="text" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" />
+                  <button class="ui-quantity__up">+</button>
+                </div>
+                {# Купить #}
+                <button id="js-buy" class="button button_buy">Добавить к заказу</button>
+              </div>
+
+              {% if minimum > 1 %}
+              <div class="ui__group">
+                <div class="message">{{ text_minimum }}</div>
+              </div>
+              {% endif %}
+            
+            </div>
+            
+            {# Размеры и т.д. #}
+            <div class="ui__group">
+              <h2 class="product__subtitle">{{ attribute_group.name }}</h2>
+              <table class="product__attributes">
+                {% if weight %}
+                <tr>
+                  <td>
+                    Вес
+                  <td>
+                    {{ weight }}
+                {% endif %}
+                {% if length and width and height %}
+                <tr>
+                  <td>
+                    Размеры (ВxШxГ)
+                  <td>
+                    {{ height }}x{{ width }}x{{ length }}
+                {% endif %}
+            {# Атрибуты #}
+                {% if attribute_groups %}
+                {% for attribute_group in attribute_groups %}
+                {% for attribute in attribute_group.attribute %}
+                <tr>
+                  <td>{{ attribute.name }}
+                  <td>{{ attribute.text }}
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+
+
+
+
+                {# Прикрепленные файлы#}
+                <tr class="product__attachments">
+                  <td colspan="2">
+                    {% if downloads %}
+                      {% for download in downloads %}
+                      <a href="{{ download.href }}" class="link" title="Загрузить ({{ download.size }})">{{ download.name }}</a>
+                    {% endfor %}
+                    {% endif %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            {# Описание товара #}
+            <div itemprop="description" class="ui__group">
+              {{ description }}
+            </div>
+
+            <div class="product__comments">
+
+              <!-- Put this script tag to the <head> of your page -->
+              <script type="text/javascript" src="//vk.com/js/api/openapi.js?150"></script>
+
+              <script type="text/javascript">
+                VK.init({apiId: 6275635, onlyWidgets: true});
+              </script>
+
+              <!-- Put this div tag to the place, where the Comments block will be -->
+              <div id="vk_comments"></div>
+              <script type="text/javascript">
+              VK.Widgets.Comments("vk_comments", {limit: 10, attach: "photo"});
+              </script>
+
+            </div>
+
+          </div>
+        </div>
+        {{ content_bottom }}
+      </div>
+      {% if column_right %}
+      <div class="grid__col grid__col--1-of-4">
+        {{ column_right }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{# Форма быстрого заказа #}
+<div id="js-quickorder" class="l-fullscreen quickorder__wrapper">
+  <form class="quickorder" id="quickorder">
+    <div class="h-flex">
+      <h3 class="ui__title">Ваш заказ</h3>
+      <svg class="close" onclick="toggleQuickorder()"><use xlink:href="#i-close"></use></svg>
+    </div>
+    <div class="quickorder__product">
+      <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" class="quickorder__image" />
+      <span class="quickorder__name">{{ heading_title }}</span>
+      {% if special %}
+        <span>{{ special }}</span>
+      {% else %}
+        <span>{{ price }}</span>
+      {% endif %}
+    </div>
+    <div class="grid">
+      <div class="grid__col grid__col--1-of-2">
+        <div class="ui__group">
+          <input name="customer" class="ui__input ui__input_fw" type="text" placeholder="Ваше имя" />
+        </div>
+      </div>
+      <div class="grid__col grid__col--1-of-2">
+        <div class="ui__group">
+          <input name="tel" class="ui__input ui__input_fw" type="text" placeholder="Номер телефона" />
+        </div>
+      </div>
+    </div>
+    <div class="ui__group">
+      <textarea name="comment" class="ui__textarea" placeholder="Комментарий, необязательно"></textarea>
+    </div>
+    <div class="ui__buttons">
+      <button type="button" id="js-quickorder__buy" class="button button_buy">Заказать</button>
+    </div>
+  </form>
+</div>
+
+{{ footer }}
+
+<script>
+//Слайдер изображений товара
+$(document).ready(function(){
+  //Слайдер
+  var productImages = new Swiper('#js-product-images', {
+    spaceBetween: 20,
+    lazy: true
+  });
+  //Миниатюры
+  var productThumbs = new Swiper('#js-product-thumbs', {
+      spaceBetween: 20,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+    });
+
+  productImages.controller.control = productThumbs;
+  productThumbs.controller.control = productImages;
+});
+//Добавить в корзину
+$('#js-buy').on('click', function() {
+  $.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+		},
+		complete: function() {
+		},
+		success: function(json) {
+      $('.ui__alert').remove();
+			$('.ui__group').removeClass('ui__group_error');
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						element.before('<div class="ui__alert">' + json['error']['option'][i] + '</div>');
+					}
+				}
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="ui__alert">' + json['error']['recurring'] + '</div>');
+				}
+				$('.ui__alert').parent().addClass('ui__group_error');
+			}
+      //Успех
+			if (json['success']) {
+        toggleCart();
+        autohideCart = setTimeout(function(){
+          toggleCart();
+        }, 2000);
+        $('#js-cart__button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
+        $('#cart > table').load('index.php?route=common/cart/info table');
+			}
+		},
+    error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+	});
+});
+//Быстрый заказ
+$('#js-quickorder').on('click', function() {
+  $.ajax({
+		url: 'index.php?route=checkout/quick/validate',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+		},
+		complete: function() {
+		},
+		success: function(json) {
+      $('.ui__alert').remove();
+			$('.ui__group').removeClass('ui__group_error');
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						element.before('<div class="ui__alert">' + json['error']['option'][i] + '</div>');
+					}
+          $('.ui__alert').parent().addClass('ui__group_error');
+				}
+			} else {
+        toggleQuickorder();
+      }
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+	});
+});
+//
+function toggleQuickorder() {
+	$('.quickorder__wrapper').toggleClass('quickorder__wrapper_visible');
+  return false;
+}
+//Быстрая покупка
+$('#js-quickorder__buy').on('click', function() {
+  var error = false;
+  if ($('#js-quickorder input[name="tel"]').val().length < 9 )  {
+    console.log('Ошибка');
+    $('#js-quickorder .quickorder__product').after('<div class="quickorder__error">Мы не сможем связаться с вами по этому номеру</div>');
+  } else {
+    $.ajax({
+      url: 'index.php?route=checkout/quick/order',
+      type: 'post',
+      data: $('#quickorder input[type=\'text\'], #quickorder textarea, #product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+      dataType: 'json',
+      beforeSend: function() {
+      },
+      complete: function() {
+      },
+      success: function(json) {
+        location = '/spasibo';
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+  }
+});
+//-
+$('.ui-quantity__down').click(function () {
+  var $input = $(this).parent().find('input');
+  var count = parseInt($input.val()) - 1;
+  count = count < {{ minimum }} ? {{ minimum }} : count;
+  $input.val(count);
+  $input.change();
+  return false;
+});
+//+
+$('.ui-quantity__up').click(function () {
+  var $input = $(this).parent().find('input');
+  $input.val(parseInt($input.val()) + 1);
+  $input.change();
+  return false;
+});
+
+//Отступ изображения в зависимости от высоты шапки
+$(document).ready(function() {
+  $('.product__images').css('top', $('.header_sticky').height() + 20);
+});
+$(window).on('resize', function(){
+  $('.product__images').css('top', $('.header_sticky').height() + 20);
+});
+
+</script>

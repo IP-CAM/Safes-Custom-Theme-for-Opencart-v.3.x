@@ -1,0 +1,53 @@
+<h3 class="visually-hidden">{{ heading_title }}</h3>
+<div id="js-featured" class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for product in products %}
+      <div class="swiper-slide">
+        <div class="catalog__item catalog__item_featured">
+          <div class="catalog__item-badge">
+            Рекомендуем
+          </div>
+          <div class="catalog__image">
+            <a href="{{ product.href }}">
+              <div class="catalog__img" style="background-image: url('{{ product.thumb }}');"></div>
+            </a>
+          </div>
+          <h4 class="catalog__caption">
+            <a href="{{ product.href }}" class="link link_featured">{{ product.name }}</a>
+          </h4>
+          {% if product.special %}
+            <span class="catalog__price catalog__price_featured">{{ product.special }}</span>
+            <span class="catalog__price catalog__price_old catalog__price_featured">{{ product.price }}</span>
+          {% else %}
+            <span class="catalog__price catalog__price_featured">{{ product.price }}</span>
+          {% endif %}
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="featured__pagination"></div>
+</div>
+
+<script>
+$(document).ready(function() {
+  //swiper.js
+  var featuredSlider = new Swiper('#js-featured', {
+    loop: true,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 2200
+    },
+    pagination: {
+      el: '.featured__pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      800: {
+        slidesPerView: 2,
+      }
+    }
+  });
+});
+</script>

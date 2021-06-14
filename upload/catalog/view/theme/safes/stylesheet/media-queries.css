@@ -1,0 +1,126 @@
+@media screen and (max-width: 1200px) and (min-width: 800px) {
+  .l-header__search {
+    order: 2;
+    min-width: 40%;
+  }
+  .l-cart-button {
+    order: 3;
+  }
+  .l-header__links {
+    order: 4;
+    margin: 10px 40px 0 0;
+  }
+  .l-header__account {
+    order: 5;
+    margin: 10px 0 0 0;
+  }
+}
+@media screen and (max-width: 800px) {
+  .help {
+    margin: 15px 0;
+  }
+  .product__col {
+    width: 100%;
+  }
+  .product__images {
+    padding: 0;
+  }
+  .l-header__row {
+    flex-wrap: nowrap;
+  }
+  .l-header__logotype,
+  .l-header__hamburger {
+    margin-right: 20px;
+  }
+  .l-header__logotype {
+    flex-grow: 1;
+    min-width: 35%;
+  }
+  .l-cart-button {
+    order: 2;
+    margin-right: 0;
+  }
+  .l-header__search,
+  .l-header__links,
+  .l-header__account,
+  .l-header__links {
+    display: none;
+  }
+  .l-header__hamburger {
+    display: block;
+  }
+  .c-slider {
+    margin: 20px 0 0 0;
+  }
+  .featured__pagination {
+    margin: 0 0 20px 0;
+  }
+  .phone {
+    font-size: 120%;
+  }
+  .l-module:first-of-type {
+    margin: 20px 0 0 0;
+  }
+}
+@media screen and (max-width: 650px) {
+  .schedule,
+  .l-header__address {
+    display: none;
+  }
+}
+@media screen and (max-width: 400px) {
+  .c-order {
+    display: block;
+  }
+  .c-order__item,
+  .c-order tbody,
+  .c-order tr {
+    display: block;
+    overflow: hidden;
+  }
+  .c-order__item {
+    border-bottom: 1px solid #bbb;
+    padding: 10px 0;
+  }
+  .c-order__item:last-of-type {
+    border: none;
+  }
+  .c-order__col {
+    display: block;
+    float: left;
+    clear: both;
+    padding: 0;
+    text-align: left !important;
+    margin: 10px 0 0 0;
+  }
+  .c-order__col_header {
+    display: none;
+  }
+  .c-order__col:before {
+    display: block;
+    float: left;
+    content: attr(data-title);
+    color: #bbb;
+    line-height: 2;
+    margin: -5px 5px 0 0;
+  }
+  .c-order__remove:after {
+    content: 'Убрать';
+    color: #E32351;
+    cursor: pointer;
+    clear: both;
+  }
+  .c-order__total:before,
+  .c-order__quantity > span:before {
+    display: none;
+  }
+  .c-order__buttons {
+    margin: 20px 0 0 0;
+  }
+  .c-order__group {
+    display: block;
+  }
+  
+}
+
+

@@ -1,0 +1,24 @@
+<ul class="c-account">
+  {% if not logged %}
+  <li class="c-account__item"><a class="link link_account" href="{{ login }}" class="list-group-item">{{ text_login }}</a>
+  <li class="c-account__item"><a class="link link_account" href="{{ register }}" class="list-group-item">{{ text_register }}</a>
+  <li class="c-account__item"><a class="link link_account" href="{{ forgotten }}" class="list-group-item">{{ text_forgotten }}</a>
+  {% endif %}
+  <li class="c-account__item"><a class="link link_account" href="{{ account }}" class="list-group-item">{{ text_account }}</a>
+  {% if logged %}
+  <li class="c-account__item"><a class="link link_account" href="{{ edit }}" class="list-group-item">{{ text_edit }}</a>
+  <li class="c-account__item"><a class="link link_account" href="{{ password }}" class="list-group-item">{{ text_password }}</a>
+  {% endif %}
+  <li class="c-account__item"><a class="link link_account" href="{{ address }}" class="list-group-item">{{ text_address }}</a>
+  <!--li class="c-account__item"><a class="link link__account" href="{{ wishlist }}" class="list-group-item">{{ text_wishlist }}</a-->
+  <li class="c-account__item"><a class="link link_account" href="{{ order }}" class="list-group-item">{{ text_order }}</a>
+  <!--li class="c-account__item"><a class="link link__account" href="{{ download }}" class="list-group-item">{{ text_download }}</a-->
+  <!--li class="c-account__item"><a class="link link__account" href="{{ recurring }}" class="list-group-item">{{ text_recurring }}</a-->
+  <li class="c-account__item"><a class="link link_account" href="{{ reward }}" class="list-group-item">{{ text_reward }}</a>
+  <li class="c-account__item"><a class="link link_account" href="{{ return }}" class="list-group-item">{{ text_return }}</a>
+  <!--li class="c-account__item"><a class="link link__account" href="{{ transaction }}" class="list-group-item">{{ text_transaction }}</a-->
+  <li class="c-account__item"><a class="link link_account" href="{{ newsletter }}" class="list-group-item">{{ text_newsletter }}</a>
+  {% if logged %}
+  <li class="c-account__item"><a class="link link_account" href="{{ logout }}" class="list-group-item">{{ text_logout }}</a>
+  {% endif %}
+</div>

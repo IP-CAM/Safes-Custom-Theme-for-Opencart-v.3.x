@@ -1,0 +1,23 @@
+<ul class="c-categories l-module">
+  {% for category in categories %}
+    {% if category.category_id == category_id %}
+      {% if child_id %}
+        <li class="с-categories__item"><a href="{{ category.href }}" class="c-categories__link">{{ category.name }}</a> 
+      {% else %}
+        <li class="с-categories__item"><a class="c-categories__link c-categories__link_active">{{ category.name }}</a> 
+      {% endif %}
+      
+        {% if category.children %}
+          {% for child in category.children %}
+            {% if child.category_id == child_id %}
+              <li class="с-categories__subitem">-&nbsp;<a class="c-categories__link c-categories__link_active">{{ child.name }}</a> 
+            {% else %} 
+              <li class="с-categories__subitem">-&nbsp;<a href="{{ child.href }}" class="c-categories__link">{{ child.name }}</a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    {% else %}
+      <li class="с-categories__item"><a href="{{ category.href }}" class="c-categories__link">{{ category.name }}</a>
+    {% endif %}
+  {% endfor %}
+</ul>

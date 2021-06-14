@@ -1,0 +1,41 @@
+<a id="js-cart__button" class="button button_cart button_buy" onclick="return toggleCart()" href="{{ cart }}">
+    <svg class="button__icon"><use xlink:href="#i-cart"></use></svg>
+    <span class="c-cart__items">{{ text_items }}</span>
+</a>
+<div class="l-cart" onmouseEnter="clearInterval(autohideCart);">
+  <div id="cart">
+    <svg class="close" onclick="toggleCart()"><use xlink:href="#i-close"></use></svg>
+    <h6 class="c-cart__title">Ваш заказ</h6>
+    <table class="c-order">
+      {% if products %}
+        {% for product in products %}
+          <tr class="c-order__item">
+            <td class="c-order__col">
+              {% if product.thumb %}
+              <div class="catalog__img_small" style="background-image: url('{{ product.thumb }}');"></div>
+              {% endif %}
+            <td class="c-order__col c-order__group">
+              <span class="c-order__col" data-title="Наименование:"><a href="{{ product.href }}" class="link">{{ product.model }}</a></span>
+              <span class="c-order__col" data-title="Цена за единицу:">{{ product.price }}</span>
+            <td class="c-order__col c-order__quantity" data-title="Количество:"><span>{{ product.quantity }}</span>
+            <td class="c-order__col" data-title="Всего:">{{ product.total }}
+            <td class="c-order__col c-order__remove" onclick="cart.remove('{{ product.cart_id }}');"><svg class="remove"><use xlink:href="#i-remove"></use></svg>
+        {% endfor %}
+        {% for total in totals %}
+          <tr>
+            <td colspan="3" class="c-order__col c-order__total h-right">{{ total.title }}
+            <td colspan="3" class="c-order__col c-order__total">{{ total.text }}
+        {% endfor %}
+          {# Кнопки #}
+          <tr class="c-order__buttons">
+            <td colspan="3" class="c-order__col">
+            <td colspan="2" class="c-order__col">
+              <a href="{{ checkout }}" class="button button_buy">{{ text_checkout }}</a>
+      {% else %}
+          <tr>
+            <td colspan="5" class="c-order__col">
+            {{ text_empty }}
+      {% endif %}
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="l-module">
+  {% if heading_title %}
+    <h2 class="c-categories-grid__caption">{{ heading_title }}</h2>
+    <div class="help">
+      <a href="/kak-vybrat" class="help__icon"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-help"></use></svg></a>
+      <a href="/kak-vybrat" class="link link_help">Как выбрать сейф?</a>
+    </div>
+  {% endif %}
+  {% if categories %}
+    <div class="grid">
+      {% for category in categories %}
+        <div class="grid__col grid__col--1-of-6 grid__col--m-1-of-3 grid__col--s-1-of-2">
+          <div class="catalog__item">
+            <div class="catalog__image">
+              <a href="{{category.href}}">
+                <div class="catalog__img" style="background-image: url('{{ category.image }}');"></div>
+              </a>
+            </div>
+            <h3 class="catalog__caption">
+              <a href="{{ category.href }}" class="link">{{ category.name }}</a>
+            </h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

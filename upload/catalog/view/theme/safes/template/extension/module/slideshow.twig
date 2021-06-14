@@ -1,0 +1,41 @@
+<div id="js-home-slider" class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for banner in banners %}
+    <div class="swiper-slide">
+      {% if banner.link %}
+      <a href="{{ banner.link }}" data-background="{{ banner.image }}" class="swiper-lazy c-slider__background">
+        <div class="swiper-lazy-preloader"></div>
+        <div class="c-slider__caption">{{ banner.title }}</div>
+      </a>
+      {% else %}
+      <div data-background="{{ banner.image }}" class="swiper-lazy c-slider__background">
+        <div class="swiper-lazy-preloader"></div>
+        <div class="c-slider__caption">{{ banner.title }}</div>
+      </div>
+      {% endif %}
+    </div>
+    {# banner.link }}{{ banner.title #}
+    {% endfor %}
+  </div>
+  <div class="home-slider__pagination"></div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+  var homeSlider = new Swiper('#js-home-slider', {
+    spaceBetween: 20,
+    //autoplay: {
+    //  delay: 3200
+    //},
+    loop: true,
+    pagination: {
+      el: '.home-slider__pagination',
+      type: 'bullets',
+    },
+    lazy: true,
+    loadPrevNext: true,
+    autoheight: true
+  });
+})
+</script>
