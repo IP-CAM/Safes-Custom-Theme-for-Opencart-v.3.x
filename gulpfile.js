@@ -1,4 +1,4 @@
-const serve = require('./gulp-tasks/serve').default
+const serve = require('./config/gulp/serve').default
 
 module.exports = {
   serve,
