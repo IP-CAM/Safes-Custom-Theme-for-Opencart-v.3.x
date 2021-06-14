@@ -1,4 +1,6 @@
-const rollup = require('rollup');
+const rollup = require('rollup')
+const commonjs = require('@rollup/plugin-commonjs')
+const nodeResolve = require('@rollup/plugin-node-resolve').default
 
 const { srcPath, destPath, themeSlug } = require('./paths')
 
@@ -8,9 +10,14 @@ const outputPath = `${destPath}/catalog/view/theme/${themeSlug}/javascript/bundl
 function scripts(cb) {
   rollup.rollup({
     input: entryPath,
+    plugins: [
+      commonjs(),
+      nodeResolve(),
+    ]
   }).then(function(bundle) {
     return bundle.write({
       file: outputPath,
+      format: 'iife',
       sourcemap: true,
     })
   })

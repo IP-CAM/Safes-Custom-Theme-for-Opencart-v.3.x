@@ -1,3 +1,7 @@
+import jquery from 'jquery'
+
+window.$ = window.jQuery = jquery
+
 //Отключаем ховеры при прокрутке
 var body = document.body,
     timer;
@@ -166,7 +170,7 @@ $('#js-quicklogin__login').on('click', function(event) {
 });
 
 // Переключатели
-function toggleReference() {
+var toggleReference = function()  {
 	$('.reference__link').html(function(){
 		return ($('.reference__full').hasClass('visually-hidden')) ? 'Скрыть' : 'Подробнее'
 	});
@@ -185,7 +189,8 @@ function toggleMobilemenu() {
 	$('.l-mobile-menu').toggleClass('l-mobile-menu_visible');
 	return false;
 }
-function toggleQuicklogin() {
-	$('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
-	return false;
+
+window.toggleQuicklogin = function() {
+  $('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
+  return false;
 }
