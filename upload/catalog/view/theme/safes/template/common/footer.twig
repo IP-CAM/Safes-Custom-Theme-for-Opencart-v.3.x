@@ -57,29 +57,30 @@
   </form>
 </div>
 
-{# Стили #}
 <link rel="stylesheet" href="catalog/view/theme/safes/stylesheet/stylesheet.css" />
 <link rel="stylesheet" href="catalog/view/theme/safes/stylesheet/media-queries.css" />
 <link rel="stylesheet" href="catalog/view/theme/safes/assets/toast/grid.css" />
 <link rel="stylesheet" href="catalog/view/theme/safes/assets/swiper/swiper.min.css" />
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-{# Скрипты #}
-<script src="catalog/view/theme/safes/javascripts/bundle.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous">
+</script>
 <script>(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="catalog/view/theme/safes/assets/swiper/swiper.min.js"></script>
+<script src="catalog/view/theme/safes/javascript/bundle.js"></script>
 {% for script in scripts %}
 <script src="{{ script }}"></script>
 {% endfor %}
 
-{# Скрипты аналитики #}
 {% for analytic in analytics %}
 {{ analytic }}
 {% endfor %}
 
 <script>
-//Live Search - при удалении модуля убрать
 var live_search = {
 	selector: '#search input[name=\'search\']',
 	text_no_matches: '{{ text_empty }}',

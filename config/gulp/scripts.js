@@ -13,12 +13,16 @@ function scripts(cb) {
     plugins: [
       commonjs(),
       nodeResolve(),
-    ]
+    ],
+    external: ['jquery'],
   }).then(function(bundle) {
     return bundle.write({
       file: outputPath,
       format: 'iife',
       sourcemap: true,
+      globals: {
+        jquery: '$'
+      },
     })
   })
   cb()

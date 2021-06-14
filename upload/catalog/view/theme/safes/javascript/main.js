@@ -1,6 +1,4 @@
-import jquery from 'jquery'
-
-window.$ = window.jQuery = jquery
+import $ from 'jquery'
 
 //Отключаем ховеры при прокрутке
 var body = document.body,
