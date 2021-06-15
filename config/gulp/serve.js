@@ -6,6 +6,7 @@ const { stylesWithBrowserSync } = require('./styles')
 const scripts = require('./scripts').default
 const remove = require('./helpers/remove').default
 const { runDockerContainers, stopDockerContainers } = require('./docker')
+const { ocmod, ocmodGlob } = require('./ocmod')
 const { browserSync, reload } = require('./helpers/browser-sync')
 const { srcPath, themeSlug} = require('./paths')
 
@@ -30,6 +31,8 @@ function serve(cb) {
 
   const scriptsGlob = `${srcPath}/catalog/view/theme/${themeSlug}/javascript/**/*.js`
   watch(scriptsGlob, series(scripts, reload))
+
+  watch(ocmodGlob, ocmod)
 }
 
 exports.default = series(runDockerContainers, serve, stopDockerContainers)

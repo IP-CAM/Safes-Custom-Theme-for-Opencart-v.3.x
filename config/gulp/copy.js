@@ -6,6 +6,7 @@ const copyGlobs = [
   `${srcPath}/**/*`,
   `!${srcPath}/**/{stylesheet,stylesheet/*}`,
   `!${srcPath}/**/{javascript,javascript/*}`,
+  `!${srcPath}/system/{ocmod,ocmod/*}`,
 ]
 
 function copy() {
