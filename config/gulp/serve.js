@@ -1,11 +1,11 @@
 const { watch, series } = require('gulp')
-const { spawn } = require('child_process')
 
 const { copy, copyGlobs } = require('./copy')
 const { stylesWithBrowserSync } = require('./styles')
 
 const scripts = require('./scripts').default
 const remove = require('./helpers/remove').default
+const { runDockerContainers, stopDockerContainers } = require('./docker')
 const { browserSync, reload } = require('./helpers/browser-sync')
 const { srcPath, themeSlug} = require('./paths')
 
@@ -30,19 +30,6 @@ function serve(cb) {
 
   const scriptsGlob = `${srcPath}/catalog/view/theme/${themeSlug}/javascript/**/*.js`
   watch(scriptsGlob, series(scripts, reload))
-}
-
-function runDockerContainers(cb) {
-  spawn('docker', ['compose', 'up', '-d'], { stdio: 'inherit' })
-    .on('close', cb)
-}
-
-function stopDockerContainers(cb) {
-  spawn('docker', ['compose', 'down'], { stdio: 'inherit' })
-    .on('close', function() {
-      cb()
-      process.exit()
-    })
 }
 
 exports.default = series(runDockerContainers, serve, stopDockerContainers)
