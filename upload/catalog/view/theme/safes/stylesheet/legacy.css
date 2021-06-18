@@ -736,12 +736,6 @@ form {
 .button_cart {
   padding: 10px 20px;
 }
-.c-cart__title {
-  font-size: 140%;
-  margin: 20px 0;
-  padding: 0;
-  font-weight: 700;
-}
 
 /* modules/slideshow */
 .c-slider__background {

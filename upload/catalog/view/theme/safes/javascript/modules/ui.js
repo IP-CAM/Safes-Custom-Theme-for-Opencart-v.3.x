@@ -6,7 +6,7 @@ import $ from 'jquery'
     $('.l-cart').toggleClass('l-cart_visible')
   }
 
-  $('.cart-button').on('click', handleCartToggle)
+  $('.cart-button, .cart-popup__close').on('click', handleCartToggle)
 
   /** Legacy */
 
