@@ -1,4 +1,4 @@
-<a id="js-cart__button" class="button button_cart button_buy" onclick="return toggleCart()" href="{{ cart }}">
+<a id="js-cart__button" class="button button_cart button_view_action" onclick="return toggleCart()" href="{{ cart }}">
     <svg class="button__icon"><use xlink:href="#i-cart"></use></svg>
     <span class="c-cart__items">{{ text_items }}</span>
 </a>
@@ -30,7 +30,7 @@
           <tr class="c-order__buttons">
             <td colspan="3" class="c-order__col">
             <td colspan="2" class="c-order__col">
-              <a href="{{ checkout }}" class="button button_buy">{{ text_checkout }}</a>
+              <a href="{{ checkout }}" class="button button_view_action">{{ text_checkout }}</a>
       {% else %}
           <tr>
             <td colspan="5" class="c-order__col">

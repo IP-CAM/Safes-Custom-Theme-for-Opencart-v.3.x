@@ -239,55 +239,7 @@ form {
 .link_breadcrumbs:hover {
   border-bottom: 1px solid rgba(185, 199, 203, .9);
 }
-.button {
-  display: inline-block;
-  background-color: #456df1;
-  color: #fff;
-  border-radius: 5px;
-  padding: 11px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: 100%;
-  margin: 0 10px;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-.button:hover {
-  background-color: #4369e6;
-}
-.button:first-of-type {
-  margin-left: 0;
-}
-.button:last-of-type {
-  margin-right: 0;
-}
-.button:only-of-type {
-  margin: 0;
-}
 
-.button__icon {
-  fill: currentColor;
-  margin: 0 5px 0 0;
-  width: 16px;
-  height: 16px;
-}
-.button_ui {
-  border: 1px solid #ededed;
-  background: transparent;
-  color: #80808c;
-}
-.button_ui:hover {
-  background-color: #ededed;
-}
-.button_buy {
-  background-color: #f77160;
-}
-.button_buy:hover {
-  background-color: #fc766f;
-}
 .hamburger {
   display: block;
   width: 18px;

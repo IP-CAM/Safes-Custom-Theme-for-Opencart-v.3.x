@@ -2,17 +2,24 @@ const { src, dest } = require('gulp')
 const postcss = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const rename = require('gulp-rename')
-const atImport = require('postcss-import')
 
 const { browserSync } = require('./helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('./paths')
 
 const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/main.css`
 
-const buildStream = () => {
+function buildStream() {
   return src(entryPath, { base: srcPath })
     .pipe(sourcemaps.init())
-    .pipe(postcss([atImport()]))
+    .pipe(postcss([
+      require('postcss-nested'),
+      require('postcss-easy-import'),
+    ]))
+    .on('error', function(err) {
+      console.log(err.toString());
+
+      this.emit('end');
+    })
     .pipe(sourcemaps.write('.'))
     .pipe(rename(function(path) {
       path.basename = 'stylesheet'
@@ -21,7 +28,7 @@ const buildStream = () => {
 }
 
 function styles(cb) {
-  buildStream()
+  buildStream(cb)
   cb()
 }
 

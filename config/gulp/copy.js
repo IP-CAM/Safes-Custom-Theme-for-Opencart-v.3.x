@@ -4,8 +4,9 @@ const { srcPath, destPath } = require('./paths')
 
 const copyGlobs = [
   `${srcPath}/**/*`,
-  `!${srcPath}/**/{stylesheet,stylesheet/*}`,
-  `!${srcPath}/**/{javascript,javascript/*}`,
+  `!${srcPath}/**/{blocks,blocks/**/*.css}`,
+  `!${srcPath}/**/{stylesheet,stylesheet/**/*}`,
+  `!${srcPath}/**/{javascript,javascript/**/*}`,
   `!${srcPath}/system/{ocmod,ocmod/*}`,
 ]
 

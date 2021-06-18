@@ -1,0 +1,7 @@
+.button_view_action {
+  background-color: #f77160;
+
+  &:hover {
+    background-color: #fc766f;
+  }
+}

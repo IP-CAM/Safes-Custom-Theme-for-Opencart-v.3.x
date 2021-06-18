@@ -1,4 +1,7 @@
-@import 'legacy.css';
+@import '../blocks/button/button.css';
+@import '../blocks/button/{__*,_*}/**/*.css';
 
 @import 'vendors/toast/grid.css';
 @import 'vendors/swiper.min.css';
+
+@import 'legacy.css';

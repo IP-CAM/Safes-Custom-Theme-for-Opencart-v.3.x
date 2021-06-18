@@ -1,0 +1,32 @@
+.button {
+  display: inline-block;
+  background-color: #456df1;
+  color: #fff;
+  border-radius: 5px;
+  padding: 11px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+  margin: 0 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #4369e6;
+  }
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &:only-of-type {
+    margin: 0;
+  }
+}

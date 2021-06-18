@@ -137,7 +137,7 @@
                         <div class="radio">
                           <label>
                             <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
-                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}                  
+                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
                             {{ option_value.name }}
                             {% if option_value.price %}
                             ({{ option_value.price_prefix }}{{ option_value.price }})
@@ -254,7 +254,7 @@
                   <button class="ui-quantity__up">+</button>
                 </div>
                 {# Купить #}
-                <button id="js-buy" class="button button_buy">Добавить к заказу</button>
+                <button id="js-buy" class="button button_view_action">Добавить к заказу</button>
               </div>
 
               {% if minimum > 1 %}
@@ -262,9 +262,9 @@
                 <div class="message">{{ text_minimum }}</div>
               </div>
               {% endif %}
-            
+
             </div>
-            
+
             {# Размеры и т.д. #}
             <div class="ui__group">
               <h2 class="product__subtitle">{{ attribute_group.name }}</h2>
@@ -377,7 +377,7 @@
       <textarea name="comment" class="ui__textarea" placeholder="Комментарий, необязательно"></textarea>
     </div>
     <div class="ui__buttons">
-      <button type="button" id="js-quickorder__buy" class="button button_buy">Заказать</button>
+      <button type="button" id="js-quickorder__buy" class="button button_view_action">Заказать</button>
     </div>
   </form>
 </div>

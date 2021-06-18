@@ -50,7 +50,7 @@
               {% if product.reorder %}
               <a href="{{ product.reorder }}" title="{{ button_reorder }}" class="button">Повторный заказ</a>
               {% endif %}
-              <a href="{{ product.return }}" data-toggle="tooltip" title="{{ button_return }}" class="button button_ui">Возврат</a></td>
+              <a href="{{ product.return }}" data-toggle="tooltip" title="{{ button_return }}" class="button button_view_pseudo">Возврат</a></td>
             </td>
           </tr>
           {% endfor %}
@@ -113,7 +113,7 @@
           </tr>
         </thead>
         <tbody>
-        
+
         {% if histories %}
         {% for history in histories %}
         <tr>
@@ -128,7 +128,7 @@
         </tr>
         {% endif %}
           </tbody>
-        
+
       </table>
       {% endif %}
       <div class="buttons clearfix">

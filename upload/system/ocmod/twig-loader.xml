@@ -1,0 +1,16 @@
+<file path="system/library/template/twig.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$loader = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+      ]]>
+    </search>
+    <add position="replace">
+      <![CDATA[
+$loader1 = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+$loader2 = new \Twig\Loader\FilesystemLoader(array(DIR_TEMPLATE));
+$loader = new \Twig\Loader\ChainLoader(array($loader1, $loader2));
+      ]]>
+    </add>
+  </operation>
+</file>

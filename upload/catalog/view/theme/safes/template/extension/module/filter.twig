@@ -9,7 +9,7 @@
   {% endfor %}
 </div>
 {% endfor %}
-<button type="button" id="button-filter" class="button button_ui">{{ button_filter }}</button>
+<button type="button" id="button-filter" class="button button_view_pseudo">{{ button_filter }}</button>
 
 <script>
   $(document).ready(function() {
@@ -21,4 +21,4 @@
         location = '{{ action }}&filter=' + filter.join(',');
     });
   });
-</script> 
+</script>
