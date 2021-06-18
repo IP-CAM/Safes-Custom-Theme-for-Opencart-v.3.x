@@ -1,6 +1,15 @@
 import $ from 'jquery'
 
 (() => {
+  const handleCartToggle = (event) => {
+    event.preventDefault()
+    $('.l-cart').toggleClass('l-cart_visible')
+  }
+
+  $('.cart-button').on('click', handleCartToggle)
+
+  /** Legacy */
+
   // TODO: кажется, это нужно убрать, так как это логика зависимая от модуля
   $('#mobile-search').on('change', function() {
     var value = $(this).val();
@@ -44,11 +53,6 @@ import $ from 'jquery'
     });
     $('.reference__full').toggleClass('visually-hidden');
   };
-
-  function toggleCart() {
-    $('.l-cart').toggleClass('l-cart_visible');
-    return false;
-  }
 
   function toggleSearch() {
     $('.l-header__search').toggleClass('l-header__search_visible');

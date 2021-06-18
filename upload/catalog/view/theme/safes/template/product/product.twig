@@ -436,7 +436,7 @@ $('#js-buy').on('click', function() {
         autohideCart = setTimeout(function(){
           toggleCart();
         }, 2000);
-        $('#js-cart__button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
+        $('.cart-button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
         $('#cart > table').load('index.php?route=common/cart/info table');
 			}
 		},

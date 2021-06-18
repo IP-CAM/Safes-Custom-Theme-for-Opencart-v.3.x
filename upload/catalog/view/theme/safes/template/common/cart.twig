@@ -1,8 +1,17 @@
-<a id="js-cart__button" class="button button_cart button_view_action" onclick="return toggleCart()" href="{{ cart }}">
-    <svg class="button__icon"><use xlink:href="#i-cart"></use></svg>
-    <span class="c-cart__items">{{ text_items }}</span>
+<a
+  class="cart-button button button_view_action"
+  href="{{ cart }}"
+>
+  <span class="button__addon">
+    <svg class="button__icon">
+      <use xlink:href="#i-cart"></use>
+    </svg>
+  </span>
+  <span class="button__text">
+    {{ text_items }}
+  </span>
 </a>
-<div class="l-cart" onmouseEnter="clearInterval(autohideCart);">
+<div class="l-cart">
   <div id="cart">
     <svg class="close" onclick="toggleCart()"><use xlink:href="#i-close"></use></svg>
     <h6 class="c-cart__title">Ваш заказ</h6>

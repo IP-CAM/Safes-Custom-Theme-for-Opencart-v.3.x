@@ -56,7 +56,7 @@ export class Cart {
       success: function(json) {
         // Need to set timeout otherwise it wont update the total
         setTimeout(function () {
-          $('#js-cart__button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
+          $('.cart-button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
         }, 100);
         if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
           location = 'index.php?route=checkout/cart';
@@ -83,7 +83,7 @@ export class Cart {
       success: function(json) {
         // Need to set timeout otherwise it wont update the total
         setTimeout(function () {
-          $('#js-cart__button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
+          $('.cart-button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
         }, 100);
 
         if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {

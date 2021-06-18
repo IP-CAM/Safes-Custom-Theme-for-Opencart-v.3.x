@@ -1,0 +1,16 @@
+.button__addon {
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    margin-right: 8px;
+  }
+
+  &:last-child {
+    margin-left: 8px;
+  }
+
+  &:only-child {
+    margin: 0;
+  }
+}
