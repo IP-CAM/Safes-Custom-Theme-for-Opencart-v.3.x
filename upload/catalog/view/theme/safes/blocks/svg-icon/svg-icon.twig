@@ -1,0 +1,11 @@
+{% macro svg_icon(props) %}
+  {% if props.symbol %}
+    <svg
+      class="svg-icon {{ props.class }}"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <use xlink:href="#{{ props.symbol }}"/>
+    </svg>
+  {% endif %}
+{% endmacro %}

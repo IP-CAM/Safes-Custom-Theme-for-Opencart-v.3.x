@@ -1,11 +1,11 @@
+{% from 'safes/blocks/svg-icon/svg-icon.twig' import svg_icon %}
+
 <a
   class="cart-button button button_view_action"
   href="{{ cart }}"
 >
   <span class="button__addon">
-    <svg class="button__icon">
-      <use xlink:href="#i-cart"></use>
-    </svg>
+    {{ svg_icon({ symbol: "i-cart", class: "button__icon" }) }}
   </span>
   <span class="button__text">
     {{ text_items }}
@@ -13,9 +13,7 @@
 </a>
 <div class="l-cart">
   <div id="cart" class="cart-popup">
-    <svg class="close cart-popup__close">
-      <use xlink:href="#i-close"/>
-    </svg>
+    {{ svg_icon({ symbol: "i-close", class: "close cart-popup__close" }) }}
     <h6 class="cart-popup__title">
       Ваш заказ
     </h6>
