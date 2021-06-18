@@ -13,12 +13,15 @@ function buildStream() {
     .pipe(sourcemaps.init())
     .pipe(postcss([
       require('postcss-nested'),
-      require('postcss-easy-import'),
+      require('postcss-easy-import')({
+        path: [
+          `${srcPath}/catalog/view/theme/${themeSlug}/blocks`
+        ]
+      }),
     ]))
     .on('error', function(err) {
-      console.log(err.toString());
-
-      this.emit('end');
+      console.log(err.toString())
+      this.emit('end')
     })
     .pipe(sourcemaps.write('.'))
     .pipe(rename(function(path) {
