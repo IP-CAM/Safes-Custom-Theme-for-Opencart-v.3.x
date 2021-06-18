@@ -1,5 +1,16 @@
 {{ header }}
+
+{% if promo_left  %}
 <div class="l-wrapper l-wrapper_tinted">
+  <div class="l-container">
+    <div class="promo">
+      {{ promo_left }}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="l-wrapper">
   <div class="l-container">
     <div class="grid">
       {% if column_left %}
