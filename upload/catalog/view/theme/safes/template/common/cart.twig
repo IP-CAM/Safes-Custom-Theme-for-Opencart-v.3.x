@@ -15,7 +15,7 @@
   <div id="cart" class="cart-popup">
     {{ svg_icon({ symbol: "i-close", class: "close cart-popup__close" }) }}
     <h6 class="cart-popup__title">
-      Ваш заказ
+      {{ text_cart }}
     </h6>
     <table class="c-order cart-popup__order">
       {% if products %}
