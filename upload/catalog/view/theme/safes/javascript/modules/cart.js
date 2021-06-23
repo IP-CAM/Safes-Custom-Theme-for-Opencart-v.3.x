@@ -1,9 +1,7 @@
-import $ from 'jquery'
+const getURLVar = require('../utils/get-url-var')
 
-import { getURLVar } from '../utils/get-url-var'
-
-export class Cart {
-  add(product_id, quantity) {
+const cart = {
+  add: (product_id, quantity) => {
     $.ajax({
       url: 'index.php?route=checkout/cart/add',
       type: 'post',
@@ -39,9 +37,8 @@ export class Cart {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
     });
-  }
-
-  update(key, quantity) {
+  },
+  update: (key, quantity) => {
     $.ajax({
       url: 'index.php?route=checkout/cart/edit',
       type: 'post',
@@ -68,9 +65,8 @@ export class Cart {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
     });
-  }
-
-  remove(key) {
+  },
+  remove: (key) => {
     $.ajax({
       url: 'index.php?route=checkout/cart/remove',
       type: 'post',
@@ -98,3 +94,5 @@ export class Cart {
     });
   }
 }
+
+module.exports = cart

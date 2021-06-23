@@ -1,4 +1,4 @@
-export const loadSVGSprites = (url) => {
+const loadSVGSprites = (url) => {
   if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) return
 
   const isLocalStorage = 'localStorage' in window && window['localStorage'] !== null
@@ -43,3 +43,5 @@ export const loadSVGSprites = (url) => {
 
   }
 }
+
+module.exports = loadSVGSprites

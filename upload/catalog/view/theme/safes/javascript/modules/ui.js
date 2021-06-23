@@ -1,5 +1,3 @@
-import $ from 'jquery'
-
 (() => {
   const handleCartToggle = (event) => {
     event.preventDefault()

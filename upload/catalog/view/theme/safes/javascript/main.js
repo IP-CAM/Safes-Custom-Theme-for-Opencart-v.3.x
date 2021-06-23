@@ -1,11 +1,11 @@
 require('jquery-ui/ui/widgets/autocomplete')
 
-// import { Cart } from './modules/cart'
-// import { loadSVGSprites } from './modules/svg-sprites'
-// import { svgSpritesPath } from './constants/paths'
+const loadSVGSprites = require('./modules/svg-sprites')
+const cart = require('./modules/cart')
 
-// import './modules/ui'
+const { svgSpritesPath } = require('./constants/paths')
 
-// window.cart = new Cart()
+window.cart = cart
+loadSVGSprites(svgSpritesPath)
 
-//loadSVGSprites(svgSpritesPath)
+require('./modules/ui')

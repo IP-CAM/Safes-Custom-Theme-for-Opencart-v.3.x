@@ -1,4 +1,4 @@
-export const getURLVar = (key) => {
+const getURLVar = (key) => {
   var value = [];
   var query = String(document.location).split('?');
   if (query[1]) {
@@ -16,3 +16,5 @@ export const getURLVar = (key) => {
     }
   }
 }
+
+module.exports = getURLVar
