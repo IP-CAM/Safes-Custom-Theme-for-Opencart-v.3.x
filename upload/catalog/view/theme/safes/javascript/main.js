@@ -1,9 +1,11 @@
-import { Cart } from './modules/cart'
-import { loadSVGSprites } from './modules/svg-sprites'
-import { svgSpritesPath } from './constants/paths'
+require('jquery-ui/ui/widgets/autocomplete')
 
-import './modules/ui'
+// import { Cart } from './modules/cart'
+// import { loadSVGSprites } from './modules/svg-sprites'
+// import { svgSpritesPath } from './constants/paths'
 
-window.cart = new Cart()
+// import './modules/ui'
 
-loadSVGSprites(svgSpritesPath)
+// window.cart = new Cart()
+
+//loadSVGSprites(svgSpritesPath)

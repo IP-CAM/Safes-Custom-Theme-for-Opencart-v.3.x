@@ -5,4 +5,6 @@
 @import 'vendors/toast/grid.css';
 @import 'vendors/swiper.min.css';
 
+@import 'jquery-ui/themes/base/autocomplete.css';
+
 @import 'legacy.css';
