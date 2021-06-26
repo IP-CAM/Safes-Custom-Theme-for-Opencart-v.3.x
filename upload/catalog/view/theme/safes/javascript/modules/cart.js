@@ -1,4 +1,4 @@
-const getURLVar = require('../utils/get-url-var')
+const getURLVar = require('../helpers/get-url-var')
 
 const cart = {
   add: (product_id, quantity) => {
