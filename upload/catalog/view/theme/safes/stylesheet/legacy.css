@@ -1196,76 +1196,7 @@ form {
 .checkout__agreement {
   margin-top: 30px;
 }
-/* Поиск (Модуль Live Search) */
-.live-search {
-  width: 100%;
-  position: absolute;
-  left: 0;
-	z-index: 99;
-	padding: 5px 0 0 0;
-	margin: -6px 0 0 0;
-	background-color: #fff;
-	border: 1px solid #ededed;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	display:none;
-}
-.live-search .loading{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-.live-search ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-.live-search ul li {
-  display: block;
-	margin: 0;
-  border-bottom: 1px solid #ededed;
-}
-.live-search ul li:last-of-type {
-  border: none;
-}
-.live-search ul li a {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5px 15px;
-  text-decoration: none;
-  color: currentColor;
-}
-.live-search__image {
-  margin-right: 10px;
-  width: 50px;
-  height: 50px;
-}
-.live-search__info {
-  flex-grow: 1;
-}
-.live-search__title {
-  color: #456df1;
-  border-bottom: 1px solid rgba(69, 109, 241, .3);
-}
-.live-search__desciption {
-  font-size: 80%;
-  display: block;
-}
-.live-search__price {
-  display: block;
-}
-.live-search__price_old {
-  text-decoration: line-through;
-  color: #ccc;
-}
-.result-text {
-  padding: 10px;
-  text-align: center;
-}
-.live-search__no-results {
-  padding: 5px 10px 10px 10px;
-}
+
 /* product/special */
 .special {
   max-width: 760px;

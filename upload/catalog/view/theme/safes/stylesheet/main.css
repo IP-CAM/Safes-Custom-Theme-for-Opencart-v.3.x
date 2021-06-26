@@ -1,6 +1,7 @@
-@import '../blocks/button/button.css';
-@import '../blocks/button/{__*,_*}/**/*.css';
-@import '../blocks/cart-popup/{__*,_*}/**/*.css';
+@import 'button/button.css';
+@import 'button/{__*,_*}/**/*.css';
+@import 'cart-popup/{__*,_*}/**/*.css';
+@import 'live-search/live-search'.css;
 
 @import 'vendors/toast/grid.css';
 @import 'vendors/swiper.min.css';
