@@ -3,7 +3,7 @@ const webpack = require('webpack-stream');
 
 const { srcPath, destPath, themeSlug } = require('./paths')
 
-const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/javascript/main.js`
+const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/javascript/index.js`
 const outputPath = `${destPath}/catalog/view/theme/${themeSlug}/javascript/`
 
 function scripts(cb) {

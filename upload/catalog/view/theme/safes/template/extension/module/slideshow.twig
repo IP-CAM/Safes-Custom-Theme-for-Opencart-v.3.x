@@ -1,41 +1,45 @@
-<div id="js-home-slider" class="swiper-container">
-  <div class="swiper-wrapper">
+<div
+  id="promo-banner-carousel-{{ module }}"
+  class="promo-banner-carousel swiper-container"
+>
+  <ul class="promo-banner-carousel__list swiper-wrapper">
     {% for banner in banners %}
-    <div class="swiper-slide">
+    <li
+      class="promo-banner-carousel__item swiper-slide swiper-lazy"
+      data-background="{{ banner.image }}"
+    >
       {% if banner.link %}
-      <a href="{{ banner.link }}" data-background="{{ banner.image }}" class="swiper-lazy c-slider__background">
-        <div class="swiper-lazy-preloader"></div>
-        <div class="c-slider__caption">{{ banner.title }}</div>
+      <a
+        class="promo-banner-carousel__link"
+        href="{{ banner.link }}"
+      >
+        <h2 class="promo-banner-carousel__title">
+          {{ banner.title }}
+        </h2>
       </a>
       {% else %}
-      <div data-background="{{ banner.image }}" class="swiper-lazy c-slider__background">
-        <div class="swiper-lazy-preloader"></div>
-        <div class="c-slider__caption">{{ banner.title }}</div>
-      </div>
+      <h2 class="promo-banner-carousel__title">
+        {{ banner.title }}
+      </h2>
       {% endif %}
-    </div>
-    {# banner.link }}{{ banner.title #}
+      <span class="swiper-lazy-preloader"></span>
+    </li>
     {% endfor %}
-  </div>
-  <div class="home-slider__pagination"></div>
+  </ul>
+  <div class="promo-banner-carousel__pagination"></div>
 </div>
 
-
 <script>
-$(document).ready(function() {
-  var homeSlider = new Swiper('#js-home-slider', {
-    spaceBetween: 20,
-    //autoplay: {
-    //  delay: 3200
-    //},
-    loop: true,
-    pagination: {
-      el: '.home-slider__pagination',
-      type: 'bullets',
-    },
-    lazy: true,
-    loadPrevNext: true,
-    autoheight: true
-  });
-})
+  $(document).ready(function() {
+    const promoBannerCarousel{{ module }} = new Swiper('#promo-banner-carousel-{{ module }}', {
+      spaceBetween: 20,
+      loop: true,
+      preloadImages: false,
+      lazy: true,
+      pagination: {
+        el: '#promo-banner-carousel-{{ module }} .promo-banner-carousel__pagination',
+        clickable: true,
+      },
+    });
+  })
 </script>
