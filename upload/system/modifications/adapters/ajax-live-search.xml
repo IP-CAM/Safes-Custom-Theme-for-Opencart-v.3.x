@@ -1,0 +1,36 @@
+<file path="admin/controller/extension/module/live_search.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$this->model_setting_event->addEvent('ajax_live_search', 'catalog/view/common/header/after', 'extension/module/live_search/injectLiveSearch');
+      ]]>
+    </search>
+    <add position="replace">
+      <![CDATA[
+$this->model_setting_event->addEvent('ajax_live_search', 'catalog/view/common/footer/after', 'extension/module/live_search/injectLiveSearch');
+      ]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/controller/extension/module/live_search.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$liveSearchJS = '<link href="catalog/view/javascript/live_search/live_search.css" rel="stylesheet" type="text/css">'."\n";
+      ]]>
+    </search>
+    <add position="replace" offset="9">
+      <![CDATA[
+$liveSearchJS = '<script src="catalog/view/javascript/live_search/live_search.js"></script>' . "\n";
+$liveSearchJS .= '<script>' . "\n";
+$liveSearchJS .= '$(document).ready(function() {' . "\n";
+$liveSearchJS .= 'const options = ' . json_encode($liveSearch) . ';' . "\n";
+$liveSearchJS .= 'LiveSearchJs.init(options);' . "\n";
+$liveSearchJS .= '});' . "\n";
+$liveSearchJS .= '</script>' . "\n";
+$liveSearchJS .= '</body>' . "\n";
+$output = str_replace('</body>', $liveSearchJS, $output);
+      ]]>
+    </add>
+  </operation>
+</file>
