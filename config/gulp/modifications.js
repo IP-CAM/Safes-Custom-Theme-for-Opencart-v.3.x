@@ -4,9 +4,8 @@ const wrap = require('gulp-wrap')
 const prettyData = require('gulp-pretty-data')
 const { srcPath, destPath, themeSlug } = require('./paths')
 
-const ocmodGlob = [
-  `${srcPath}/system/ocmod/**/*.xml`,
-]
+const modificationsGlob = `${srcPath}/system/modifications/**/*.xml`
+const outputPath = `${destPath}/system`
 
 const template = `
   <?xml version="1.0" encoding="utf-8"?>
@@ -18,19 +17,19 @@ const template = `
   </modification>
 `
 
-function ocmod(cb) {
-  src(ocmodGlob, { base: srcPath })
+function modifications(cb) {
+  src(modificationsGlob, { base: srcPath })
     .pipe(concat(`${themeSlug}.ocmod.xml`))
     .pipe(wrap(template.trim()))
     .pipe(prettyData({
       type: 'prettify',
       preserveComments: false,
     }))
-    .pipe(dest(`${destPath}/system`))
+    .pipe(dest(outputPath))
   cb()
 }
 
 module.exports = {
-  ocmod,
-  ocmodGlob,
+  modifications,
+  modificationsGlob,
 }
