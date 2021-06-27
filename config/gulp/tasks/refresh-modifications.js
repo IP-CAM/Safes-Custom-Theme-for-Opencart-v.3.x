@@ -8,19 +8,16 @@ const fetch = require('fetch-cookie/node-fetch')(nodeFetch)
 const FormData = require('form-data')
 const qs = require('qs')
 
-const credentials = {
-  username: 'admin',
-  password: 'admin',
-}
+const { username, password, port } = require('../../../config')
 
 function getToken() {
   const loginFormData = new FormData()
 
-  loginFormData.append('username', credentials.username)
-  loginFormData.append('password', credentials.password)
+  loginFormData.append('username', username)
+  loginFormData.append('password', password)
 
   return new Promise((resolve) => {
-    fetch('http://localhost/admin/index.php?route=common/login', {
+    fetch(`http://localhost:${port}/admin/index.php?route=common/login`, {
       method: 'POST',
       headers: loginFormData.getHeaders(),
       body: loginFormData,
@@ -36,7 +33,7 @@ function getToken() {
 
 function refreshModificationsRequest(token) {
   return new Promise((resolve) => {
-    fetch(`http://localhost/admin/index.php?route=marketplace/modification/refresh&user_token=${token}`, {
+    fetch(`http://localhost:${port}/admin/index.php?route=marketplace/modification/refresh&user_token=${token}`, {
       method: 'GET',
       credentials: 'include',
     })

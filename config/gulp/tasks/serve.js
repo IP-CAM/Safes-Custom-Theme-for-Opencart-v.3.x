@@ -4,17 +4,18 @@ const { copy, copyGlobs } = require('./copy')
 const { stylesWithBrowserSync } = require('./styles')
 
 const scripts = require('./scripts').default
-const remove = require('./helpers/remove').default
+const remove = require('../helpers/remove')
 const { runDockerContainers, stopDockerContainers } = require('./docker')
 const { modifications, modificationsGlob } = require('./modifications')
 const { refreshModifications } = require('./refresh-modifications')
-const { browserSync, reload } = require('./helpers/browser-sync')
-const { srcPath, themeSlug} = require('./paths')
+const { browserSync, reload } = require('../helpers/browser-sync')
 
-require('./helpers/windows-sigint')
+const { srcPath, themeSlug, port } = require('../../../config')
+
+require('../helpers/windows-sigint')
 
 const browserSyncConfig = {
-  proxy: 'localhost',
+  proxy: `localhost:${port}`,
 }
 
 function serve(cb) {
@@ -44,4 +45,4 @@ function serve(cb) {
   ], refreshModifications)
 }
 
-exports.default = series(runDockerContainers, serve, stopDockerContainers)
+module.exports = series(runDockerContainers, serve, stopDockerContainers)

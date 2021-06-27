@@ -4,4 +4,4 @@ const { copy } = require('./copy')
 const scripts = require('./scripts').default
 const { styles } = require('./styles')
 
-exports.default = series([copy, styles, scripts])
+module.exports = series([copy, styles, scripts])

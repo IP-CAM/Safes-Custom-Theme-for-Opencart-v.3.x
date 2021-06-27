@@ -1,6 +1,6 @@
 const { src, dest, lastRun } = require('gulp')
 
-const { srcPath, destPath } = require('./paths')
+const { srcPath, destPath } = require('../../../config')
 
 const copyGlobs = [
   `${srcPath}/**/*`,

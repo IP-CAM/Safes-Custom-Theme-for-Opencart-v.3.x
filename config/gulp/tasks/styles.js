@@ -3,8 +3,8 @@ const postcss = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const rename = require('gulp-rename')
 
-const { browserSync } = require('./helpers/browser-sync')
-const { srcPath, destPath, themeSlug } = require('./paths')
+const { browserSync } = require('../helpers/browser-sync')
+const { srcPath, destPath, themeSlug } = require('../../../config')
 
 const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/main.css`
 

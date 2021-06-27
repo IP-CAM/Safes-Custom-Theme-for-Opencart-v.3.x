@@ -1,7 +1,7 @@
 const del = require('del')
 const path = require('path')
 
-const { srcPath, destPath } = require('../paths')
+const { srcPath, destPath } = require('../../settings')
 
 function remove(filePath) {
   const filePathFromSrc = path.relative(path.resolve(srcPath), filePath)
@@ -10,4 +10,4 @@ function remove(filePath) {
   del.sync(destFilePath)
 }
 
-exports.default = remove
+module.exports = remove

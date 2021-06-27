@@ -2,7 +2,7 @@ const { src, dest } = require('gulp')
 const concat = require('gulp-concat')
 const wrap = require('gulp-wrap')
 const prettyData = require('gulp-pretty-data')
-const { srcPath, destPath, themeSlug } = require('./paths')
+const { srcPath, destPath, themeSlug } = require('../../../config')
 
 const modificationsGlob = `${srcPath}/system/modifications/**/*.xml`
 const outputPath = `${destPath}/system`
