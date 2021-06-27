@@ -8,7 +8,7 @@ const fetch = require('fetch-cookie/node-fetch')(nodeFetch)
 const FormData = require('form-data')
 const qs = require('qs')
 
-const { username, password, port } = require('../../../config')
+const { username, password, opencartPort } = require('../../../config')
 
 function getToken() {
   const loginFormData = new FormData()
@@ -17,7 +17,7 @@ function getToken() {
   loginFormData.append('password', password)
 
   return new Promise((resolve) => {
-    fetch(`http://localhost:${port}/admin/index.php?route=common/login`, {
+    fetch(`http://localhost:${opencartPort}/admin/index.php?route=common/login`, {
       method: 'POST',
       headers: loginFormData.getHeaders(),
       body: loginFormData,
@@ -33,7 +33,7 @@ function getToken() {
 
 function refreshModificationsRequest(token) {
   return new Promise((resolve) => {
-    fetch(`http://localhost:${port}/admin/index.php?route=marketplace/modification/refresh&user_token=${token}`, {
+    fetch(`http://localhost:${opencartPort}/admin/index.php?route=marketplace/modification/refresh&user_token=${token}`, {
       method: 'GET',
       credentials: 'include',
     })

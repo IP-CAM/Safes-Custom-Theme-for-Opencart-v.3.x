@@ -8,14 +8,15 @@ const remove = require('../helpers/remove')
 const { runDockerContainers, stopDockerContainers } = require('./docker')
 const { modifications, modificationsGlob } = require('./modifications')
 const { refreshModifications } = require('./refresh-modifications')
+const { makeOpencartDirectory } = require('./make-opencart-directory')
 const { browserSync, reload } = require('../helpers/browser-sync')
 
-const { srcPath, themeSlug, port } = require('../../../config')
+const { srcPath, themeSlug, opencartPort } = require('../../../config')
 
 require('../helpers/windows-sigint')
 
 const browserSyncConfig = {
-  proxy: `localhost:${port}`,
+  proxy: `localhost:${opencartPort}`,
 }
 
 function serve(cb) {
@@ -45,4 +46,4 @@ function serve(cb) {
   ], refreshModifications)
 }
 
-module.exports = series(runDockerContainers, serve, stopDockerContainers)
+module.exports = series(makeOpencartDirectory, runDockerContainers, serve, stopDockerContainers)

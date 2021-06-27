@@ -11,10 +11,9 @@ RUN set -ex; \
 
 WORKDIR /var/www/html
 
-COPY ./scripts/* /
-RUN chmod +x /entrypoint.sh /setup.sh
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 
 EXPOSE 9000
 CMD ["php-fpm"]
