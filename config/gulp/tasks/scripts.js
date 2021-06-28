@@ -8,9 +8,11 @@ const outputPath = `${destPath}/catalog/view/theme/${themeSlug}/javascript/`
 
 function scripts(cb) {
   src(entryPath)
-    .pipe(webpack(require('../webpack/webpack.config')))
+    .pipe(webpack(require('../../webpack/webpack.config')))
     .pipe(dest(outputPath))
   cb()
 }
 
-exports.default = scripts
+module.exports = {
+  scripts,
+}

@@ -2,14 +2,14 @@ const { watch, series } = require('gulp')
 
 const { copy, copyGlobs } = require('./copy')
 const { stylesWithBrowserSync } = require('./styles')
-
-const scripts = require('./scripts').default
-const remove = require('../helpers/remove')
+const { scripts } = require('./scripts')
 const { runDockerContainers, stopDockerContainers } = require('./docker')
 const { modifications, modificationsGlob } = require('./modifications')
 const { refreshModifications } = require('./refresh-modifications')
 const { makeOpencartDirectory } = require('./make-opencart-directory')
+const build = require('./build')
 const { browserSync, reload } = require('../helpers/browser-sync')
+const remove = require('../helpers/remove')
 
 const { srcPath, themeSlug, opencartPort } = require('../../../config')
 
@@ -46,4 +46,4 @@ function serve(cb) {
   ], refreshModifications)
 }
 
-module.exports = series(makeOpencartDirectory, runDockerContainers, serve, stopDockerContainers)
+module.exports = series(makeOpencartDirectory, runDockerContainers, build, serve, stopDockerContainers)
