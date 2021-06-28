@@ -1,36 +1,8 @@
 /*
 #5560de - a:visited
 */
-@font-face {font-family: 'PT Sans';
-	src: url('../fonts/pts55f_w.eot');
-	font-style: normal;
-	font-weight: 00;
-  src: local('PT Sans'), url('../fonts/PTS55F_W.eot?#iefix') format('embedded-opentype'), url('../fonts/PTS55F_W.woff') format('woff'),url('../fonts/PTS55F_W.ttf') format('truetype'), url('../fonts/PTS55F_W.svg#PTSans-Regular') format('svg');}
-@font-face {font-family: 'PT Sans';
-	src: url('../fonts/pts75f_w.eot');
-	font-style: normal;
-	font-weight: 700;
-	src: local('PT Sans Bold'), url('../fonts/PTS75F_W.eot?#iefix') format('embedded-opentype'), url('../fonts/PTS75F_W.woff') format('woff'),url('../fonts/PTS75F_W.ttf') format('truetype'), url('../fonts/PTS75F_W.svg#PTSans-Bold') format('svg');}
 
 /*Сбросы*/
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-body {
-  display: block;
-  position: relative;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  font: 300 100% 'PT Sans', sans-serif;
-  color: #131313;
-  width: 100%;
-  height: 100%;
-  scroll-behavior: smooth;
-}
 a {
   text-decoration: none;
   color: #4369e6;
