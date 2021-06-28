@@ -7,6 +7,9 @@
 @import 'live-search/live-search'.css;
 @import 'promo-banner-carousel/promo-banner-carousel.css';
 @import 'promo-banner-carousel/{__*,_*}/**/*.css';
+@import 'text-field/text-field.css';
+@import 'header/header.css';
+@import 'header/{__*,_*}/**/*.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

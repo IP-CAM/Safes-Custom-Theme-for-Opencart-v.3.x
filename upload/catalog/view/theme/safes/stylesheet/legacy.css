@@ -1089,18 +1089,7 @@ form {
   font-size: 120%;
   line-height: 1.5;
 }
-/* Поиск */
-/* в хэдере*/
-#search {
-  position: relative;
-}
-#search input[name='search'] {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ededed;
-  width: 100%;
-}
-/* на странице поиска */
+
 .search__input {
   display: inline-block;
   padding: 10px;

@@ -1,0 +1,8 @@
+.text-field {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ededed;
+  width: 100%;
+  font: inherit;
+  box-sizing: border-box;
+}
