@@ -2,9 +2,11 @@ const { src, dest } = require('gulp')
 const postcss = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const rename = require('gulp-rename')
+const path = require('path')
 
 const { browserSync } = require('../helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('../../../config')
+const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/breakpoints`))
 
 const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/main.css`
 
@@ -18,6 +20,9 @@ function buildStream() {
           `${srcPath}/catalog/view/theme/${themeSlug}/blocks`
         ]
       }),
+      require('postcss-simple-vars')({
+        variables: breakpoints,
+      })
     ]))
     .on('error', function(err) {
       console.log(err.toString())
