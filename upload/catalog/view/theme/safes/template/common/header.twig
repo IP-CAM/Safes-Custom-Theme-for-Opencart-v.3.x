@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{% if description %}
-<meta name="description" content="{{ description }}" />
-{% endif %}
-<title>{{ title }}</title>
-<base href="{{ base }}" />
-{% for style in styles %}
-<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
-{% endfor %}
-{% for link in links %}
-<link rel="{{ link.rel }}" href="{{ link.href }}" />
-{% endfor %}
-<link rel="icon" type="image/png" href="catalog/view/theme/safes/image/favicon/16.png" sizes="16x16">
-<link rel="icon" type="image/png" href="catalog/view/theme/safes/image/favicon/32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="catalog/view/theme/safes/image/favicon/180.png" sizes="180x180">
-<script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if description %}
+  <meta name="description" content="{{ description }}" />
+  {% endif %}
+  <title>{{ title }}</title>
+  <base href="{{ base }}" />
+  {% for style in styles %}
+  <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+  {% endfor %}
+  {% for link in links %}
+  <link rel="{{ link.rel }}" href="{{ link.href }}" />
+  {% endfor %}
+  <link rel="icon" type="image/png" href="catalog/view/theme/safes/image/favicon/16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="catalog/view/theme/safes/image/favicon/32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="catalog/view/theme/safes/image/favicon/180.png" sizes="180x180">
+  <script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
 </head>
 <body>
 {# Меню для мобильных устройств #}
@@ -39,51 +39,51 @@
 		{% endif %}
 	</div>
 </div>
-<div class="l-wrapper l-wrapper_border-bottom">
-  <div class="l-container l-header__row">
-    <div class="l-header__phone">
-      <a href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}" class="phone">{{ telephone }}</a>
-      <span class="schedule">{{ open }}</span>
-    </div>
-    <div class="l-header__address">
-      <span class="address"><a href="/kontakty" class="link link_address">Москва, Танковый проезд,&nbsp;4&nbsp;А</a></span>
-      <span class="address__metro">
-        <svg class="address__icon"><use xlink:href="#i-metro"></use></svg>
-        &nbsp;Римская, Площадь Ильича
-      </span>
-    </div>
-  </div>
-</div>
-<div class="l-wrapper l-wrapper_border-bottom header_sticky">
-  <div class="l-container l-header__row">
-    <div class="l-header__logotype">
-      <a href="{{ home }}">
-        <img src="catalog/view/theme/safes/image/logotype.svg" alt="«Твой сейф»" />
-      </a>
-    </div>
-    <div class="l-header__hamburger">
-      <div class="hamburger" onclick="toggleMobilemenu()">
-        <span></span><span></span><span></span><span></span>
+<div class="l-wrapper">
+  <div class="header">
+    <div class="l-container header__row">
+      <div class="l-header__phone">
+        <a href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}" class="phone">{{ telephone }}</a>
+        <span class="schedule">{{ open }}</span>
+      </div>
+      <div class="l-header__address">
+        <span class="address"><a href="/kontakty" class="link link_address">Москва, Танковый проезд,&nbsp;4&nbsp;А</a></span>
+        <span class="address__metro">
+          <svg class="address__icon"><use xlink:href="#i-metro"></use></svg>
+          &nbsp;Римская, Площадь Ильича
+        </span>
       </div>
     </div>
-    <div class="l-header__search">
-    {{ search }}
-    </div>
-    <div class="l-header__account">
-      <ul class="nav">
-        {% if logged %}
-        <li class="nav__item"><a href="{{ account }}" class="link">{{ text_account }}</a>
-        <li class="nav__item"><a href="{{ logout }}" class="link">{{ text_logout }}</a>
-        {% else %}
-        <li class="nav__item"><a class="link" onclick="toggleQuicklogin();">Вход с паролем</a>
-        {% endif %}
-      </ul>
-    </div>
-    <div class="l-cart-button">
-      {{ cart }}
+    <div class="l-container header__row">
+      <div class="header__logotype">
+        <a href="{{ home }}">
+          <img
+            src="catalog/view/theme/safes/image/logotype.svg"
+            alt="«Твой сейф»"
+          />
+        </a>
+      </div>
+      <div class="header__hamburger">
+        <div class="hamburger" onclick="toggleMobilemenu()">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="header__search">
+        {{ search }}
+      </div>
+      <div class="header__account">
+        <ul class="nav">
+          {% if logged %}
+          <li class="nav__item"><a href="{{ account }}" class="link">{{ text_account }}</a>
+          <li class="nav__item"><a href="{{ logout }}" class="link">{{ text_logout }}</a>
+          {% else %}
+          <li class="nav__item"><a class="link" onclick="toggleQuicklogin();">{{ text_login }}</a>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="l-cart-button">
+        {{ cart }}
+      </div>
     </div>
   </div>
-</div>
-<div class="l-container">
-  <div id="search__results"></div>
 </div>

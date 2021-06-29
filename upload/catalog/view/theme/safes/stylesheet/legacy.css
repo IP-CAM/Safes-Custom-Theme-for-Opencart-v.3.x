@@ -85,40 +85,6 @@ textarea {
 .l-module:last-of-type {
   margin-bottom: 0;
 }
-.l-header__row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 15px;
-}
-.l-header__phone {
-  margin: 5px 40px 5px 0;
-}
-.l-header__address {
-  margin: 10px 0;
-  padding: 0;
-}
-.l-header__logotype {
-  margin-right: 40px;
-  margin-bottom: -8px;
-  order: 1;
-}
-.l-header__search {
-  margin-right: 40px;
-  flex-grow: 1;
-  order: 3;
-}
-.l-header__account {
-  margin-right: 40px;
-  order: 4;
-}
-.l-header__hamburger {
-  margin-right: 40px;
-  order: 0;
-  display: none;
-}
 .l-cart-button {
   order: 5;
 }

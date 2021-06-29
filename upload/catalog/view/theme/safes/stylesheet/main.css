@@ -1,5 +1,8 @@
 @import 'global.css';
+@import 'colors.css';
 @import 'fonts.css';
+
+@import 'legacy.css';
 
 @import 'button/button.css';
 @import 'button/{__*,_*}/**/*.css';
@@ -15,5 +18,3 @@
 @import 'swiper/components/lazy/lazy.min.css';
 @import 'vendors/toast/grid.css';
 @import 'jquery-ui/themes/base/autocomplete.css';
-
-@import 'legacy.css';
