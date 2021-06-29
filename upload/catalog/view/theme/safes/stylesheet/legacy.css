@@ -105,10 +105,6 @@ textarea {
   margin-bottom: -8px;
   order: 1;
 }
-.l-header__links {
-  margin-right: 40px;
-  order: 2;
-}
 .l-header__search {
   margin-right: 40px;
   flex-grow: 1;
@@ -1154,10 +1150,6 @@ form {
   .l-cart-button {
     order: 3;
   }
-  .l-header__links {
-    order: 4;
-    margin: 10px 40px 0 0;
-  }
   .l-header__account {
     order: 5;
     margin: 10px 0 0 0;
@@ -1189,11 +1181,7 @@ form {
     margin-right: 0;
   }
   .l-header__search,
-  .l-header__links,
   .l-header__account,
-  .l-header__links {
-    display: none;
-  }
   .l-header__hamburger {
     display: block;
   }
