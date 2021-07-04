@@ -6,9 +6,9 @@ const path = require('path')
 
 const { browserSync } = require('../helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('../../../config')
-const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/breakpoints`))
+const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/stylesheet/breakpoints`))
 
-const entryPath = `${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/main.css`
+const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/main.css`
 
 function buildStream() {
   return src(entryPath, { base: srcPath })
@@ -17,7 +17,7 @@ function buildStream() {
       require('postcss-nested'),
       require('postcss-easy-import')({
         path: [
-          `${srcPath}/catalog/view/theme/${themeSlug}/blocks`
+          `${srcPath}/catalog/view/theme/theme_slug/blocks`
         ]
       }),
       require('postcss-simple-vars')({
@@ -29,9 +29,11 @@ function buildStream() {
       this.emit('end')
     })
     .pipe(sourcemaps.write('.'))
-    .pipe(rename(function(path) {
-      path.basename = 'stylesheet'
-    }))
+    .pipe(rename((path) => ({
+      dirname: path.dirname.replace('theme_slug', themeSlug),
+      basename: path.basename = 'stylesheet',
+      extname: path.extname,
+    })))
     .pipe(dest(destPath))
 }
 

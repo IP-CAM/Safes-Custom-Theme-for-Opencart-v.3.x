@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const { themeSlug } = require('../../config')
 
 module.exports = {
   output: {
@@ -14,5 +15,8 @@ module.exports = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
     }),
+    new webpack.DefinePlugin({
+      THEME_SLUG: themeSlug,
+    })
   ]
 }

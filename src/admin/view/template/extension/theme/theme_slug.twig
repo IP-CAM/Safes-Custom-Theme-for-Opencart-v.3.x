@@ -1,0 +1,619 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-theme" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-theme" class="form-horizontal">
+          <fieldset>
+            <legend>{{ text_general }}</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-directory"><span data-toggle="tooltip" title="{{ help_directory }}">{{ entry_directory }}</span></label>
+              <div class="col-sm-10">
+                <select name="theme_THEME_SLUG_directory" id="input-directory" class="form-control">
+                  {% for directory in directories %}
+                  {% if directory == theme_THEME_SLUG_directory %}
+                  <option value="{{ directory }}" selected="selected">{{ directory }}</option>
+                  {% else %}
+                  <option value="{{ directory }}">{{ directory }}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+              <div class="col-sm-10">
+                <select name="theme_THEME_SLUG_status" id="input-status" class="form-control">
+                  {% if theme_THEME_SLUG_status %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                  {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>{{ text_product }}</legend>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-catalog-limit"><span data-toggle="tooltip" title="{{ help_product_limit }}">{{ entry_product_limit }}</span></label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_THEME_SLUG_product_limit" value="{{ theme_THEME_SLUG_product_limit }}" placeholder="{{ entry_product_limit }}" id="input-catalog-limit" class="form-control" />
+                {% if error_product_limit %}
+                <div class="text-danger">{{ error_product_limit }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-description-limit"><span data-toggle="tooltip" title="{{ help_product_description_length }}">{{ entry_product_description_length }}</span></label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_THEME_SLUG_product_description_length" value="{{ theme_THEME_SLUG_product_description_length }}" placeholder="{{ entry_product_description_length }}" id="input-description-limit" class="form-control" />
+                {% if error_product_description_length %}
+                <div class="text-danger">{{ error_product_description_length }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>{{ text_image }}</legend>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-category-width">{{ entry_image_category }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_category_width" value="{{ theme_THEME_SLUG_image_category_width }}" placeholder="{{ entry_width }}" id="input-image-category-width" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_category_height" value="{{ theme_THEME_SLUG_image_category_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_category %}
+                <div class="text-danger">{{ error_image_category }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-thumb-width">{{ entry_image_thumb }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_thumb_width" value="{{ theme_THEME_SLUG_image_thumb_width }}" placeholder="{{ entry_width }}" id="input-image-thumb-width" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_thumb_height" value="{{ theme_THEME_SLUG_image_thumb_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_thumb %}
+                <div class="text-danger">{{ error_image_thumb }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-popup-width">{{ entry_image_popup }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_popup_width" value="{{ theme_THEME_SLUG_image_popup_width }}" placeholder="{{ entry_width }}" id="input-image-popup-width" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_popup_height" value="{{ theme_THEME_SLUG_image_popup_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_popup %}
+                <div class="text-danger">{{ error_image_popup }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-product-width">{{ entry_image_product }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_product_width" value="{{ theme_THEME_SLUG_image_product_width }}" placeholder="{{ entry_width }}" id="input-image-product-width" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_product_height" value="{{ theme_THEME_SLUG_image_product_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_product %}
+                <div class="text-danger">{{ error_image_product }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-additional-width">{{ entry_image_additional }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_additional_width" value="{{ theme_THEME_SLUG_image_additional_width }}" placeholder="{{ entry_width }}" id="input-image-additional-width" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_additional_height" value="{{ theme_THEME_SLUG_image_additional_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_additional %}
+                <div class="text-danger">{{ error_image_additional }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-related">{{ entry_image_related }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_related_width" value="{{ theme_THEME_SLUG_image_related_width }}" placeholder="{{ entry_width }}" id="input-image-related" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_related_height" value="{{ theme_THEME_SLUG_image_related_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_related %}
+                <div class="text-danger">{{ error_image_related }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-compare">{{ entry_image_compare }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_compare_width" value="{{ theme_THEME_SLUG_image_compare_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_compare_height" value="{{ theme_THEME_SLUG_image_compare_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_compare %}
+                <div class="text-danger">{{ error_image_compare }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-wishlist">{{ entry_image_wishlist }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_wishlist_width" value="{{ theme_THEME_SLUG_image_wishlist_width }}" placeholder="{{ entry_width }}" id="input-image-wishlist" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_wishlist_height" value="{{ theme_THEME_SLUG_image_wishlist_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_wishlist %}
+                <div class="text-danger">{{ error_image_wishlist }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-cart">{{ entry_image_cart }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_cart_width" value="{{ theme_THEME_SLUG_image_cart_width }}" placeholder="{{ entry_width }}" id="input-image-cart" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_cart_height" value="{{ theme_THEME_SLUG_image_cart_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_cart %}
+                <div class="text-danger">{{ error_image_cart }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-image-location">{{ entry_image_location }}</label>
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_location_width" value="{{ theme_THEME_SLUG_image_location_width }}" placeholder="{{ entry_width }}" id="input-image-location" class="form-control" />
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="theme_THEME_SLUG_image_location_height" value="{{ theme_THEME_SLUG_image_location_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                  </div>
+                </div>
+                {% if error_image_location %}
+                <div class="text-danger">{{ error_image_location }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>
+              {{ text_top_navigation_links }}
+            </legend>
+            <div id="top-navigation-links" class="form-inline">
+              {% for item in theme_THEME_SLUG_top_navigation_links %}
+              <div class="panel panel-default">
+                <input
+                  type="hidden"
+                  name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][uid]"
+                  value="{{ item.uid }}"
+                />
+                <div class="panel-body">
+                  {% for lang in languages %}
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-text-{{ lang['code'] }}-{{ item.uid }}"
+                    >
+                      <img
+                        src="{{'language/' ~ lang['code'] ~ "/" ~ lang['code'] ~ '.png'}}"
+                        alt="{{ lang['code'] }}"
+                        title="{{ lang['name'] }}"
+                        style="padding-right: 1em; padding-bottom: 4px;"
+                      />
+                      {{ entry_top_navigation_link_text }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-text-{{ lang['code'] }}-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][text][{{ lang['code'] }}]"
+                        value="{{ item.text[lang.code] }}"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-url-{{ lang['code'] }}-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_url }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-url-{{ lang['code'] }}-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][url][{{ lang['code'] }}]"
+                        value="{{ item.url[lang.code] }}"
+                      />
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-target-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_target }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-target-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][target]"
+                        placeholder="{{ entry_top_navigation_link_target_placeholder }}"
+                        value="{{ item.target }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-attributes-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_attributes }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-attributes-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][attributes]"
+                        placeholder="{{ entry_top_navigation_link_attributes_placeholder }}"
+                        value="{{ item.attributes }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-sort_order-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_sort_order }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        id="top_navigation_links-sort_order-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][sort_order]"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="{{ item.sort_order }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-status-{{ item.uid }}"
+                    >
+                      {{ entry_status }}
+                    </label>
+                    <div class="col-lg-9">
+                      <select
+                        class="form-control"
+                        id="top_navigation_links-status-{{ item.uid }}"
+                        name="theme_THEME_SLUG_top_navigation_links[{{ item.uid }}][status]"
+                      >
+                        {% if item.status == '1' %}
+                        <option value="1" selected>
+                          {{ text_enabled }}
+                        </option>
+                        <option value="0">
+                          {{ text_disabled }}
+                        </option>
+                        {% else %}
+                        <option value="1">
+                          {{ text_enabled }}
+                        </option>
+                        <option value="0" selected>
+                          {{ text_disabled }}
+                        </option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <a
+                    href="javascript:void(0);"
+                    data-toggle="tooltip"
+                    onclick="removeTopNavigationLink(this)"
+                    title="{{ theme_THEME_SLUG_top_navigation_links_delete }}"
+                    class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="pull-right">
+              <a
+                href="javascript:void(0)"
+                data-toggle="tooltip"
+                title="{{ entry_top_navigation_links_add }}"
+                class="btn btn-primary"
+                onClick="addTopNavigationLink()"
+              >
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input[type="number"]').on('input', function(e) {
+      var integerValue = Math.round($(e.target).val());
+
+      $(e.target).val(integerValue);
+    });
+  });
+
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  function addTopNavigationLink() {
+    const target = $('#top-navigation-links')
+    const uid = uuidv4()
+
+    const html = `
+      <div class="panel panel-default">
+        <input
+          type="hidden"
+          name="theme_THEME_SLUG_top_navigation_links[${uid}][uid]"
+          value="${uid}"
+        />
+        <div class="panel-body">
+          {% for lang in languages %}
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-text-{{ lang['code'] }}-${uid}"
+            >
+              <img
+                src="{{'language/' ~ lang['code'] ~ "/" ~ lang['code'] ~ '.png'}}"
+                alt="{{ lang['code'] }}"
+                title="{{ lang['name'] }}"
+                style="padding-right: 1em; padding-bottom: 4px;"
+              />
+              {{ entry_top_navigation_link_text }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-text-{{ lang['code'] }}-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][text][{{ lang['code'] }}]"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-url-{{ lang['code'] }}-${uid}"
+            >
+              {{ entry_top_navigation_link_url }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-url-{{ lang['code'] }}-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][url][{{ lang['code'] }}]"
+                value=""
+              />
+            </div>
+          </div>
+          {% endfor %}
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-target-${uid}"
+            >
+              {{ entry_top_navigation_link_target }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-target-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][target]"
+                placeholder="{{ entry_top_navigation_link_target_placeholder }}"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-attributes-${uid}"
+            >
+              {{ entry_top_navigation_link_attributes }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-attributes-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][attributes]"
+                placeholder="{{ entry_top_navigation_link_attributes_placeholder }}"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-sort_order-${uid}"
+            >
+              {{ entry_top_navigation_link_sort_order }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                id="top_navigation_links-sort_order-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][sort_order]"
+                type="number"
+                min="0"
+                step="1"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-status-${uid}"
+            >
+              {{ entry_status }}
+            </label>
+            <div class="col-lg-9">
+              <select
+                class="form-control"
+                id="top_navigation_links-status-${uid}"
+                name="theme_THEME_SLUG_top_navigation_links[${uid}][status]"
+              >
+                <option value="1" selected>
+                  {{ text_enabled }}
+                </option>
+                <option value="0">
+                  {{ text_disabled }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a
+            href="javascript:void(0);"
+            data-toggle="tooltip"
+            onclick="removeTopNavigationLink(this)"
+            title="{{ theme_THEME_SLUG_top_navigation_links_delete }}"
+            class="btn btn-sm btn-danger">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+    `
+
+    $(target).append(html)
+  }
+
+  function removeTopNavigationLink(e){
+    $(e).parent().parent().remove();
+  }
+</script>
+{{ footer }}

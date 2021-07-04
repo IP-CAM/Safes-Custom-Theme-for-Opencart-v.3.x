@@ -1,0 +1,31 @@
+<file path="catalog/controller/common/header.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$data['telephone'] = $this->config->get('config_telephone');
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$top_navigation_links = $this->config->get('theme_THEME_SLUG_top_navigation_links');
+
+usort($top_navigation_links, function ($a, $b) {
+  return $a['sort_order'] <=> $b['sort_order'];
+});
+
+foreach ($top_navigation_links as $uid => $link) {
+  if(!$link['status']) {
+    unset( $$top_navigation_links[$uid]);
+  }
+
+  $data['top_navigation_links'][] = array(
+    'text' => $link['text'][$this->session->data['language']],
+    'url' => $link['url'][$this->session->data['language']],
+    'attributes' => html_entity_decode($link['attributes']),
+    'target' => $link['target']
+  );
+}
+      ]]>
+    </add>
+  </operation>
+</file>

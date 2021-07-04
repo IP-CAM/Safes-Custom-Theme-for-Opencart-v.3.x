@@ -11,7 +11,7 @@ const build = require('./build')
 const { browserSync, reload } = require('../helpers/browser-sync')
 const remove = require('../helpers/remove')
 
-const { srcPath, themeSlug, opencartPort } = require('../../../config')
+const { srcPath, opencartPort } = require('../../../config')
 
 require('../helpers/windows-sigint')
 
@@ -30,20 +30,20 @@ function serve(cb) {
   watcher.on('unlink', series(remove, reload))
 
   const stylesGlobs = [
-    `${srcPath}/catalog/view/theme/${themeSlug}/stylesheet/**/*.css`,
-    `${srcPath}/catalog/view/theme/${themeSlug}/blocks/**/*.css`,
+    `${srcPath}/catalog/view/theme/theme_slug/stylesheet/**/*.css`,
+    `${srcPath}/catalog/view/theme/theme_slug/blocks/**/*.css`,
   ]
   watch(stylesGlobs, stylesWithBrowserSync)
 
-  const scriptsGlob = `${srcPath}/catalog/view/theme/${themeSlug}/javascript/**/*.js`
+  const scriptsGlob = `${srcPath}/catalog/view/theme/theme_slug/javascript/**/*.js`
   watch(scriptsGlob, series(scripts, reload))
 
   watch(modificationsGlob, series(modifications))
 
   watch([
     modificationsGlob,
-    `${srcPath}/catalog/view/theme/${themeSlug}/template/**/*.twig`
+    `${srcPath}/catalog/view/theme/theme_slug/template/**/*.twig`
   ], refreshModifications)
 }
 
-module.exports = series(makeOpencartDirectory, runDockerContainers, build, serve, stopDockerContainers)
+module.exports = series(makeOpencartDirectory, runDockerContainers, build, refreshModifications, serve, stopDockerContainers)
