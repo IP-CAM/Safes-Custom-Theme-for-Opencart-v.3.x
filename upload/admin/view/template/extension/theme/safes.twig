@@ -240,9 +240,380 @@
               </div>
             </div>
           </fieldset>
+          <fieldset>
+            <legend>
+              {{ text_top_navigation_links }}
+            </legend>
+            <div id="top-navigation-links" class="form-inline">
+              {% for item in theme_safes_top_navigation_links %}
+              <div class="panel panel-default">
+                <input
+                  type="hidden"
+                  name="theme_safes_top_navigation_links[{{ item.uid }}][uid]"
+                  value="{{ item.uid }}"
+                />
+                <div class="panel-body">
+                  {% for lang in languages %}
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-text-{{ lang['code'] }}-{{ item.uid }}"
+                    >
+                      <img
+                        src="{{'language/' ~ lang['code'] ~ "/" ~ lang['code'] ~ '.png'}}"
+                        alt="{{ lang['code'] }}"
+                        title="{{ lang['name'] }}"
+                        style="padding-right: 1em; padding-bottom: 4px;"
+                      />
+                      {{ entry_top_navigation_link_text }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-text-{{ lang['code'] }}-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][text][{{ lang['code'] }}]"
+                        value="{{ item.text[lang.code] }}"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-url-{{ lang['code'] }}-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_url }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-url-{{ lang['code'] }}-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][url][{{ lang['code'] }}]"
+                        value="{{ item.url[lang.code] }}"
+                      />
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-target-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_target }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-target-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][target]"
+                        placeholder="{{ entry_top_navigation_link_target_placeholder }}"
+                        value="{{ item.target }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-attributes-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_attributes }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="top_navigation_links-attributes-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][attributes]"
+                        placeholder="{{ entry_top_navigation_link_attributes_placeholder }}"
+                        value="{{ item.attributes }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-sort_order-{{ item.uid }}"
+                    >
+                      {{ entry_top_navigation_link_sort_order }}
+                    </label>
+                    <div class="col-lg-9">
+                      <input
+                        class="form-control"
+                        id="top_navigation_links-sort_order-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][sort_order]"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="{{ item.sort_order }}"
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group col-lg-6"
+                    style="border: 0;"
+                  >
+                    <label
+                      class="control-label col-lg-3"
+                      for="top_navigation_links-status-{{ item.uid }}"
+                    >
+                      {{ entry_status }}
+                    </label>
+                    <div class="col-lg-9">
+                      <select
+                        class="form-control"
+                        id="top_navigation_links-status-{{ item.uid }}"
+                        name="theme_safes_top_navigation_links[{{ item.uid }}][status]"
+                      >
+                        {% if item.status == '1' %}
+                        <option value="1" selected>
+                          {{ text_enabled }}
+                        </option>
+                        <option value="0">
+                          {{ text_disabled }}
+                        </option>
+                        {% else %}
+                        <option value="1">
+                          {{ text_enabled }}
+                        </option>
+                        <option value="0" selected>
+                          {{ text_disabled }}
+                        </option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <a
+                    href="javascript:void(0);"
+                    data-toggle="tooltip"
+                    onclick="removeTopNavigationLink(this)"
+                    title="{{ theme_safes_top_navigation_links_delete }}"
+                    class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="pull-right">
+              <a
+                href="javascript:void(0)"
+                data-toggle="tooltip"
+                title="{{ entry_top_navigation_links_add }}"
+                class="btn btn-primary"
+                onClick="addTopNavigationLink()"
+              >
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </fieldset>
         </form>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input[type="number"]').on('input', function(e) {
+      var integerValue = Math.round($(e.target).val());
+
+      $(e.target).val(integerValue);
+    });
+  });
+
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  function addTopNavigationLink() {
+    const target = $('#top-navigation-links')
+    const uid = uuidv4()
+
+    const html = `
+      <div class="panel panel-default">
+        <input
+          type="hidden"
+          name="theme_safes_top_navigation_links[${uid}][uid]"
+          value="${uid}"
+        />
+        <div class="panel-body">
+          {% for lang in languages %}
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-text-{{ lang['code'] }}-${uid}"
+            >
+              <img
+                src="{{'language/' ~ lang['code'] ~ "/" ~ lang['code'] ~ '.png'}}"
+                alt="{{ lang['code'] }}"
+                title="{{ lang['name'] }}"
+                style="padding-right: 1em; padding-bottom: 4px;"
+              />
+              {{ entry_top_navigation_link_text }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-text-{{ lang['code'] }}-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][text][{{ lang['code'] }}]"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-url-{{ lang['code'] }}-${uid}"
+            >
+              {{ entry_top_navigation_link_url }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-url-{{ lang['code'] }}-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][url][{{ lang['code'] }}]"
+                value=""
+              />
+            </div>
+          </div>
+          {% endfor %}
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-target-${uid}"
+            >
+              {{ entry_top_navigation_link_target }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-target-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][target]"
+                placeholder="{{ entry_top_navigation_link_target_placeholder }}"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-attributes-${uid}"
+            >
+              {{ entry_top_navigation_link_attributes }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                type="text"
+                id="top_navigation_links-attributes-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][attributes]"
+                placeholder="{{ entry_top_navigation_link_attributes_placeholder }}"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-sort_order-${uid}"
+            >
+              {{ entry_top_navigation_link_sort_order }}
+            </label>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                id="top_navigation_links-sort_order-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][sort_order]"
+                type="number"
+                min="0"
+                step="1"
+                value=""
+              >
+            </div>
+          </div>
+          <div
+            class="form-group col-lg-6"
+            style="border: 0;"
+          >
+            <label
+              class="control-label col-lg-3"
+              for="top_navigation_links-status-${uid}"
+            >
+              {{ entry_status }}
+            </label>
+            <div class="col-lg-9">
+              <select
+                class="form-control"
+                id="top_navigation_links-status-${uid}"
+                name="theme_safes_top_navigation_links[${uid}][status]"
+              >
+                <option value="1" selected>
+                  {{ text_enabled }}
+                </option>
+                <option value="0">
+                  {{ text_disabled }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a
+            href="javascript:void(0);"
+            data-toggle="tooltip"
+            onclick="removeTopNavigationLink(this)"
+            title="{{ theme_safes_top_navigation_links_delete }}"
+            class="btn btn-sm btn-danger">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+    `
+
+    $(target).append(html)
+  }
+
+  function removeTopNavigationLink(e){
+    $(e).parent().parent().remove();
+  }
+</script>
 {{ footer }}

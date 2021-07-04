@@ -9,6 +9,8 @@ class ControllerExtensionThemeSafes extends Controller {
 
 		$this->load->model('setting/setting');
 
+    $this->load->model('localisation/language');
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('theme_safes', $this->request->post, $this->request->get['store_id']);
 
@@ -319,6 +321,16 @@ class ControllerExtensionThemeSafes extends Controller {
 		} else {
 			$data['theme_safes_image_location_height'] = 50;
 		}
+
+    if (isset($this->request->post['theme_safes_top_navigation_links'])) {
+      $data['theme_safes_top_navigation_links'] = $this->request->post['theme_safes_top_navigation_links'];
+    } elseif (isset($setting_info['theme_safes_top_navigation_links'])) {
+      $data['theme_safes_top_navigation_links'] = $setting_info['theme_safes_top_navigation_links'];
+    } else {
+      $data['theme_safes_top_navigation_links'] = array();
+    }
+
+    $data['languages'] = $this->model_localisation_language->getLanguages();
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

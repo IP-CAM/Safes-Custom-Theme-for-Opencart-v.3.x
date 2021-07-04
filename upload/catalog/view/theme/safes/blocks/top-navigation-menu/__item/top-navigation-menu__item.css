@@ -1,0 +1,7 @@
+.top-navigation-menu__item {
+  display: block;
+
+  &:not(:first-child) {
+    margin-left: 24px;
+  }
+}

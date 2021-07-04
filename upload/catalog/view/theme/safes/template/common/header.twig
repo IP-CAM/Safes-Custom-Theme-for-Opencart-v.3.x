@@ -42,6 +42,24 @@
 <div class="l-wrapper">
   <div class="header">
     <div class="l-container header__row">
+      <nav class="top-navigation-menu">
+        <ul class="top-navigation-menu__list">
+          {% for link in top_navigation_links %}
+            <li class="top-navigation-menu__item">
+              <a
+                class="top-navigation-menu__link"
+                href="{{ link.url }}"
+                target="{{ link.target }}"
+                {{ link.attributes }}
+              >
+                {{ link.text }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <!--div class="l-container header__row">
       <div class="l-header__phone">
         <a href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}" class="phone">{{ telephone }}</a>
         <span class="schedule">{{ open }}</span>
@@ -53,7 +71,7 @@
           &nbsp;Римская, Площадь Ильича
         </span>
       </div>
-    </div>
+    </div-->
     <div class="l-container header__row">
       <div class="header__logotype">
         <a href="{{ home }}">
