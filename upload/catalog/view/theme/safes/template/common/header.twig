@@ -39,10 +39,10 @@
 		{% endif %}
 	</div>
 </div>
-<div class="l-wrapper">
+<div class="wrapper">
   <div class="header">
-    <div class="l-container header__row">
-      <nav class="top-navigation-menu">
+    <div class="header__row">
+      <nav class="header__top-navigation-menu top-navigation-menu">
         <ul class="top-navigation-menu__list">
           {% for link in top_navigation_links %}
             <li class="top-navigation-menu__item">
@@ -58,21 +58,16 @@
           {% endfor %}
         </ul>
       </nav>
+      <div class="header__contacts">
+        <a
+          class="link"
+          href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
+        >
+          {{ telephone }}
+        </a>
+      </div>
     </div>
-    <!--div class="l-container header__row">
-      <div class="l-header__phone">
-        <a href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}" class="phone">{{ telephone }}</a>
-        <span class="schedule">{{ open }}</span>
-      </div>
-      <div class="l-header__address">
-        <span class="address"><a href="/kontakty" class="link link_address">Москва, Танковый проезд,&nbsp;4&nbsp;А</a></span>
-        <span class="address__metro">
-          <svg class="address__icon"><use xlink:href="#i-metro"></use></svg>
-          &nbsp;Римская, Площадь Ильича
-        </span>
-      </div>
-    </div-->
-    <div class="l-container header__row">
+    <div class="header__row">
       <div class="header__logotype">
         <a href="{{ home }}">
           <img
