@@ -3,11 +3,6 @@
 */
 
 /*Сбросы*/
-a {
-  text-decoration: none;
-  color: #4369e6;
-  border: none;
-}
 input,
 textarea {
   -mox-box-sizing: border-box;
@@ -130,24 +125,6 @@ form {
   position: sticky;
   top: -1px;
   z-index: 98;
-}
-.link {
-  color: #456df1;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(69, 109, 241, .3);
-  cursor: pointer;
-}
-.link:hover {
-  border-bottom: 1px solid rgba(69, 109, 241, .9);
-}
-.link_phone,
-.link_address {
-  color: currentColor;
-  border: none;
-}
-.link_phone:hover,
-.link_address:hover {
-  border: none;
 }
 .breadcrumbs {
   display: block;

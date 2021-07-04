@@ -1,0 +1,10 @@
+.link {
+  color: #456df1;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(69, 109, 241, .2);
+
+  &:hover {
+    border-bottom: 1px solid rgba(69, 109, 241, .9);
+  }
+}
+
