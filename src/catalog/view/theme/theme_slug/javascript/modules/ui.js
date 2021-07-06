@@ -6,22 +6,19 @@
 
   $('.cart-button, .cart-popup__close').on('click', handleCartToggle)
 
-  /** Legacy */
+  const handleAjaxLoginDialogToggle = (event) => {
+    event.preventDefault()
+    $('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
+  }
 
-  // TODO: кажется, это нужно убрать, так как это логика зависимая от модуля
-  $('#mobile-search').on('change', function() {
-    var value = $(this).val();
-    if (value) {
-      url = 'index.php?route=product/search&search=' + encodeURIComponent(value);
-      location = url;
-    }
-  });
+  $('.ajax-login-link').on('click', handleAjaxLoginDialogToggle)
 
-  //TODO: здесь глобальные объявления лучше убрать, btw сейчас ничего не попадает в бандл
-  $('#js-quicklogin__login').on('click', function(event) {
+
+  const ajaxLogin = (event) => {
     event.preventDefault();
+
     $.ajax({
-      url: 'index.php?route=account/quick/login',
+      url: 'index.php?route=account/ajax/login/login',
       type: 'post',
       data: $('#quicklogin input[type=\'email\'], #quicklogin input[type=\'password\']'),
       dataType: 'json',
@@ -43,7 +40,24 @@
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
     });
+  }
+
+  $('#js-quicklogin__login').on('click', ajaxLogin);
+
+
+
+
+  /** Legacy */
+
+  // TODO: кажется, это нужно убрать, так как это логика зависимая от модуля
+  $('#mobile-search').on('change', function() {
+    var value = $(this).val();
+    if (value) {
+      url = 'index.php?route=product/search&search=' + encodeURIComponent(value);
+      location = url;
+    }
   });
+
 
   var toggleReference = function()  {
     $('.reference__link').html(function(){
@@ -60,11 +74,6 @@
 
   function toggleMobilemenu() {
     $('.l-mobile-menu').toggleClass('l-mobile-menu_visible');
-    return false;
-  }
-
-  function toggleQuicklogin() {
-    $('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
     return false;
   }
 })()

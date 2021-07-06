@@ -1,0 +1,25 @@
+.quicklogin__wrapper {
+  background-color: rgba(255, 255, 255, .97);
+  display: none;
+}
+.quicklogin__wrapper_visible {
+  display: flex;
+}
+.quicklogin {
+  display: block;
+  margin: auto;
+  max-width: 320px;
+  width: 80%;
+  padding: 40px;
+  text-align: center;
+}
+.quicklogin__error {
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+  padding: 2px 5px;
+  background-color: #ffefe7;
+  color: #d5916a;
+  border-radius: 5px;
+  font-size: 90%;
+}

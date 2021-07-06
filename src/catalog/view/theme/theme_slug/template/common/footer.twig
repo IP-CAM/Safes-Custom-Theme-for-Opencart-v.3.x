@@ -17,40 +17,18 @@
         </div>
       </div>
     </div>
-    <div class="l-reference">
+    <!--div class="l-reference">
       <p class="reference__p">Сайт носит исключительно информационный характер. <a class="reference__link" onclick="toggleReference()">Подробнее</a></p>
       <p class="reference__p reference__full visually-hidden">
         Ни при каких условиях цены, размещенные на сайте, не являются публичной офертой (положения Статей 435 и 437 ГК РФ). Ваш заказ, стоимость и наличие товара, будут подтверждены менеджером, по номеру телефона или адресу электронной почты, указанными при заказе.
       </p>
-    </div>
+    </div-->
   </footer>
 </div>
 <div class="l-fullscreen quicklogin__wrapper">
-  <form class="quicklogin" id="quicklogin">
-    <div class="h-flex">
-      <h3 class="ui__title">Вход</h3>
-      <svg class="close" onclick="toggleQuicklogin()"><use xlink:href="#i-close"></use></svg>
-    </div>
-    <div class="ui__group">
-      <input type="email" name="email" placeholder="Адрес электронной почты" id="input-email" class="ui__input ui__input_fw" />
-    </div>
-    <div class="ui__group">
-      <input type="password" name="password" placeholder="Пароль" id="input-password" class="ui__input ui__input_fw" />
-    </div>
-    <div class="ui__group">
-      <a class="link link_quicklogin" href="index.php?route=account/forgotten">Не помню пароль</a>
-    </div>
-    <div class="ui__group">
-      <a class="link link_quicklogin" href="index.php?route=account/register">Я — новый покупатель</a>
-    </div>
-    <div class="ui__buttons">
-      <button id="js-quicklogin__login" class="button">Войти</button>
-    </div>
-  </form>
+  {{ ajax_login_form }}
 </div>
-
 <link rel="stylesheet" href="catalog/view/theme/THEME_SLUG/stylesheet/stylesheet.css" />
-
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -61,10 +39,8 @@
 {% for script in scripts %}
 <script src="{{ script }}"></script>
 {% endfor %}
-
 {% for analytic in analytics %}
 {{ analytic }}
 {% endfor %}
-
 </body>
 </html>

@@ -1,0 +1,14 @@
+<file path="catalog/controller/common/footer.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$data['ajax_login_form'] = $this->load->controller('account/ajax/login');
+      ]]>
+    </add>
+  </operation>
+</file>

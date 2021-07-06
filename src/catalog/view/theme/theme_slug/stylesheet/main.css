@@ -16,6 +16,7 @@
 @import 'top-navigation-menu/{__*,_*}/**/*.css';
 @import 'link/link.css';
 @import 'wrapper/wrapper.css';
+@import 'ajax-login-dialog/ajax-login-dialog.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

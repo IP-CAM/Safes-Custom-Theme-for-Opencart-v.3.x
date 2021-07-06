@@ -90,7 +90,14 @@
           <li class="nav__item"><a href="{{ account }}" class="link">{{ text_account }}</a>
           <li class="nav__item"><a href="{{ logout }}" class="link">{{ text_logout }}</a>
           {% else %}
-          <li class="nav__item"><a class="link" onclick="toggleQuicklogin();">{{ text_login }}</a>
+          <li class="nav__item">
+            <a
+              class="ajax-login-link link"
+              href={{ login }}
+            >
+              {{ text_login }}
+            </a>
+          </li>
           {% endif %}
         </ul>
       </div>
