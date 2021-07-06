@@ -1,0 +1,24 @@
+@import 'global/reset.css';
+@import 'global/colors.css';
+@import 'global/fonts.css';
+
+@import 'legacy.css';
+
+@import 'blocks/button/button.css';
+@import 'blocks/button/{__*,_*}/**/*.css';
+@import 'blocks/cart-popup/{__*,_*}/**/*.css';
+@import 'blocks/live-search/live-search'.css;
+@import 'blocks/promo-banner-carousel/promo-banner-carousel.css';
+@import 'blocks/promo-banner-carousel/{__*,_*}/**/*.css';
+@import 'blocks/text-field/text-field.css';
+@import 'blocks/header/header.css';
+@import 'blocks/header/{__*,_*}/**/*.css';
+@import 'blocks/top-navigation-menu/{__*,_*}/**/*.css';
+@import 'blocks/link/link.css';
+@import 'blocks/wrapper/wrapper.css';
+@import 'blocks/ajax-login-dialog/ajax-login-dialog.css';
+
+@import 'swiper/swiper.min.css';
+@import 'swiper/components/lazy/lazy.min.css';
+@import 'vendor/toast/grid.css';
+@import 'jquery-ui/themes/base/autocomplete.css';

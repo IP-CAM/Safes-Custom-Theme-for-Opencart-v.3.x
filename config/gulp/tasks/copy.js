@@ -38,7 +38,6 @@ function copyThemeLanguage(cb) {
 
 const restGlobs = [
   `${srcPath}/**/*`,
-  `!${srcPath}/**/{blocks,blocks/**/*.css}`,
   `!${srcPath}/**/{stylesheet,stylesheet/**/*}`,
   `!${srcPath}/**/{javascript,javascript/**/*}`,
   `!${srcPath}/system/{modifications,modifications/**/*}`,

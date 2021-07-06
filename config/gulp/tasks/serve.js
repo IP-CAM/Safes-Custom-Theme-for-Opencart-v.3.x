@@ -29,11 +29,8 @@ function serve(cb) {
   const watcher = watch(copyGlobs, copy)
   watcher.on('unlink', series(remove, reload))
 
-  const stylesGlobs = [
-    `${srcPath}/catalog/view/theme/theme_slug/stylesheet/**/*.css`,
-    `${srcPath}/catalog/view/theme/theme_slug/blocks/**/*.css`,
-  ]
-  watch(stylesGlobs, stylesWithBrowserSync)
+  const stylesGlob = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/**/*.css`
+  watch(stylesGlob, stylesWithBrowserSync)
 
   const scriptsGlob = `${srcPath}/catalog/view/theme/theme_slug/javascript/**/*.js`
   watch(scriptsGlob, series(scripts, reload))

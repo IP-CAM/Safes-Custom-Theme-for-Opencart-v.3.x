@@ -1,11 +1,15 @@
-{% from 'THEME_SLUG/blocks/svg-icon/svg-icon.twig' import svg_icon %}
-
 <a
   class="cart-button button button_view_action"
   href="{{ cart }}"
 >
   <span class="button__addon">
-    {{ svg_icon({ symbol: "i-cart", class: "button__icon" }) }}
+    <svg
+      class="button__icon svg-icon"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <use xlink:href="#i-cart"/>
+    </svg>
   </span>
   <span class="button__text">
     {{ text_items }}
@@ -13,7 +17,13 @@
 </a>
 <div class="l-cart">
   <div id="cart" class="cart-popup">
-    {{ svg_icon({ symbol: "i-close", class: "close cart-popup__close" }) }}
+    <svg
+      class="close cart-popup__close svg-icon"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <use xlink:href="#i-close"/>
+    </svg>
     <h6 class="cart-popup__title">
       {{ text_cart }}
     </h6>

@@ -8,7 +8,7 @@ const { browserSync } = require('../helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('../../../config')
 const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/stylesheet/breakpoints`))
 
-const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/main.css`
+const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/stylesheet.css`
 
 function buildStream() {
   return src(entryPath, { base: srcPath })
@@ -17,7 +17,7 @@ function buildStream() {
       require('postcss-nested'),
       require('postcss-easy-import')({
         path: [
-          `${srcPath}/catalog/view/theme/theme_slug/blocks`
+          `${srcPath}/catalog/view/theme/theme_slug/stylesheet/blocks`
         ]
       }),
       require('postcss-simple-vars')({
