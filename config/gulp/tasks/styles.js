@@ -10,6 +10,8 @@ const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_
 
 const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/stylesheet.css`
 
+console.log(path.resolve(__dirname, `${srcPath}/catalog/view/theme/theme_slug/stylesheet/mixins`));
+
 function buildStream() {
   return src(entryPath, { base: srcPath })
     .pipe(sourcemaps.init())
@@ -22,7 +24,10 @@ function buildStream() {
       }),
       require('postcss-simple-vars')({
         variables: breakpoints,
-      })
+      }),
+      require('postcss-mixins')({
+        mixinsDir: path.resolve(__dirname, `../../../${srcPath}/catalog/view/theme/theme_slug/stylesheet/mixins`)
+      }),
     ]))
     .on('error', function(err) {
       console.log(err.toString())

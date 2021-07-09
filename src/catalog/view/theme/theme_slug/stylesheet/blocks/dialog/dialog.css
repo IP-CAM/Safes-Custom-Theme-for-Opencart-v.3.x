@@ -1,0 +1,29 @@
+.dialog {
+  width: 468px;
+  max-width: 100%;
+  background-color: #fff;
+  padding: 48px;
+  box-sizing: border-box;
+
+  &__header {
+    display: flex;
+  }
+
+  &__body {
+    margin-top: 32px;
+  }
+
+  &__title {
+    flex-grow: 1;
+    margin: 0 16px 0 0;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -14,4 +14,5 @@ window.Swiper = Swiper
 
 loadSVGSprites(svgSpritesPath)
 
+require('./modules/login-dialog')
 require('./modules/ui')

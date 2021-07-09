@@ -1,0 +1,38 @@
+.form {
+  &__group {
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+
+    &_required {
+      &::before {
+        content: '*';
+        color: #E32351;
+        position: absolute;
+        left: -10px;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  &__message {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 2px 4px;
+    background-color: #ffefe7;
+    color: #d5916a;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 18px;
+
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}

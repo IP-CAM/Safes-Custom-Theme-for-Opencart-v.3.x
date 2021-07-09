@@ -1,0 +1,16 @@
+.icon-button {
+  display: block;
+  border: 0;
+  background: none;
+  padding: 0;
+
+  &__icon {
+    max-height: 100%;
+    max-width: 100%;
+    fill: currentColor;
+  }
+
+  &__caption {
+    @mixin visually-hidden;
+  }
+}

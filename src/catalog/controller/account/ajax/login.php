@@ -3,9 +3,11 @@ class ControllerAccountAjaxLogin extends Controller {
   private $error = array();
 
   public function index() {
+    $this->load->language('account/login');
+
     $data = array();
 
-    return $this->load->view('account/ajax/login_form', $data);
+    return $this->load->view('account/ajax/login_dialog', $data);
   }
 
   public function login() {
@@ -18,7 +20,7 @@ class ControllerAccountAjaxLogin extends Controller {
       $response['status'] = 'ok';
     } else if (isset($this->request->post) && !$this->validate()) {
       $response['status'] = 'error';
-      $response['error'] = $this->error['warning'];
+      $response['result'] = $this->error['warning'];
     }
 
     if (!$response) {

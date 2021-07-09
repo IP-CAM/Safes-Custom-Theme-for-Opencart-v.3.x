@@ -16,7 +16,11 @@
 @import 'blocks/top-navigation-menu/{__*,_*}/**/*.css';
 @import 'blocks/link/link.css';
 @import 'blocks/wrapper/wrapper.css';
-@import 'blocks/ajax-login-dialog/ajax-login-dialog.css';
+@import 'blocks/form/form.css';
+@import 'blocks/link-group/link-group.css';
+@import 'blocks/modal/modal.css';
+@import 'blocks/dialog/dialog.css';
+@import 'blocks/icon-button/icon-button.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

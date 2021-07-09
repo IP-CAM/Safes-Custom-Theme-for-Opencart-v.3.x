@@ -6,46 +6,6 @@
 
   $('.cart-button, .cart-popup__close').on('click', handleCartToggle)
 
-  const handleAjaxLoginDialogToggle = (event) => {
-    event.preventDefault()
-    $('.quicklogin__wrapper').toggleClass('quicklogin__wrapper_visible');
-  }
-
-  $('.ajax-login-link').on('click', handleAjaxLoginDialogToggle)
-
-
-  const ajaxLogin = (event) => {
-    event.preventDefault();
-
-    $.ajax({
-      url: 'index.php?route=account/ajax/login/login',
-      type: 'post',
-      data: $('#quicklogin input[type=\'email\'], #quicklogin input[type=\'password\']'),
-      dataType: 'json',
-      beforeSend: function() {
-        $('.quicklogin__error').remove();
-      },
-      complete: function() {
-      },
-      success: function(json) {
-        $(' .ui__group').removeClass('has-error');
-        if (json['success'] || (json['islogged'])) {
-          location.reload();
-        }
-        if (json['error']) {
-          $('#quicklogin .h-flex').after('<div class="quicklogin__error">' + json['error'] + '</div>');
-        }
-      },
-      error: function(xhr, ajaxOptions, thrownError) {
-        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-      }
-    });
-  }
-
-  $('#js-quicklogin__login').on('click', ajaxLogin);
-
-
-
 
   /** Legacy */
 

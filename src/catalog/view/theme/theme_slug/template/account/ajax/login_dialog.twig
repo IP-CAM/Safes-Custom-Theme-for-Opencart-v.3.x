@@ -1,0 +1,68 @@
+<div
+  class="login-dialog-modal modal"
+  role="dialog"
+  tabindex="-1"
+  aria-modal="true"
+  aria-labelledby="login-dialog-label"
+>
+  <div class="dialog login-dialog modal__window">
+    <div class="dialog__header">
+      <h3
+        class="dialog__title"
+        id="login-dialog-label"
+      >
+        {{ heading_title }}
+      </h3>
+      <button class="dialog__close icon-button">
+        <svg class="icon-button__icon">
+          <use xlink:href="#i-close"/>
+        </svg>
+      </button>
+    </div>
+    <div class="dialog__body">
+      <form class="login-dialog-form form">
+        <div class="form__group">
+          <input
+            name="email"
+            required
+            class="text-field"
+            type="email"
+            placeholder="{{ entry_email }}"
+          />
+        </div>
+        <div class="form__group">
+          <input
+            name="password"
+            required
+            class="text-field"
+            type="password"
+            placeholder="{{ entry_password }}"
+          />
+        </div>
+        <div class="form__actions">
+          <button class="button">
+            {{ text_login }}
+          </button>
+        </div>
+      </form>
+      <ul class="link-group">
+        <li class="link-group__item">
+          <a
+            href="index.php?route=account/forgotten"
+            class="link"
+          >
+            {{ text_forgotten }}
+          </a>
+        </li>
+        <li class="link-group__item">
+          <a
+            class="link"
+            href="index.php?route=account/register"
+          >
+            {{ text_register }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

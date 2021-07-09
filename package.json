@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "jquery-ui": "1.12.1",
+    "postcss-mixins": "^8.1.0",
     "swiper": "6.7.0"
   }
 }
