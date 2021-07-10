@@ -17,6 +17,7 @@ const add = (productId, quantity) => {
 
       if (response.success) {
         $('.cart-button .button__text').text(response.total);
+        $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
       }
     },
     error: logAjaxError,
@@ -38,7 +39,7 @@ const remove = (key) => {
         return
       } else {
         $('.cart-button .button__text').text(response.total)
-        $('#cart > table').load('index.php?route=common/cart/info table')
+        $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
       }
     },
     error: logAjaxError,

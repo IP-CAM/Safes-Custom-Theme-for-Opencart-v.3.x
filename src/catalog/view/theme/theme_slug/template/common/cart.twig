@@ -39,77 +39,71 @@
     >
       {{ text_cart }}
     </h6>
-    <table class="c-order cart-popup__order">
+    <div class="cart-snippet">
       {% if products %}
-        {% for product in products %}
-        <tr class="c-order__item">
-          <td class="c-order__col">
-            {% if product.thumb %}
-            <div
-              class="catalog__img_small"
-              style="background-image: url('{{ product.thumb }}');"
-            ></div>
-            {% endif %}
-          </td>
-          <td class="c-order__col c-order__group">
-            <span
-              class="c-order__col"
-              data-title="Наименование:"
-            >
+      <ul class="cart-snippet__list">
+      {% for product in products %}
+        <li class="cart-snippet__item">
+          {% if product.thumb %}
+          <img
+            class="cart-snippet__thumb"
+            src="{{ product.thumb }}"
+            alt="{{ product.name }}"
+            title="{{ product.name }}"
+          />
+          {% endif %}
+          <div class="cart-snippet__info">
+            <span class="cart-snippet__title">
               <a href="{{ product.href }}" class="link">
-                {{ product.model }}
+                {{ product.name }}
               </a>
             </span>
-            <span
-              class="c-order__col"
-              data-title="Цена за единицу:"
-            >
-              {{ product.price }}
+            {% if product.option %}
+            <ul class="cart-snippet__options">
+              {% for option in product.option %}
+              <li class="cart-item__option">
+                {{ option.name }} {{ option.value }}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if product.special %}
+            <span class="cart-snippet__price">
+              {{ product.special }} x {{ product.quantity }}
             </span>
-          </td>
-          <td class="c-order__col c-order__quantity" data-title="Количество:">
-            <span>{{ product.quantity }}</span>
-          </td>
-          <td class="c-order__col" data-title="Всего:">
-            {{ product.total }}
-          </td>
-          <td class="c-order__col c-order__remove">
-            <button
-              class="icon-button"
-              onclick="cart.remove('{{ product.cart_id }}')"
-            >
-              <svg class="icon-button__icon">
-                <use xlink:href="#i-remove"/>
-              </svg>
-            </button>
-          </td>
-        </tr>
-        {% endfor %}
-        {% for total in totals %}
-        <tr>
-          <td colspan="3" class="c-order__col c-order__total h-right">
-            {{ total.title }}
-          </td>
-          <td colspan="3" class="c-order__col c-order__total">
-            {{ total.text }}
-          </td>
-        </tr>
-        {% endfor %}
-        <tr class="c-order__buttons">
-          <td colspan="3" class="c-order__col"></td>
-          <td colspan="2" class="c-order__col">
-            <a href="{{ checkout }}" class="button button_view_action">
-              {{ text_checkout }}
-            </a>
-          </td>
-        </tr>
-        {% else %}
-        <tr>
-          <td colspan="5" class="c-order__col">
-            {{ text_empty }}
-          </td>
-        </tr>
+            {% else %}
+            <span class="cart-snippet__price">
+              {{ product.price }} x {{ product.quantity }}
+            </span>
+            {% endif %}
+          </div>
+          <button
+            class="icon-button cart-snippet__remove"
+            onclick="cart.remove('{{ product.cart_id }}')"
+          >
+            <svg class="icon-button__icon">
+              <use xlink:href="#i-remove"/>
+            </svg>
+          </button>
+        </li>
+      {% endfor %}
+      </ul>
+      {% for total in totals %}
+      {% if total.code == 'total' %}
+      <a
+        href="{{ checkout }}"
+        class="button"
+      >
+        Оформить заказ
+        <span>
+          {{ total.text }}
+        </span>
+      </a>
       {% endif %}
-    </table>
+      {% endfor %}
+    {% else %}
+    {{ text_empty }}
+    {% endif %}
+    </div>
   </div>
 </div>

@@ -570,43 +570,6 @@ form {
 }
 
 
-/* _cart_ */
-.c-order {
-  width: 100%;
-  border-collapse: collapse;
-}
-.c-order__item {
-  border-bottom: 1px solid #ededed;
-}
-.c-order__quantity > span:before {
-  display: inline-block;
-  content: 'x';
-  margin: 0 3px 0 0;
-}
-.c-order__col {
-  padding: 10px;
-}
-.c-order__col_header {
-  color: #ccc;
-  font-size: 80%;
-  text-align: left;
-  font-weight: 300;
-}
-.c-order__col:first-of-type {
-  padding-left: 0;
-}
-.c-order__col:last-of-type {
-  padding-right: 0;
-}
-.c-order__remove {
-  color: #E32351;
-}
-.c-order__lack {
-  display: inline-block;
-  margin: 0 0 0 5px;
-  color: #E32351;
-}
-
 /* information/contact */
 .contact__col {
   margin: 0 0 20px 0;
@@ -1087,58 +1050,4 @@ form {
   .l-header__address {
     display: none;
   }
-}
-@media screen and (max-width: 400px) {
-  .c-order {
-    display: block;
-  }
-  .c-order__item,
-  .c-order tbody,
-  .c-order tr {
-    display: block;
-    overflow: hidden;
-  }
-  .c-order__item {
-    border-bottom: 1px solid #bbb;
-    padding: 10px 0;
-  }
-  .c-order__item:last-of-type {
-    border: none;
-  }
-  .c-order__col {
-    display: block;
-    float: left;
-    clear: both;
-    padding: 0;
-    text-align: left !important;
-    margin: 10px 0 0 0;
-  }
-  .c-order__col_header {
-    display: none;
-  }
-  .c-order__col:before {
-    display: block;
-    float: left;
-    content: attr(data-title);
-    color: #bbb;
-    line-height: 2;
-    margin: -5px 5px 0 0;
-  }
-  .c-order__remove:after {
-    content: 'Убрать';
-    color: #E32351;
-    cursor: pointer;
-    clear: both;
-  }
-  .c-order__total:before,
-  .c-order__quantity > span:before {
-    display: none;
-  }
-  .c-order__buttons {
-    margin: 20px 0 0 0;
-  }
-  .c-order__group {
-    display: block;
-  }
-
 }

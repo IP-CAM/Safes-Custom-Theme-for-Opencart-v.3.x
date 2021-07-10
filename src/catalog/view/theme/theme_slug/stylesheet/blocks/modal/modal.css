@@ -16,7 +16,7 @@
   &_type {
     &_dialog {
       background-color: rgba(0, 0, 0, .4);
-      backdrop-filter: grayscale();
+      backdrop-filter: grayscale(80%);
     }
 
     &_cart {

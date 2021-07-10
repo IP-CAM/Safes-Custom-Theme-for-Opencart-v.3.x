@@ -22,6 +22,7 @@
 @import 'blocks/modal/modal.css';
 @import 'blocks/dialog/dialog.css';
 @import 'blocks/icon-button/icon-button.css';
+@import 'blocks/cart-snippet/cart-snippet.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

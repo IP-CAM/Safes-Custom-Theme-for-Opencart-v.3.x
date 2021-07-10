@@ -1,0 +1,14 @@
+<file path="catalog/controller/common/cart.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+'title' => $total['title'],
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+'code' => $total['code'],
+      ]]>
+    </add>
+  </operation>
+</file>

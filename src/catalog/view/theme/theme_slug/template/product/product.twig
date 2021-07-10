@@ -421,7 +421,7 @@ $(document).ready(function(){
         if (response.success) {
           $('.cart-button .button__text').text(response.total);
 
-          // $('#cart > table').load('index.php?route=common/cart/info table');
+          $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
         }
       },
       error: function(xhr, ajaxOptions, thrownError) {
