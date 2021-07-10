@@ -3,6 +3,7 @@
   border: 0;
   background: none;
   padding: 0;
+  cursor: pointer;
 
   &__icon {
     max-height: 100%;

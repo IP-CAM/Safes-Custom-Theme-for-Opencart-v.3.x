@@ -1,7 +1,5 @@
 .modal {
   display: none;
-  background-color: rgba(0, 0, 0, .4);
-  backdrop-filter: grayscale();
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -13,5 +11,16 @@
 
   &_opened {
     display: flex;
+  }
+
+  &_type {
+    &_dialog {
+      background-color: rgba(0, 0, 0, .4);
+      backdrop-filter: grayscale();
+    }
+
+    &_cart {
+      justify-content: flex-end;
+    }
   }
 }

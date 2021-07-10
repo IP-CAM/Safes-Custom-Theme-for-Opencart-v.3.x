@@ -6,7 +6,8 @@
 
 @import 'blocks/button/button.css';
 @import 'blocks/button/{__*,_*}/**/*.css';
-@import 'blocks/cart-popup/{__*,_*}/**/*.css';
+@import 'blocks/cart-dialog/cart-dialog.css';
+@import 'blocks/cart-dialog/{__*,_*}/**/*.css';
 @import 'blocks/live-search/live-search'.css;
 @import 'blocks/promo-banner-carousel/promo-banner-carousel.css';
 @import 'blocks/promo-banner-carousel/{__*,_*}/**/*.css';

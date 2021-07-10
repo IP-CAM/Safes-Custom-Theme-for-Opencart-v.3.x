@@ -108,10 +108,12 @@
               {% endif %}
             {# Товар #}
             </div>
-            <div class="ui__group" id="product">
+            <form class="product-form ui__group">
               {# Опции #}
               {% if options %}
-                <h3 class="product__subtitle">{{ text_option }}</h3>
+              <h3 class="product__subtitle">
+                {{ text_option }}
+              </h3>
                   {% for option in options %}
                     {# Селект #}
                     {% if option.type == 'select' %}
@@ -254,7 +256,12 @@
                   <button class="ui-quantity__up">+</button>
                 </div>
                 {# Купить #}
-                <button id="js-buy" class="button button_view_action">Добавить к заказу</button>
+                <button
+                  type="submit"
+                  class="button button_view_action"
+                >
+                  Добавить к заказу
+                </button>
               </div>
 
               {% if minimum > 1 %}
@@ -263,7 +270,7 @@
               </div>
               {% endif %}
 
-            </div>
+            </form>
 
             {# Размеры и т.д. #}
             <div class="ui__group">
@@ -314,24 +321,6 @@
             <div itemprop="description" class="ui__group">
               {{ description }}
             </div>
-
-            <div class="product__comments">
-
-              <!-- Put this script tag to the <head> of your page -->
-              <script type="text/javascript" src="//vk.com/js/api/openapi.js?150"></script>
-
-              <script type="text/javascript">
-                VK.init({apiId: 6275635, onlyWidgets: true});
-              </script>
-
-              <!-- Put this div tag to the place, where the Comments block will be -->
-              <div id="vk_comments"></div>
-              <script type="text/javascript">
-              VK.Widgets.Comments("vk_comments", {limit: 10, attach: "photo"});
-              </script>
-
-            </div>
-
           </div>
         </div>
         {{ content_bottom }}
@@ -404,48 +393,43 @@ $(document).ready(function(){
   productImages.controller.control = productThumbs;
   productThumbs.controller.control = productImages;
 });
-//Добавить в корзину
-$('#js-buy').on('click', function() {
-  $.ajax({
-		url: 'index.php?route=checkout/cart/add',
-		type: 'post',
-		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-		dataType: 'json',
-		beforeSend: function() {
-		},
-		complete: function() {
-		},
-		success: function(json) {
-      $('.ui__alert').remove();
-			$('.ui__group').removeClass('ui__group_error');
-			if (json['error']) {
-				if (json['error']['option']) {
-					for (i in json['error']['option']) {
-						var element = $('#input-option' + i.replace('_', '-'));
-						element.before('<div class="ui__alert">' + json['error']['option'][i] + '</div>');
-					}
-				}
-				if (json['error']['recurring']) {
-					$('select[name=\'recurring_id\']').after('<div class="ui__alert">' + json['error']['recurring'] + '</div>');
-				}
-				$('.ui__alert').parent().addClass('ui__group_error');
-			}
-      //Успех
-			if (json['success']) {
-        toggleCart();
-        autohideCart = setTimeout(function(){
-          toggleCart();
-        }, 2000);
-        $('.cart-button').html('<svg class="button__icon"><use xlink:href="#i-cart"></use></svg>' + json['total']);
-        $('#cart > table').load('index.php?route=common/cart/info table');
-			}
-		},
-    error: function(xhr, ajaxOptions, thrownError) {
-        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    }
-	});
-});
-//Быстрый заказ
+
+
+  $('.product-form').on('submit', function(event) {
+    event.preventDefault()
+
+    $.ajax({
+      url: 'index.php?route=checkout/cart/add',
+      type: 'POST',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: (response) => {
+        if (response.error) {
+          if (response.error.option) {
+            response.error.option.forEach(item => {
+              $(`#input-option${item.replace('_', '-')}`)
+                .before(`<p class="message">${response.error.option[item]}</p>`)
+            })
+          }
+
+          if (response.error.recurring) {
+            $('select[name=\'recurring_id\']')
+              .after(`<p class="message">${response.error.recurring}</p>`)
+          }
+        }
+
+        if (response.success) {
+          $('.cart-button .button__text').text(response.total);
+
+          // $('#cart > table').load('index.php?route=common/cart/info table');
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+  });
+
 $('#js-quickorder').on('click', function() {
   $.ajax({
 		url: 'index.php?route=checkout/quick/validate',

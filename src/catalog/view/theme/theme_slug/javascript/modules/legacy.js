@@ -1,14 +1,4 @@
 (() => {
-  const handleCartToggle = (event) => {
-    event.preventDefault()
-    $('.l-cart').toggleClass('l-cart_visible')
-  }
-
-  $('.cart-button, .cart-popup__close').on('click', handleCartToggle)
-
-
-  /** Legacy */
-
   // TODO: кажется, это нужно убрать, так как это логика зависимая от модуля
   $('#mobile-search').on('change', function() {
     var value = $(this).val();

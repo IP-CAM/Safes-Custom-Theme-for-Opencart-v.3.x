@@ -15,16 +15,28 @@
     {{ text_items }}
   </span>
 </a>
-<div class="l-cart">
-  <div id="cart" class="cart-popup">
-    <svg
-      class="close cart-popup__close svg-icon"
-      focusable="false"
-      aria-hidden="true"
+
+<div
+  class="cart-dialog-modal modal modal_type_cart"
+  role="dialog"
+  tabindex="-1"
+  aria-modal="true"
+  aria-labelledby="cart-dialog-label"
+>
+  <div class="cart-dialog modal__window">
+    <button class="cart-dialog__close icon-button">
+      <svg
+        class="icon-button__icon"
+        focusable="false"
+        aria-hidden="true"
+      >
+        <use xlink:href="#i-close"/>
+      </svg>
+    </button>
+    <h6
+      id="cart-dialog-label"
+      class="cart-dialog__title"
     >
-      <use xlink:href="#i-close"/>
-    </svg>
-    <h6 class="cart-popup__title">
       {{ text_cart }}
     </h6>
     <table class="c-order cart-popup__order">
@@ -61,10 +73,15 @@
           <td class="c-order__col" data-title="Всего:">
             {{ product.total }}
           </td>
-          <td class="c-order__col c-order__remove" onclick="cart.remove('{{ product.cart_id }}');">
-            <svg class="remove">
-              <use xlink:href="#i-remove"/>
-            </svg>
+          <td class="c-order__col c-order__remove">
+            <button
+              class="icon-button"
+              onclick="cart.remove('{{ product.cart_id }}')"
+            >
+              <svg class="icon-button__icon">
+                <use xlink:href="#i-remove"/>
+              </svg>
+            </button>
           </td>
         </tr>
         {% endfor %}

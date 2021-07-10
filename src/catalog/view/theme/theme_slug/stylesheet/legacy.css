@@ -616,26 +616,6 @@ form {
 }
 
 /* modules/cart */
-.l-cart {
-  position: fixed;
-  left: 100%;
-  right: auto;
-  top: 0;
-  background-color: rgba(255, 255, 255, .95);
-  border-left: 1px solid #b9c7cb;
-  z-index: 99;
-  width: 500px;
-  max-width: 100%;
-  height: 100%;
-  transition: transform .2s ease;
-  overflow-y: auto;
-}
-.l-cart_visible {
-  transform: translateX(-100%);
-}
-#cart {
-  padding: 40px;
-}
 .button_cart {
   padding: 10px 20px;
 }
@@ -813,11 +793,6 @@ form {
 }
 .product__attachments {
   border: none !important;
-}
-.product__comments {
-  display: block;
-  margin: 40px 0 0 0;
-  padding: 0;
 }
 .link__manufacturer {
   color: currentColor;
