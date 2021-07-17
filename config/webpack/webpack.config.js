@@ -1,9 +1,14 @@
+const path = require('path')
 const webpack = require('webpack')
-const { themeSlug } = require('../../config')
+const { themeSlug, srcPath } = require('../../config')
 
 module.exports = {
+  entry: {
+    bundle: path.resolve(`${srcPath}/catalog/view/theme/theme_slug/javascript/index.js`),
+    product: path.resolve(`${srcPath}/catalog/view/theme/theme_slug/javascript/product.js`),
+  },
   output: {
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   externals: {
     jquery: 'jQuery'
