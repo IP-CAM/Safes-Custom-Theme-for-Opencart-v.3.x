@@ -26,8 +26,8 @@ function serve(cb) {
 
   browserSync.init(browserSyncConfig)
 
-  const watcher = watch(copyGlobs, copy)
-  watcher.on('unlink', series(remove, reload))
+  watch(copyGlobs, copy)
+    .on('unlink', series(remove, reload))
 
   const stylesGlob = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/**/*.css`
   watch(stylesGlob, stylesWithBrowserSync)

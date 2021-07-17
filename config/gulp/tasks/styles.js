@@ -6,13 +6,11 @@ const path = require('path')
 
 const { browserSync } = require('../helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('../../../config')
-const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/stylesheet/breakpoints`))
+const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/stylesheet/global/breakpoints`))
 
 const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/stylesheet.css`
 
-console.log(path.resolve(__dirname, `${srcPath}/catalog/view/theme/theme_slug/stylesheet/mixins`));
-
-function buildStream() {
+function styles() {
   return src(entryPath, { base: srcPath })
     .pipe(sourcemaps.init())
     .pipe(postcss([
@@ -42,14 +40,8 @@ function buildStream() {
     .pipe(dest(destPath))
 }
 
-function styles(cb) {
-  buildStream(cb)
-  cb()
-}
-
 function stylesWithBrowserSync(cb) {
-  buildStream()
-    .pipe(browserSync.reload({ stream: true }))
+  styles().pipe(browserSync.reload({ stream: true }))
   cb()
 }
 
