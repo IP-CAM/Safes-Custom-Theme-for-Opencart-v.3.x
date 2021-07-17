@@ -1,10 +1,16 @@
 {{ header }}
 
-{% if promo_left  %}
-<div class="l-wrapper l-wrapper_tinted">
-  <div class="l-container">
+
+{% if promo_left or promo_right  %}
+<div class="page__row page__row_tinted">
+  <div class="wrapper">
     <div class="promo">
-      {{ promo_left }}
+      <div class="promo__section">
+        {{ promo_left }}
+      </div>
+      <div class="promo__section">
+        {{ promo_right }}
+      </div>
     </div>
   </div>
 </div>

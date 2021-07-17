@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "gulp serve",
     "test": "cypress run",
-    "lint": "eslint --ext .js src/catalog/view/theme/theme_slug/javascript"
+    "lint": "eslint --ext .js src/catalog/view/theme/theme_slug/javascript",
+    "log": "tail ./.opencart/system/storage/logs/ocmod.log"
   },
   "author": "",
   "license": "ISC",

@@ -4,25 +4,27 @@
 
 @import 'legacy.css';
 
-@import 'blocks/button/button.css';
-@import 'blocks/button/{__*,_*}/**/*.css';
-@import 'blocks/cart-dialog/cart-dialog.css';
-@import 'blocks/cart-dialog/{__*,_*}/**/*.css';
-@import 'blocks/live-search/live-search'.css;
-@import 'blocks/promo-banner-carousel/promo-banner-carousel.css';
-@import 'blocks/promo-banner-carousel/{__*,_*}/**/*.css';
-@import 'blocks/text-field/text-field.css';
-@import 'blocks/header/header.css';
-@import 'blocks/header/{__*,_*}/**/*.css';
-@import 'blocks/top-navigation-menu/{__*,_*}/**/*.css';
-@import 'blocks/link/link.css';
-@import 'blocks/wrapper/wrapper.css';
-@import 'blocks/form/form.css';
-@import 'blocks/link-group/link-group.css';
-@import 'blocks/modal/modal.css';
-@import 'blocks/dialog/dialog.css';
-@import 'blocks/icon-button/icon-button.css';
-@import 'blocks/cart-snippet/cart-snippet.css';
+@import 'button/button.css';
+@import 'button/{__*,_*}/**/*.css';
+@import 'cart-dialog/cart-dialog.css';
+@import 'cart-dialog/{__*,_*}/**/*.css';
+@import 'live-search/live-search'.css;
+@import 'promo-banner-carousel/promo-banner-carousel.css';
+@import 'promo-banner-carousel/{__*,_*}/**/*.css';
+@import 'text-field/text-field.css';
+@import 'header/header.css';
+@import 'header/{__*,_*}/**/*.css';
+@import 'top-navigation-menu/{__*,_*}/**/*.css';
+@import 'link/link.css';
+@import 'wrapper/wrapper.css';
+@import 'form/form.css';
+@import 'link-group/link-group.css';
+@import 'modal/modal.css';
+@import 'dialog/dialog.css';
+@import 'icon-button/icon-button.css';
+@import 'cart-snippet/cart-snippet.css';
+@import 'promo/promo.css';
+@import 'page/{__*,_*}/**/*.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

@@ -20,7 +20,7 @@
   <script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
 </head>
 <body>
-{# Меню для мобильных устройств #}
+
 <div class="l-mobile-menu">
 	<div class="mobile-menu">
 		<svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-close"></use></svg>
@@ -39,71 +39,92 @@
 		{% endif %}
 	</div>
 </div>
-<div class="wrapper">
-  <div class="header">
-    <div class="header__row">
-      <nav class="header__top-navigation-menu top-navigation-menu">
-        <ul class="top-navigation-menu__list">
-          {% for link in top_navigation_links %}
-            <li class="top-navigation-menu__item">
-              <a
-                class="top-navigation-menu__link link"
-                href="{{ link.url }}"
-                target="{{ link.target }}"
-                {{ link.attributes }}
-              >
-                {{ link.text }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-      <div class="header__contacts">
-        <a
-          class="link"
-          href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
-        >
-          {{ telephone }}
-        </a>
-      </div>
-    </div>
-    <div class="header__row">
-      <div class="header__logotype">
-        <a href="{{ home }}">
-          <img
-            src="catalog/view/theme/THEME_SLUG/image/logotype.svg"
-            alt="«Твой сейф»"
-          />
-        </a>
-      </div>
-      <div class="header__hamburger">
-        <div class="hamburger" onclick="toggleMobilemenu()">
-          <span></span><span></span><span></span><span></span>
+
+<div class="page">
+  <div class="page__header">
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__row">
+          <nav class="header__top-navigation-menu top-navigation-menu">
+            <ul class="top-navigation-menu__list">
+            {% for link in top_navigation_links %}
+              <li class="top-navigation-menu__item">
+                <a
+                  class="top-navigation-menu__link link"
+                  href="{{ link.url }}"
+                  target="{{ link.target }}"
+                  {{ link.attributes }}
+                >
+                  {{ link.text }}
+                </a>
+              </li>
+            {% endfor %}
+            </ul>
+          </nav>
+          <div class="header__contacts">
+            <a
+              class="link"
+              href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
+            >
+              {{ telephone }}
+            </a>
+          </div>
+        </div>
+        <div class="header__row">
+          <div class="header__logotype">
+            <a href="{{ home }}">
+              <img
+                src="catalog/view/theme/THEME_SLUG/image/logotype.svg"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="header__hamburger">
+            <div class="hamburger" onclick="toggleMobilemenu()">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="header__search">
+            {{ search }}
+          </div>
+          <div class="header__account">
+            <ul class="nav">
+              {% if logged %}
+              <li class="nav__item">
+                <a
+                  href="{{ account }}"
+                  class="link"
+                >
+                  {{ text_account }}
+                </a>
+              </li>
+              <li class="nav__item">
+                <a
+                  href="{{ logout }}"
+                  class="link"
+                >
+                  {{ text_logout }}
+                </a>
+              </li>
+              {% else %}
+              <li class="nav__item">
+                <a
+                  class="login-dialog-link link"
+                  href={{ login }}
+                >
+                  {{ text_login }}
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+          <div class="header__cart">
+            {{ cart }}
+          </div>
         </div>
       </div>
-      <div class="header__search">
-        {{ search }}
-      </div>
-      <div class="header__account">
-        <ul class="nav">
-          {% if logged %}
-          <li class="nav__item"><a href="{{ account }}" class="link">{{ text_account }}</a>
-          <li class="nav__item"><a href="{{ logout }}" class="link">{{ text_logout }}</a>
-          {% else %}
-          <li class="nav__item">
-            <a
-              class="login-dialog-link link"
-              href={{ login }}
-            >
-              {{ text_login }}
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-      <div class="l-cart-button">
-        {{ cart }}
-      </div>
+        </div>
+      </header>
     </div>
   </div>
 </div>
