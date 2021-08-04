@@ -1,10 +1,17 @@
-import { logAjaxError } from '../helpers/log-ajax-error';
-import { openModal, closeModal } from '../helpers/modals'
+import { logAjaxError } from '../helpers/log-ajax-error'
+import { openModal, closeModal } from './modals'
 
-$('.login-dialog-link').on('click', openModal('.login-dialog-modal'))
+const handleLoginDialogLinkClick = event => {
+  event.preventDefault()
+  event.stopPropagation()
+
+  openModal('.login-dialog-modal')
+}
+
+$('.login-dialog-link').on('click', handleLoginDialogLinkClick)
 $('.login-dialog .dialog__close').on('click', closeModal)
 
-const ajaxLogin = function(event) {
+const handleLoginFormSubmit = function(event) {
   const removeMessages = () => {
     $(this).find('.form__message').remove();
   }
@@ -33,4 +40,4 @@ const ajaxLogin = function(event) {
   });
 }
 
-$('.login-dialog-form').on('submit', ajaxLogin);
+$('.login-dialog-form').on('submit', handleLoginFormSubmit);

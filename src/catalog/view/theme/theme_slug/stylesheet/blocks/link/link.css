@@ -1,10 +1,21 @@
 .link {
-  color: #456df1;
+  color: #2a6a9e;
   text-decoration: none;
-  border-bottom: 1px solid rgba(69, 109, 241, .2);
+  border-bottom: 1px solid rgba(42, 106, 158, .2);
 
   &:hover {
-    border-bottom: 1px solid rgba(69, 109, 241, .9);
+    border-bottom: 1px solid rgba(42, 106, 158, .9);
+  }
+
+  &_theme {
+    &_ghost {
+      color: #a8b0b2;
+      border-bottom: 1px solid rgba(168, 176, 178, .1);
+
+      &:hover {
+        border-bottom: 1px solid rgba(168, 176, 178, .6);
+      }
+    }
   }
 }
 

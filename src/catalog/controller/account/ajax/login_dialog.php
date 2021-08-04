@@ -1,5 +1,5 @@
 <?php
-class ControllerAccountAjaxLogin extends Controller {
+class ControllerAccountAjaxLoginDialog extends Controller {
   private $error = array();
 
   public function index() {
@@ -7,7 +7,7 @@ class ControllerAccountAjaxLogin extends Controller {
 
     $data = array();
 
-    return $this->load->view('account/ajax/login_dialog', $data);
+    return $this->load->view('account/login_dialog', $data);
   }
 
   public function login() {
