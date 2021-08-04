@@ -50,7 +50,7 @@
             {% for link in top_navigation_links %}
               <li class="top-navigation-menu__item">
                 <a
-                  class="top-navigation-menu__link link"
+                  class="top-navigation-menu__link link link_theme_ghost"
                   href="{{ link.url }}"
                   target="{{ link.target }}"
                   {{ link.attributes }}
@@ -71,53 +71,60 @@
           </div>
         </div>
         <div class="header__row">
-          <div class="header__logotype">
-            <a href="{{ home }}">
-              <img
-                src="catalog/view/theme/THEME_SLUG/image/logotype.svg"
-                alt=""
-              />
-            </a>
-          </div>
-          <div class="header__hamburger">
-            <div class="hamburger" onclick="toggleMobilemenu()">
-              <span></span><span></span><span></span><span></span>
-            </div>
-          </div>
+          <a
+            class="header__logotype"
+            href="{{ home }}"
+          >
+            <img
+              src="catalog/view/theme/THEME_SLUG/image/logotype.svg"
+              alt=""
+            />
+          </a>
+          <button
+            class="header__catalog"
+          >
+            Каталог
+          </button>
+          <button
+            class="hamburger header__hamburger"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div class="header__search">
             {{ search }}
           </div>
-          <div class="header__account">
-            <ul class="nav">
-              {% if logged %}
-              <li class="nav__item">
-                <a
-                  href="{{ account }}"
-                  class="link"
-                >
-                  {{ text_account }}
-                </a>
-              </li>
-              <li class="nav__item">
-                <a
-                  href="{{ logout }}"
-                  class="link"
-                >
-                  {{ text_logout }}
-                </a>
-              </li>
-              {% else %}
-              <li class="nav__item">
-                <a
-                  class="login-dialog-link link"
-                  href={{ login }}
-                >
-                  {{ text_login }}
-                </a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+          <ul class="nav header__account">
+            {% if logged %}
+            <li class="nav__item">
+              <a
+                href="{{ account }}"
+                class="link"
+              >
+                {{ text_account }}
+              </a>
+            </li>
+            <li class="nav__item">
+              <a
+                href="{{ logout }}"
+                class="link"
+              >
+                {{ text_logout }}
+              </a>
+            </li>
+            {% else %}
+            <li class="nav__item">
+              <a
+                class="login-dialog-link link"
+                href={{ login }}
+              >
+                {{ text_login }}
+              </a>
+            </li>
+            {% endif %}
+          </ul>
           <div class="header__cart">
             {{ cart }}
           </div>
