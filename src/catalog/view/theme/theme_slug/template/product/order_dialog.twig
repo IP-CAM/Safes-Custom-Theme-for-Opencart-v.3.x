@@ -1,0 +1,114 @@
+<div
+  class="order-dialog-modal modal modal_type_dialog"
+  role="dialog"
+  tabindex="-1"
+  aria-modal="true"
+  aria-labelledby="order-dialog-label"
+>
+  <div class="dialog order-dialog modal__window">
+    <div class="dialog__header">
+      <h3
+        class="dialog__title"
+        id="order-dialog-label"
+      >
+        {{ heading_title }}
+      </h3>
+      <button class="dialog__close icon-button">
+        <svg class="icon-button__icon">
+          <use xlink:href="#i-close"/>
+        </svg>
+      </button>
+    </div>
+    <div class="dialog__body">
+      <div class="order-dialog__product">
+        <img
+          class="order-dialog__product-thumb"
+          src="{{ thumb }}"
+          title="{{ heading_title }}"
+          alt=""
+        />
+        <dl class="order-dialog__parameters">
+          <dt class="order-dialog__product-parameter-title">
+            {{ column_name }}
+          </dt>
+          <dd class="order-dialog__product-parameter-value">
+            {{ name }}
+          </dd>
+          <dt class="order-dialog__product-parameter-title">
+            {{ column_total }}
+          </dt>
+          <dd class="order-dialog__product-parameter-value">
+            {% if special %}
+            {{ special }}
+            {% else %}
+            {{ price }}
+            {% endif %}
+          </dd>
+        </dl>
+      </div>
+      <form class="order-dialog-form order-dialog__form form">
+        <input
+          type="hidden"
+          name="product_id"
+          value="{{ product_id }}"
+        />
+        <div class="form__field">
+          <input
+            name="customer"
+            required
+            class="text-field"
+            type="text"
+            placeholder="{{ entry_firstname }}"
+          />
+        </div>
+        <div class="form__field">
+          <input
+            name="tel"
+            required
+            class="text-field"
+            type="tel"
+            placeholder="{{ entry_telephone }}"
+          />
+        </div>
+        <div class="form__field">
+          <textarea
+            class="text-field"
+            name="comment"
+            placeholder="{{ text_comments }}"
+          ></textarea>
+        </div>
+        <div class="form__actions">
+          <button class="button">
+            {{ heading_title }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="js-quickorder" class="l-fullscreen quickorder__wrapper">
+  <form class="quickorder" id="quickorder">
+
+    <div class="quickorder__product">
+    </div>
+    <div class="grid">
+      <div class="grid__col grid__col--1-of-2">
+        <div class="ui__group">
+          <input name="customer" class="ui__input ui__input_fw" type="text" placeholder="Ваше имя" />
+        </div>
+      </div>
+      <div class="grid__col grid__col--1-of-2">
+        <div class="ui__group">
+          <input name="tel" class="ui__input ui__input_fw" type="text" placeholder="Номер телефона" />
+        </div>
+      </div>
+    </div>
+    <div class="ui__group">
+      <textarea name="comment" class="ui__textarea" placeholder="Комментарий, необязательно"></textarea>
+    </div>
+    <div class="ui__buttons">
+      <button type="button" id="js-quickorder__buy" class="button button_view_action">Заказать</button>
+    </div>
+  </form>
+</div>

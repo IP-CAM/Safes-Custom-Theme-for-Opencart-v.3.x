@@ -1,0 +1,31 @@
+.order-dialog {
+  &__product {
+    display: flex;
+  }
+
+  &__product-thumb {
+    width: 64px;
+    height: 64px;
+  }
+
+  &__parameters {
+    margin: 0;
+  }
+
+  &__product-parameter-title {
+    @mixin visually-hidden;
+  }
+
+  &__product-parameter-value {
+    display: block;
+    margin: 0;
+
+    &:not(:first-of-type) {
+      margin-top: 8px;
+    }
+  }
+
+  &__form {
+    margin-top: 32px;
+  }
+}

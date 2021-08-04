@@ -3,6 +3,7 @@
   border-radius: 5px;
   border: 2px solid #ededed;
   width: 100%;
+  max-width: 100%;
   font: inherit;
   box-sizing: border-box;
 }

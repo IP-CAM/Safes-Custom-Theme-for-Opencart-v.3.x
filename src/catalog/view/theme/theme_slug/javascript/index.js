@@ -16,4 +16,5 @@ loadSVGSprites(svgSpritesPath)
 
 require('./modules/cart-dialog')
 require('./modules/login-dialog')
+require('./modules/order-dialog')
 require('./modules/legacy')

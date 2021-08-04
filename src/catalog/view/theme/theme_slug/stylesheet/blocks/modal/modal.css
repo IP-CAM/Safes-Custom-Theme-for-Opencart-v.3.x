@@ -8,19 +8,33 @@
   bottom: 0;
   left: 0;
   z-index: 999;
+  overflow: auto;
+  text-align: center;
 
   &_opened {
-    display: flex;
+    display: block;
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &__window {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: initial;
   }
 
   &_type {
     &_dialog {
-      background-color: rgba(0, 0, 0, .4);
-      backdrop-filter: grayscale(80%);
+      background-color: rgba(168, 176, 178, .2);
     }
 
     &_cart {
-      justify-content: flex-end;
+      text-align: right;
     }
   }
 }

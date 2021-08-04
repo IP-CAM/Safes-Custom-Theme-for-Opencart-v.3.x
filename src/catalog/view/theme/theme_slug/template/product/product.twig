@@ -88,23 +88,29 @@
               <p class="product__stock">
               {# text_stock #} {{ stock }}
               </p>
-              {# Цена и быстрая покупка #}
-              {% if special %}
-              <button class="button" id="js-quickorder" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span class="oneclick__title" onclick="toggleQuickorder">Купить в один клик</span>
-                <span class="oneclick__price" itemprop="price" content="{{ special|number_format(2, '.', '') }}">{{ special }}</span>
+              <button
+                class="order-dialog-button button"
+                itemprop="offers"
+                itemscope
+                itemtype="http://schema.org/Offer"
+              >
+                <span class="oneclick__title">
+                  Купить в один клик
+                </span>
+                <span
+                  class="oneclick__price"
+                  itemprop="price"
+                  content="{{ special ?: price }}"
+                >
+                  {{ special ?: price }}
+                </span>
                 <span itemprop="priceCurrency" content="RUB" />
               </button>
+              {% if special %}
               <div class="product__price_old">
                 <span class="h-block">Старая цена:</span>
                 <span class="h-block product__price_through">{{ price }}</span>
               </div>
-              {% else %}
-              <button class="button" id="js-quickorder" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span class="oneclick__title" onclick="toggleQuickorder">Купить в один клик</span>
-                <span class="oneclick__price" itemprop="price" content="{{ price|number_format(2, '.', '') }}">{{ price }}</span>
-                <span itemprop="priceCurrency" content="RUB" />
-              </button>
               {% endif %}
             {# Товар #}
             </div>
@@ -333,48 +339,9 @@
     </div>
   </div>
 </div>
-
-{# Форма быстрого заказа #}
-<div id="js-quickorder" class="l-fullscreen quickorder__wrapper">
-  <form class="quickorder" id="quickorder">
-    <div class="h-flex">
-      <h3 class="ui__title">Ваш заказ</h3>
-      <svg class="close" onclick="toggleQuickorder()"><use xlink:href="#i-close"></use></svg>
-    </div>
-    <div class="quickorder__product">
-      <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" class="quickorder__image" />
-      <span class="quickorder__name">{{ heading_title }}</span>
-      {% if special %}
-        <span>{{ special }}</span>
-      {% else %}
-        <span>{{ price }}</span>
-      {% endif %}
-    </div>
-    <div class="grid">
-      <div class="grid__col grid__col--1-of-2">
-        <div class="ui__group">
-          <input name="customer" class="ui__input ui__input_fw" type="text" placeholder="Ваше имя" />
-        </div>
-      </div>
-      <div class="grid__col grid__col--1-of-2">
-        <div class="ui__group">
-          <input name="tel" class="ui__input ui__input_fw" type="text" placeholder="Номер телефона" />
-        </div>
-      </div>
-    </div>
-    <div class="ui__group">
-      <textarea name="comment" class="ui__textarea" placeholder="Комментарий, необязательно"></textarea>
-    </div>
-    <div class="ui__buttons">
-      <button type="button" id="js-quickorder__buy" class="button button_view_action">Заказать</button>
-    </div>
-  </form>
-</div>
-
+{{ order_dialog }}
 {{ footer }}
-
 <script src="catalog/view/theme/THEME_SLUG/javascript/product.js"></script>
-
 <script>
 //Слайдер изображений товара
 $(document).ready(function(){
@@ -396,66 +363,7 @@ $(document).ready(function(){
   productThumbs.controller.control = productImages;
 });
 
-$('#js-quickorder').on('click', function() {
-  $.ajax({
-		url: 'index.php?route=checkout/quick/validate',
-		type: 'post',
-		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-		dataType: 'json',
-		beforeSend: function() {
-		},
-		complete: function() {
-		},
-		success: function(json) {
-      $('.ui__alert').remove();
-			$('.ui__group').removeClass('ui__group_error');
-			if (json['error']) {
-				if (json['error']['option']) {
-					for (i in json['error']['option']) {
-						var element = $('#input-option' + i.replace('_', '-'));
-						element.before('<div class="ui__alert">' + json['error']['option'][i] + '</div>');
-					}
-          $('.ui__alert').parent().addClass('ui__group_error');
-				}
-			} else {
-        toggleQuickorder();
-      }
-    },
-    error: function(xhr, ajaxOptions, thrownError) {
-      alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    }
-	});
-});
-//
-function toggleQuickorder() {
-	$('.quickorder__wrapper').toggleClass('quickorder__wrapper_visible');
-  return false;
-}
-//Быстрая покупка
-$('#js-quickorder__buy').on('click', function() {
-  var error = false;
-  if ($('#js-quickorder input[name="tel"]').val().length < 9 )  {
-    console.log('Ошибка');
-    $('#js-quickorder .quickorder__product').after('<div class="quickorder__error">Мы не сможем связаться с вами по этому номеру</div>');
-  } else {
-    $.ajax({
-      url: 'index.php?route=checkout/quick/order',
-      type: 'post',
-      data: $('#quickorder input[type=\'text\'], #quickorder textarea, #product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-      dataType: 'json',
-      beforeSend: function() {
-      },
-      complete: function() {
-      },
-      success: function(json) {
-        location = '/spasibo';
-      },
-      error: function(xhr, ajaxOptions, thrownError) {
-        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-      }
-    });
-  }
-});
+
 //-
 $('.ui-quantity__down').click(function () {
   var $input = $(this).parent().find('input');

@@ -1,0 +1,20 @@
+<file path="catalog/controller/product/product.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['recurrings'] = $this->model_catalog_product->getProfiles($this->request->get['product_id']);
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$data['order_dialog'] = $this->load->controller('product/ajax/order_dialog', [
+  'product_id' => $data['product_id'],
+  'name' => $data['heading_title'],
+  'thumb' => $data['thumb'],
+  'price' => $data['price'],
+  'special' => $data['special'],
+]);
+      ]]>
+    </add>
+  </operation>
+</file>
