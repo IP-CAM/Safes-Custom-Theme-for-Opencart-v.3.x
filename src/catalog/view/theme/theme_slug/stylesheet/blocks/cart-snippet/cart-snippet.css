@@ -86,7 +86,7 @@
     color: #f00;
   }
 
-  &:hover &__remove {
+  &__item:hover &__remove {
     opacity: 1;
   }
 }
