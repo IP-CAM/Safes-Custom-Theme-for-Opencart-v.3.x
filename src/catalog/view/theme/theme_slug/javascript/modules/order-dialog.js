@@ -1,5 +1,7 @@
 import { logAjaxError } from '../helpers/log-ajax-error'
+import { removeFormErrors } from '../helpers/remove-form-errors'
 import { openModal, closeModal } from './modals'
+import { handleProductOptionErrors } from '../product'
 
 const handleOrderDialogButtonClick = () => {
   $.ajax({
@@ -7,12 +9,13 @@ const handleOrderDialogButtonClick = () => {
     type: 'POST',
     data: $('.product-form').serialize(),
     dataType: 'json',
+    beforeSend: () => {
+      removeFormErrors('.product-form')
+    },
     success: response => {
       if (response.error) {
         if (response.error.option) {
-          // for (const optionId in response['error']['option']) {
-          //   $(`#input-option${optionId.replace('_', '-')}`).before(`<span>${response.error.option[optionId]}</span>`)
-          // }
+          handleProductOptionErrors(response.error.option)
         }
       } else {
         openModal('.order-dialog-modal')

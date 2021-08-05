@@ -121,116 +121,241 @@
                 {{ text_option }}
               </h3>
                   {% for option in options %}
-                    {# Селект #}
                     {% if option.type == 'select' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control">
-                        <option value="">{{ text_select }}</option>
-                        {% for option_value in option.product_option_value %}
-                        <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
-                        {% if option_value.price %}
-                        ({{ option_value.price_prefix }}{{ option_value.price }})
-                        {% endif %} </option>
-                        {% endfor %}
-                      </select>
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <select
+                            name="option[{{ option.product_option_id }}]"
+                            id="input-option{{ option.product_option_id }}"
+                          >
+                            <option value="">
+                              {{ text_select }}
+                            </option>
+                            {% for option_value in option.product_option_value %}
+                            <option value="{{ option_value.product_option_value_id }}">
+                              {{ option_value.name }}
+                              {% if option_value.price %}
+                              ({{ option_value.price_prefix }}{{ option_value.price }})
+                              {% endif %}
+                            </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Радио #}
                     {% if option.type == 'radio' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label">{{ option.name }}</label>
-                      <div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
-                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
+                    <div class="form__field">
+                      <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <legend class="form-field__label">
+                          {{ option.name }}
+                        </legend>
+                        <div
+                          class="form-field__controls"
+                          id="input-option{{ option.product_option_id }}"
+                        >
+                          {% for option_value in option.product_option_value %}
+                          <label class="form-field__control">
+                            <input
+                              type="radio"
+                              name="option[{{ option.product_option_id }}]"
+                              value="{{ option_value.product_option_value_id }}"
+                            />
+                            {% if option_value.image %}
+                              <img
+                                src="{{ option_value.image }}"
+                                alt="{{ option_value.name }}
+                                {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
+                              />
+                            {% endif %}
                             {{ option_value.name }}
                             {% if option_value.price %}
                             ({{ option_value.price_prefix }}{{ option_value.price }})
-                            {% endif %} </label>
+                            {% endif %}
+                          </label>
+                          {% endfor %}
                         </div>
-                        {% endfor %} </div>
+                      </fieldset>
                     </div>
                     {% endif %}
 
-                    {# Чекбокс #}
                     {% if option.type == 'checkbox' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label">{{ option.name }}</label>
-                      <div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" />
-                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
-                            {{ option_value.name }}
-                            {% if option_value.price %}
-                            ({{ option_value.price_prefix }}{{ option_value.price }})
-                            {% endif %} </label>
+                    <div class="form__field">
+                      <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <legend class="form-field__label">
+                          {{ option.name }}
+                        </legend>
+                        <div
+                          class="form-field__controls"
+                          id="input-option{{ option.product_option_id }}"
+                        >
+                          {% for option_value in option.product_option_value %}
+                          <div class="form-field__control">
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="option[{{ option.product_option_id }}][]"
+                                value="{{ option_value.product_option_value_id }}"
+                              />
+                              {% if option_value.image %}
+                              <img
+                                src="{{ option_value.image }}"
+                                alt="{{ option_value.name }}
+                                {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
+                                />
+                              {% endif %}
+                              {{ option_value.name }}
+                              {% if option_value.price %}
+                              ({{ option_value.price_prefix }}{{ option_value.price }})
+                              {% endif %}
+                            </label>
+                          </div>
+                          {% endfor %}
                         </div>
-                        {% endfor %} </div>
+                      </fieldset>
                     </div>
                     {% endif %}
 
-                    {# Инпут #}
                     {% if option.type == 'text' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control" />
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <input
+                            class="text-field"
+                            type="text"
+                            name="option[{{ option.product_option_id }}]"
+                            value="{{ option.value }}"
+                            placeholder="{{ option.name }}"
+                            id="input-option{{ option.product_option_id }}"
+                          />
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Текст #}
                     {% if option.type == 'textarea' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <textarea name="option[{{ option.product_option_id }}]" rows="5" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control">{{ option.value }}</textarea>
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required {% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <textarea
+                            name="option[{{ option.product_option_id }}]"
+                            rows="5"
+                            placeholder="{{ option.name }}"
+                            id="input-option{{ option.product_option_id }}"
+                            class="text-field"
+                          >{{ option.value }}</textarea>
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Файл #}
                     {% if option.type == 'file' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label">{{ option.name }}</label>
-                      <button type="button" id="button-upload{{ option.product_option_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block"><i class="fa fa-upload"></i> {{ button_upload }}</button>
-                      <input type="hidden" name="option[{{ option.product_option_id }}]" value="" id="input-option{{ option.product_option_id }}" />
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label class="form-field__label">
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <button
+                            class="button"
+                            type="button"
+                            id="button-upload{{ option.product_option_id }}"
+                            data-loading-text="{{ text_loading }}"
+                          >
+                            {{ button_upload }}
+                          </button>
+                          <input
+                            type="hidden"
+                            name="option[{{ option.product_option_id }}]"
+                            value=""
+                            id="input-option{{ option.product_option_id }}"
+                          />
+                        <div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Дата #}
                     {% if option.type == 'date' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <div class="input-group date">
-                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD" id="input-option{{ option.product_option_id }}" class="form-control" />
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
-                        </span></div>
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <input
+                            type="date"
+                            name="option[{{ option.product_option_id }}]"
+                            value="{{ option.value }}"
+                            id="input-option{{ option.product_option_id }}"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Дата, время #}
                     {% if option.type == 'datetime' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <div class="input-group datetime">
-                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
-                        <span class="input-group-btn">
-                        <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                        </span></div>
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <input
+                            type="datetime-local"
+                            name="option[{{ option.product_option_id }}]"
+                            value="{{ option.value|replace({" ": "T"}) }}"
+                            id="input-option{{ option.product_option_id }}"
+                          />
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 
-                    {# Время #}
                     {% if option.type == 'time' %}
-                    <div class="ui__group{% if option.required %} ui__group_required {% endif %}">
-                      <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                      <div class="input-group time">
-                        <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
-                        <span class="input-group-btn">
-                        <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                        </span></div>
+                    <div class="form__field">
+                      <div class="form-field{% if option.required %} form-field_required{% endif %}">
+                        <label
+                          class="form-field__label"
+                          for="input-option{{ option.product_option_id }}"
+                        >
+                          {{ option.name }}
+                        </label>
+                        <div class="form-field__controls">
+                          <input
+                            type="time"
+                            name="option[{{ option.product_option_id }}]"
+                            value="{{ option.value }}"
+                            id="input-option{{ option.product_option_id }}"
+                          />
+                        </div>
+                      </div>
                     </div>
                     {% endif %}
 

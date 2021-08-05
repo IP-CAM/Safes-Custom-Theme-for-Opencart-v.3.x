@@ -3,15 +3,6 @@
     &:not(:first-child) {
       margin-top: 12px;
     }
-
-    &_required {
-      &::before {
-        content: '*';
-        color: #E32351;
-        position: absolute;
-        left: -10px;
-      }
-    }
   }
 
   &__actions {

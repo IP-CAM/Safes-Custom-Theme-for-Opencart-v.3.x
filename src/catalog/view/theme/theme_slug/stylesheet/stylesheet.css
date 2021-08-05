@@ -26,6 +26,7 @@
 @import 'promo/promo.css';
 @import 'page/{__*,_*}/**/*.css';
 @import 'order-dialog/order-dialog.css';
+@import 'form-field/form-field.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';
