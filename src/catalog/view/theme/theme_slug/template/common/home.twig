@@ -16,25 +16,21 @@
 </div>
 {% endif %}
 
-<div class="l-wrapper">
-  <div class="l-container">
-    <div class="grid">
-      {% if column_left %}
-      <div class="grid__col grid__col--1-of-4">
-        {{ column_left }}
-      </div>
-      {% endif %}
-      {% if column_left and column_right %}
-        {% set class = 'grid__col--2-of-4' %}
-      {% elseif column_left or column_right %}
-        {% set class = 'grid__col--3-of-4' %}
-      {% else %}
-        {% set class = 'grid__col--4-of-4' %}
-      {% endif %}
-      <div class="grid__col {{ class }}">
-        {{ content_top }}
-      </div>
+<div class="page__row">
+  <div class="wrapper">
+    {% if column_left %}
+    <div>
+      {{ column_left }}
     </div>
+    {% endif %}
+    {% if content_top %}
+      {{ content_top }}
+    {% endif %}
+    {% if column_right %}
+    <div>
+      {{ column_right }}
+    </div>
+    {% endif %}
   </div>
 </div>
 <div class="l-container l-container_padding">
