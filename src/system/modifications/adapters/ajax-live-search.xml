@@ -21,11 +21,10 @@ $liveSearchJS = '<link href="catalog/view/javascript/live_search/live_search.css
     </search>
     <add position="replace" offset="9">
       <![CDATA[
-$liveSearchJS = '<script src="catalog/view/javascript/live_search/live_search.js"></script>' . "\n";
-$liveSearchJS .= '<script>' . "\n";
+$liveSearchJS = '<script>' . "\n";
 $liveSearchJS .= '$(document).ready(function() {' . "\n";
 $liveSearchJS .= 'const options = ' . json_encode($liveSearch) . ';' . "\n";
-$liveSearchJS .= 'LiveSearchJs.init(options);' . "\n";
+$liveSearchJS .= 'LiveSearchJs(options);' . "\n";
 $liveSearchJS .= '});' . "\n";
 $liveSearchJS .= '</script>' . "\n";
 $liveSearchJS .= '</body>' . "\n";
