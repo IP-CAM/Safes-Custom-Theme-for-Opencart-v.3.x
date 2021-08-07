@@ -4,7 +4,7 @@ const handleCartDialogButtonClick = event => {
   event.preventDefault()
   event.stopPropagation()
 
-  openModal('.cart-dialog-modal')
+  openModal('.cart-dialog-modal', false)
 }
 
 $('.cart-button').on('click', handleCartDialogButtonClick)

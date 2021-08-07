@@ -1,4 +1,4 @@
-const { enableBodyScroll, disableBodyScroll } = require('../helpers/body-scroll');
+const { enableBodyScroll, disableBodyScroll, isBodyScrollDisabled } = require('../helpers/body-scroll')
 
 const handleBackdropClick = (event) => {
   if ($(event.target).closest('.modal__window').length > 0) return
@@ -6,16 +6,22 @@ const handleBackdropClick = (event) => {
   closeModal()
 }
 
-export const openModal = (selector) => {
+export const openModal = (selector, disableScroll = true) => {
   if (!selector) return
 
   $(selector).addClass('modal_opened')
   $(document).on('click', handleBackdropClick)
-  disableBodyScroll()
+
+  if (disableScroll) {
+    disableBodyScroll()
+  }
 }
 
 export const closeModal = () => {
   $('.modal_opened').removeClass('modal_opened')
   $(document).off('click', handleBackdropClick)
-  enableBodyScroll()
+
+  if (isBodyScrollDisabled()) {
+    enableBodyScroll()
+  }
 }
