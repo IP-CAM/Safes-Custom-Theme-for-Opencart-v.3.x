@@ -3,6 +3,7 @@ const { watch, series } = require('gulp')
 const { copy, copyGlobs } = require('./copy')
 const { stylesWithBrowserSync } = require('./styles')
 const { scripts } = require('./scripts')
+const { svgSprites, svgSpritesGlob } = require('./svg-sprites')
 const { runDockerContainers, stopDockerContainers } = require('./docker')
 const { modifications, modificationsGlob } = require('./modifications')
 const { refreshModifications } = require('./refresh-modifications')
@@ -34,6 +35,8 @@ function serve(cb) {
 
   const scriptsGlob = `${srcPath}/catalog/view/theme/theme_slug/javascript/**/*.js`
   watch(scriptsGlob, series(scripts, reload))
+
+  watch(svgSpritesGlob, svgSprites)
 
   watch(modificationsGlob, series(modifications))
 

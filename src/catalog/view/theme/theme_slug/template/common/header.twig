@@ -23,7 +23,7 @@
 
 <div class="l-mobile-menu">
 	<div class="mobile-menu">
-		<svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-close"></use></svg>
+		<svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>
 		<div class="mobile-menu__search">
         <span class="mobile-menu__subtitle">Поиск сейфа</span>
         <input type="text" id="mobile-search" class="mobile-menu__input" placeholder="Например, SL-65T" />
@@ -80,11 +80,22 @@
               alt=""
             />
           </a>
-          <button
-            class="header__catalog"
-          >
-            Каталог
-          </button>
+          <div class="header__catalog">
+            <button type="button" class="catalog-button">
+              <span class="catalog-button__addon">
+                <svg
+                  class="button__icon"
+                  focusable="false"
+                  aria-hidden="true"
+                >
+                  <use xlink:href="#icon-catalog"/>
+                </svg>
+              </span>
+              <span class="catalog-button__text">
+                Каталог
+              </span>
+            </button>
+          </div>
           <button
             class="hamburger header__hamburger"
           >

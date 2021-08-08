@@ -40,6 +40,7 @@ const restGlobs = [
   `${srcPath}/**/*`,
   `!${srcPath}/**/{stylesheet,stylesheet/**/*}`,
   `!${srcPath}/**/{javascript,javascript/**/*}`,
+  `!${srcPath}/**/{svg-sprites,svg-sprites/**/*}`,
   `!${srcPath}/system/{modifications,modifications/**/*}`,
   `!${themeControllerGlob}`,
   `!${themeLanguageGlob}`,

@@ -1,0 +1,29 @@
+.catalog-button {
+  display: inline-flex;
+  background: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  white-space: nowrap;
+  font: inherit;
+
+  &__addon {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+  }
+
+  &__icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+}

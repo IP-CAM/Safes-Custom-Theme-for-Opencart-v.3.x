@@ -21,7 +21,7 @@ module.exports = {
       'window.jQuery': 'jquery',
     }),
     new webpack.DefinePlugin({
-      THEME_SLUG: themeSlug,
+      THEME_SLUG: JSON.stringify(themeSlug),
     })
   ]
 }
