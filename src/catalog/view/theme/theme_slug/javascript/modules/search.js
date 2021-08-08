@@ -119,8 +119,8 @@ const search = options => {
       }
   });
 
-  $(document).bind( "mouseup touchend", function(e){
-      var container = $('.live-search');
+  $(document).bind('mouseup touchend', function(e){
+      var container = $('.header-search__suggestions');
       if (!container.is(e.target) && container.has(e.target).length === 0) {
           container.hide();
           $('.header-search').removeClass('header-search_opened');
