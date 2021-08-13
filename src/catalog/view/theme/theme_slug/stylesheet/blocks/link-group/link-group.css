@@ -5,9 +5,26 @@
 
   &__item {
     display: block;
+  }
 
-    &:not(:first-child) {
-      margin-top: 8px;
+  &_direction {
+    &_column {
+      .link-group__item {
+        &:not(:first-child) {
+          margin-top: 8px;
+        }
+      }
+    }
+
+    &_row {
+      display: flex;
+      flex-wrap: wrap;
+
+      .link-group__item {
+        &:not(:last-child) {
+          margin-right: 18px;
+        }
+      }
     }
   }
 }

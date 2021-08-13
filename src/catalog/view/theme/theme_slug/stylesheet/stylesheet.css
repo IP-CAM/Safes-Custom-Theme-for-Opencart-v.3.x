@@ -13,7 +13,6 @@
 @import 'text-field/text-field.css';
 @import 'header/header.css';
 @import 'header/{__*,_*}/**/*.css';
-@import 'top-navigation-menu/{__*,_*}/**/*.css';
 @import 'link/link.css';
 @import 'wrapper/wrapper.css';
 @import 'form/form.css';
@@ -28,6 +27,8 @@
 @import 'form-field/form-field.css';
 @import 'header-search/header-search.css';
 @import 'catalog-button/catalog-button.css';
+@import 'footer/footer.css';
+@import 'footer-telephone/footer-telephone.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

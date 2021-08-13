@@ -1,0 +1,14 @@
+<file path="catalog/controller/common/footer.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$data['telephone'] = $this->config->get('config_telephone');
+      ]]>
+    </add>
+  </operation>
+</file>

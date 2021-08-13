@@ -22,22 +22,22 @@
 <body>
 
 <div class="l-mobile-menu">
-	<div class="mobile-menu">
-		<svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>
-		<div class="mobile-menu__search">
+  <div class="mobile-menu">
+    <svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>
+    <div class="mobile-menu__search">
         <span class="mobile-menu__subtitle">Поиск сейфа</span>
         <input type="text" id="mobile-search" class="mobile-menu__input" placeholder="Например, SL-65T" />
-		</div>
-		<a class="mobile-menu__item" href="/dostavka">Доставка по России</a>
-		<a class="mobile-menu__item mobile-menu__item_special" href="/skidki"><svg class="mobile-menu__discount"><use xlink:href="#i-discount"></use></svg>Скидки</a>
-		<a class="mobile-menu__item" href="/kontakty">Контакты</a>
-		{% if logged %}
-		<a href="{{ account }}" class="mobile-menu__item">{{ text_account }}</a>
-		<a href="{{ logout }}" class="mobile-menu__item">{{ text_logout }}</a>
-		{% else %}
-		<a href="{{ login }}" class="mobile-menu__item">Вход с паролем</a>
-		{% endif %}
-	</div>
+    </div>
+    <a class="mobile-menu__item" href="/dostavka">Доставка по России</a>
+    <a class="mobile-menu__item mobile-menu__item_special" href="/skidki"><svg class="mobile-menu__discount"><use xlink:href="#i-discount"></use></svg>Скидки</a>
+    <a class="mobile-menu__item" href="/kontakty">Контакты</a>
+    {% if logged %}
+    <a href="{{ account }}" class="mobile-menu__item">{{ text_account }}</a>
+    <a href="{{ logout }}" class="mobile-menu__item">{{ text_logout }}</a>
+    {% else %}
+    <a href="{{ login }}" class="mobile-menu__item">Вход с паролем</a>
+    {% endif %}
+  </div>
 </div>
 
 <div class="page">
@@ -46,11 +46,11 @@
       <header class="header">
         <div class="header__row">
           <nav class="header__top-navigation-menu top-navigation-menu">
-            <ul class="top-navigation-menu__list">
+            <ul class="link-group  link-group_direction_row">
             {% for link in top_navigation_links %}
-              <li class="top-navigation-menu__item">
+              <li class="link-group__item">
                 <a
-                  class="top-navigation-menu__link link link_theme_ghost"
+                  class="link link_theme_ghost"
                   href="{{ link.url }}"
                   target="{{ link.target }}"
                   {{ link.attributes }}
@@ -96,14 +96,6 @@
               </span>
             </button>
           </div>
-          <button
-            class="hamburger header__hamburger"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
           <div class="header__search">
             {{ search }}
           </div>
@@ -140,9 +132,6 @@
             {{ cart }}
           </div>
         </div>
-      </div>
-        </div>
       </header>
     </div>
   </div>
-</div>

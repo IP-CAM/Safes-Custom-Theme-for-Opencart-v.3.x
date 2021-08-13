@@ -1,23 +1,31 @@
-<div class="l-wrapper l-wrapper_border-top">
-  <footer class="l-container l-footer">
-    <div class="grid">
-      <div class="grid__col grid__col--1-of-4 grid__col--m-1-of-2">
-        <div class="l-footer__column">
-          {% if informations %}
-            <h5 class="footer__caption">{{ text_information }}</h5>
-          {% endif %}
+  <div class="page__footer">
+    <div class="wrapper">
+      <footer class="footer">
+        <div class="footer__row">
+          <a
+            class="footer-telephone"
+            href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
+          >
+            {{ telephone }}
+          </a>
+        </div>
+        <div class="footer__row">
+          <ul class="link-group link-group_direction_row">
           {% for information in informations %}
-            <span class="l-footer__row"><a href="{{ information.href }}" class="link">{{ information.title }}</a></span>
+            <li class="link-group__item">
+              <a
+                class="top-navigation-menu__link link link_theme_ghost"
+                href="{{ information.href }}"
+              >
+                {{ information.title }}
+              </a>
+            </li>
           {% endfor %}
+          </ul>
         </div>
-      </div>
-      <div class="grid__col grid__col--1-of-4 grid__col--m-1-of-2">
-        <div class="l-footer__column">
-          <span class="l-footer__row"><a href="{{ return }}" class="link">{{ text_return }}</a></span>
-        </div>
-      </div>
+      </footer>
     </div>
-  </footer>
+  </div>
 </div>
 {{ login_dialog }}
 <div hidden>
