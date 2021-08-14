@@ -1,5 +1,6 @@
 const getURLVar = require('../helpers/get-url-var')
-const { logAjaxError } = require('../helpers/log-ajax-error');
+const { logAjaxError } = require('../helpers/log-ajax-error')
+const { refreshCart } = require('../helpers/refresh-cart')
 
 const add = (productId, quantity) => {
   $.ajax({
@@ -7,17 +8,18 @@ const add = (productId, quantity) => {
     type: 'POST',
     data: {
       product_id: productId,
-      quantity: quantity || 1,
+      quantity: quantity ? quantity : 1,
     },
     dataType: 'json',
     success: (response) => {
       if (response.redirect) {
-        window.location = response.redirect
+        location = response['redirect'];
       }
 
       if (response.success) {
-        $('.cart-button .button__text').text(response.total);
-        $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
+        console.log(response.success);
+
+        refreshCart(response)
       }
     },
     error: logAjaxError,
@@ -38,8 +40,7 @@ const remove = (key) => {
 
         return
       } else {
-        $('.cart-button .button__text').text(response.total)
-        $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
+        refreshCart(response)
       }
     },
     error: logAjaxError,
@@ -61,8 +62,7 @@ const update = (key, quantity) => {
 
         return
       } else {
-        $('.cart-button .button__text').text(response.total)
-        $('#cart > table').load('index.php?route=common/cart/info table')
+        refreshCart(response)
       }
     },
     error: logAjaxError,

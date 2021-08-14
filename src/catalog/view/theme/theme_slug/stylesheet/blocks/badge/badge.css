@@ -1,0 +1,22 @@
+.badge {
+  position: relative;
+
+  &__dot {
+    position: absolute;
+    display: flex;
+    color: #fff;
+    background-color: var(--orange);
+    place-content: center center;
+    top: 0;
+    right: 0;
+    transform: translate(40%, -40%);
+    transform-origin: 100% 0%;
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-sizing: border-box;
+  }
+}

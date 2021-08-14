@@ -1,5 +1,5 @@
 .link {
-  color: #2a6a9e;
+  color: var(--blue);
   text-decoration: none;
   border-bottom: 1px solid rgba(42, 106, 158, .2);
 
@@ -9,7 +9,7 @@
 
   &_theme {
     &_ghost {
-      color: #a8b0b2;
+      color: #808d9a;
       border-bottom: 1px solid rgba(168, 176, 178, .1);
 
       &:hover {

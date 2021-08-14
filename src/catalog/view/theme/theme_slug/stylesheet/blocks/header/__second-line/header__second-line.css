@@ -1,0 +1,10 @@
+.header__second-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: $tablet-portrait) {
+    justify-content: flex-start;
+    margin-top: 18px;
+  }
+}

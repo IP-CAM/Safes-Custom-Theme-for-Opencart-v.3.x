@@ -1,5 +1,5 @@
 .button_view_action {
-  background-color: #f77160;
+  background-color: var(--orange);
 
   &:hover {
     background-color: #fc766f;

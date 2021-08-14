@@ -1,4 +1,6 @@
 .header-search {
+  position: relative;
+
   &__input {
     padding: 10px;
     border-radius: 5px;

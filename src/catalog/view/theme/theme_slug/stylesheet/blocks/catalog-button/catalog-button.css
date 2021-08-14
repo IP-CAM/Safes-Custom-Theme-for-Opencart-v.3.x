@@ -1,6 +1,6 @@
 .catalog-button {
   display: inline-flex;
-  background: 0;
+  background: none;
   cursor: pointer;
   text-decoration: none;
   border: 0;

@@ -1,6 +1,9 @@
 .header__search {
-  position: relative;
-  margin-right: 40px;
-  flex-grow: 1;
-//  order: 3;
+  display: none;
+
+  @media (min-width: $tablet-portrait) {
+    display: block;
+    margin-right: 40px;
+    flex-grow: 1;
+  }
 }

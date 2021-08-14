@@ -1,8 +1,8 @@
-.header__logotype {
+.header__burger {
+  flex-shrink: 0;
   margin-right: 16px;
 
   @media (min-width: $tablet-portrait) {
-    flex-shrink: 0;
-    margin-right: 40px;
+    display: none;
   }
 }

@@ -4,6 +4,7 @@
   background: none;
   padding: 0;
   cursor: pointer;
+  color: inherit;
 
   &__icon {
     max-height: 100%;
@@ -13,7 +14,23 @@
     fill: none;
   }
 
-  &__caption {
+  &__text {
     @mixin visually-hidden;
+  }
+
+  &_size {
+    &_m {
+      .icon-button__icon {
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    &_l {
+      .icon-button__icon {
+        height: 36px;
+        width: 36px;
+      }
+    }
   }
 }

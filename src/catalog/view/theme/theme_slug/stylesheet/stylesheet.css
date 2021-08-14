@@ -29,6 +29,9 @@
 @import 'catalog-button/catalog-button.css';
 @import 'footer/footer.css';
 @import 'footer-telephone/footer-telephone.css';
+@import 'mobile-menu/mobile-menu.css';
+@import 'information-links/information-links.css';
+@import 'badge/badge.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

@@ -1,0 +1,28 @@
+<file path="catalog/controller/common/cart.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['text_items'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total, $this->session->data['currency']));
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$data['product_count'] = $this->cart->countProducts();
+      ]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/controller/checkout/cart.php">
+  <operation>
+    <search>
+      <![CDATA[
+$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total, $this->session->data['currency']));
+      ]]>
+    </search>
+    <add position="after">
+      <![CDATA[
+$json['product_count'] = $this->cart->countProducts();
+      ]]>
+    </add>
+  </operation>
+</file>

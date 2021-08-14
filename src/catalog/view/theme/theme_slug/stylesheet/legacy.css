@@ -766,65 +766,6 @@ form {
   border-radius: 5px;
   font-size: 90%;
 }
-/* Меню для мобильных устройств */
-.l-mobile-menu {
-  position: fixed;
-  left: auto;
-  right: 100%;
-  top: 0;
-  background-color: rgba(255, 255, 255, .98);
-  border-right: 1px solid #b9c7cb;
-  color: #131313;
-  z-index: 99;
-  width: 300px;
-  max-width: 100%;
-  height: 100%;
-  transition: transform .2s ease;
-}
-.l-mobile-menu_visible {
-  transform: translateX(100%);
-}
-.mobile-menu {
-  padding: 40px;
-}
-.mobile-menu__item {
-  position: relative;
-  display: block;
-  padding: 5px 0;
-  font-size: 110%;
-  color: #131313;
-  text-decoration: none;
-  margin: 0 0 0 20px;
-}
-.mobile-menu__item_special {
-  color: #ed6569;
-}
-.mobile-menu__discount {
-  display: inline-block;
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  margin-top: -10px;
-  fill: #ed6569;
-  width: 16px;
-  height: 16px;
-}
-.mobile-menu__search {
-  margin: 30px 0;
-}
-.mobile-menu__input {
-  display: block;
-  padding: 10px 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #ededed;
-  width: 100%;
-  font-size: 110%;
-}
-.mobile-menu__subtitle {
-  display: inline-block;
-  margin: 0 0 5px 20px;
-}
 
 /* modules/filter */
 .c-filter__checkbox {

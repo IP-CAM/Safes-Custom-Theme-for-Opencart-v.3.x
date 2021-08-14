@@ -1,5 +1,6 @@
 const { logAjaxError } = require('./helpers/log-ajax-error')
 const { removeFormErrors } = require('./helpers/remove-form-errors');
+const { refreshCart } = require('./helpers/refresh-cart');
 
 $('.product-form').on('submit', function(event) {
   event.preventDefault()
@@ -26,9 +27,9 @@ $('.product-form').on('submit', function(event) {
       }
 
       if (response.success) {
-        $('.cart-button .button__text').text(response.total);
+        console.log(response.success)
 
-        $('.cart-snippet').load('index.php?route=common/cart/info .cart-snippet');
+        refreshCart(response)
       }
     },
     error: logAjaxError,

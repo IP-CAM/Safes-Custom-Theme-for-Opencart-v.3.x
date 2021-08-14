@@ -21,22 +21,80 @@
 </head>
 <body>
 
-<div class="l-mobile-menu">
-  <div class="mobile-menu">
-    <svg class="close" onclick="toggleMobilemenu()"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>
-    <div class="mobile-menu__search">
-        <span class="mobile-menu__subtitle">Поиск сейфа</span>
-        <input type="text" id="mobile-search" class="mobile-menu__input" placeholder="Например, SL-65T" />
+<div
+  class="mobile-menu-modal modal modal_position_left modal_no-backdrop"
+  role="dialog"
+  tabindex="-1"
+  aria-modal="true"
+>
+  <div class="mobile-menu modal__window">
+    <div class="mobile-menu__section">
+      <button class="mobile-menu__close icon-button icon-button_size_l">
+        <svg
+          class="icon-button__icon"
+          focusable="false"
+          aria-hidden="true"
+        >
+          <use xlink:href="#icon-close"/>
+        </svg>
+        <span class="icon-button__text">
+          Закрыть
+        </span>
+      </button>
     </div>
-    <a class="mobile-menu__item" href="/dostavka">Доставка по России</a>
-    <a class="mobile-menu__item mobile-menu__item_special" href="/skidki"><svg class="mobile-menu__discount"><use xlink:href="#i-discount"></use></svg>Скидки</a>
-    <a class="mobile-menu__item" href="/kontakty">Контакты</a>
-    {% if logged %}
-    <a href="{{ account }}" class="mobile-menu__item">{{ text_account }}</a>
-    <a href="{{ logout }}" class="mobile-menu__item">{{ text_logout }}</a>
-    {% else %}
-    <a href="{{ login }}" class="mobile-menu__item">Вход с паролем</a>
-    {% endif %}
+    <div class="mobile-menu__section">
+      <form class="mobile-search">
+        <label for="mobile-search">
+          <input
+            id="mobile-search"
+            class="text-field"
+            type="text"
+            placeholder="Поиск"
+          />
+        </label>
+      </form>
+    </div>
+    <ul class="mobile-menu__items">
+      {% if logged %}
+      <li class="mobile-menu__item">
+        <a
+          href="{{ account }}"
+          class="mobile-menu__link"
+        >
+          {{ text_account }}
+        </a>
+      </li>
+      <li class="mobile-menu__item">
+        <a
+          href="{{ logout }}"
+          class="mobile-menu__link"
+        >
+          {{ text_logout }}
+        </a>
+      </li>
+      {% else %}
+      <li class="mobile-menu__item">
+        <a
+          href="{{ login }}"
+          class="mobile-menu__link"
+        >
+          {{ text_login }}
+        </a>
+      </li>
+      {% endif %}
+      {% for link in top_navigation_links %}
+      <li class="mobile-menu__item">
+        <a
+          href="{{ link.url }}"
+          class="mobile-menu__link"
+          target="{{ link.target }}"
+          {{ link.attributes }}
+        >
+          {{ link.text }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 
@@ -44,13 +102,13 @@
   <div class="page__header">
     <div class="wrapper">
       <header class="header">
-        <div class="header__row">
-          <nav class="header__top-navigation-menu top-navigation-menu">
-            <ul class="link-group  link-group_direction_row">
+        <div class="header__first-line">
+          <nav class="header__information information-links">
+            <ul class="top-navigation-menu link-group link-group_direction_row">
             {% for link in top_navigation_links %}
               <li class="link-group__item">
                 <a
-                  class="link link_theme_ghost"
+                  class="information-links__item link link_theme_ghost"
                   href="{{ link.url }}"
                   target="{{ link.target }}"
                   {{ link.attributes }}
@@ -70,15 +128,37 @@
             </a>
           </div>
         </div>
-        <div class="header__row">
+        <div class="header__second-line">
+          <div class="header__burger">
+            <button
+              class="mobile-menu-button icon-button icon-button_size_m"
+              type="button"
+            >
+              <svg
+                class="icon-button__icon"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <use xlink:href="#icon-catalog"/>
+              </svg>
+              <span class="icon-button__text">
+                Меню
+              </span>
+            </button>
+          </div>
           <a
             class="header__logotype"
             href="{{ home }}"
           >
+            {% if logo %}
             <img
-              src="catalog/view/theme/THEME_SLUG/image/logotype.svg"
-              alt=""
+              src="{{ logo }}"
+              title="{{ name }}"
+              alt="{{ name }}"
             />
+            {% else %}
+              {{ name }}
+            {% endif %}
           </a>
           <div class="header__catalog">
             <button type="button" class="catalog-button">

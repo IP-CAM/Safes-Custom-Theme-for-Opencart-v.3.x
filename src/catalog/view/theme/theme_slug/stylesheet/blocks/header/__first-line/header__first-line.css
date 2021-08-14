@@ -1,0 +1,8 @@
+.header__first-line {
+  display: none;
+
+  @media (min-width: $tablet-portrait) {
+    display: flex;
+    align-items: center;
+  }
+}

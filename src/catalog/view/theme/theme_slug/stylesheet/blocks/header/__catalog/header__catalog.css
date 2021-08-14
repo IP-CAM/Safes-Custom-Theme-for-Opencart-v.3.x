@@ -1,3 +1,8 @@
 .header__catalog {
-  margin-right: 40px;
+  display: none;
+
+  @media (min-width: $tablet-portrait) {
+    display: block;
+    margin-right: 40px;
+  }
 }
