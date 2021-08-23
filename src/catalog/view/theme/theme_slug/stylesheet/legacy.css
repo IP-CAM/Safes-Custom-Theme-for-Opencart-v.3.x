@@ -114,30 +114,6 @@ form {
   top: -1px;
   z-index: 98;
 }
-.breadcrumbs {
-  display: block;
-  margin: 0 0 20px 0;
-  padding: 0;
-  list-style: none;
-}
-.breadcrumbs__item {
-  display: inline-block;
-}
-.breadcrumbs__item::after {
-  display: inline;
-  content: ' —';
-  color: #ccc;
-}
-.breadcrumbs__item:last-child::after {
-  display: none;
-}
-.link_breadcrumbs {
-  color: #b9c7cb;
-  border-bottom: 1px solid rgba(185, 199, 203, .3);
-}
-.link_breadcrumbs:hover {
-  border-bottom: 1px solid rgba(185, 199, 203, .9);
-}
 
 .close {
   display: block;
@@ -166,34 +142,7 @@ form {
 .nav :last-child {
   margin-right: 0;
 }
-.catalog__item {
-  display: block;
-  margin: 20px 0 0 0;
-  overflow: visible;
-}
-.catalog__image {
-  width: 100%;
-  background-position: 0 50%;
-  position: relative;
-  overflow: visible;
-}
-.catalog__image::before {
-  content: '';
-  display: block;
-  padding: 100% 0 0 0;
-}
-.catalog__img {
-  display: block;
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 50% 50%;
-  transition: transform 2s;
-}
-.catalog__item:hover .catalog__img {
-  transform: scale(1.03, 1.03);
-}
+
 .catalog__img_small {
   display: block;
   width: 50px;
@@ -209,12 +158,6 @@ form {
   background-color: #ed6569;
   border-radius: 5px;
   font-size: 90%;
-}
-.catalog__caption {
-  margin: 5px 0 1px 0;
-  padding: 0;
-  font-weight: 400;
-  font-size: 100%;
 }
 .catalog__price {
   font-weight: 700;
@@ -562,14 +505,6 @@ form {
   margin: 10px 0 0 0;
 }
 
-/*modules/categories_grid*/
-.c-categories-grid__caption {
-  display: inline-block;
-  margin: 0 10px 0 0;
-  padding: 0;
-  font-size: 140%;
-  font-weight: 700;
-}
 
 /*modules/category*/
 .c-categories {
@@ -622,10 +557,6 @@ form {
   color: #131313;
   border:none;
 }
-.category__description p {
-  line-height: 1.5;
-  margin: 24px 0 12px 0;
-}
 
 /*product/product*/
 .product {
@@ -645,22 +576,11 @@ form {
   bottom: 0;
   padding: 0 40px 0 0;
 }
-.product__title {
-  margin: 0;
-  padding: 0;
-  font-size: 250%;
-  font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1;
-}
 .product__subtitle {
   margin: 0 0 5px 0;
   padding: 0;
   font-size: 120%;
   font-weight: 700;
-}
-.product__stock {
-  margin: 0 0 10px 0;
 }
 .product__thumbs {
   margin: 10px 0 0 0;

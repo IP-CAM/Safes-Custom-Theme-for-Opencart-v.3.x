@@ -1,0 +1,28 @@
+$category-showcase-gap: 8px;
+
+.category-showcase {
+  &__title {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    padding: 0;
+    font-size: 140%;
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: -$category-showcase-gap;
+  }
+
+  &__item {
+    flex: 0 1 calc((100% - 5 * $category-showcase-gap) / 6);
+    box-sizing: border-box;
+    margin-bottom: $category-showcase-gap;
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}

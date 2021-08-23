@@ -13,7 +13,6 @@ window.Swiper = Swiper
 
 require('./modules/cart-dialog')
 require('./modules/login-dialog')
-require('./modules/order-dialog')
-require('./modules/mobile-menu')
+require('./modules/menu')
 require('./modules/legacy')
 

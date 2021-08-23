@@ -1,0 +1,31 @@
+{% if categories %}
+<nav class="menu">
+  <div class="wrapper menu__inner">
+    <div class="menu__search">
+      <form class="mobile-search">
+        <label for="mobile-search">
+          <input
+            id="mobile-search"
+            class="text-field"
+            type="text"
+            placeholder="Поиск"
+          />
+        </label>
+      </form>
+    </div>
+
+    <ul class="menu__category-list">
+      {% for category in categories %}
+      <li class="menu__category">
+        <a
+          class="menu__category-link link link_theme_context"
+          href="{{ category.href }}"
+        >
+          {{ category.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+{% endif %}

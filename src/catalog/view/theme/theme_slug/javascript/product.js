@@ -2,6 +2,8 @@ const { logAjaxError } = require('./helpers/log-ajax-error')
 const { removeFormErrors } = require('./helpers/remove-form-errors');
 const { refreshCart } = require('./helpers/refresh-cart');
 
+require('./modules/order-dialog')
+
 $('.product-form').on('submit', function(event) {
   event.preventDefault()
   event.stopImmediatePropagation()
@@ -47,6 +49,24 @@ const handleProductOptionErrors = (errors) => {
       `)
   }
 }
+
+$(() => {
+  const productImages = new Swiper('#js-product-images', {
+    spaceBetween: 20,
+    lazy: true
+  });
+
+  const productThumbs = new Swiper('#js-product-thumbs', {
+      spaceBetween: 20,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+    });
+
+  productImages.controller.control = productThumbs;
+  productThumbs.controller.control = productImages;
+});
 
 module.exports = {
   handleProductOptionErrors,

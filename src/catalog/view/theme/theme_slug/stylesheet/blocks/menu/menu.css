@@ -1,0 +1,40 @@
+.menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+
+  &__inner {
+    margin: 32px 0;
+  }
+
+  &__search {
+    @media (min-width: $tablet-portrait) {
+      display: none;
+    }
+  }
+
+  &__category-list {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: $tablet-portrait) {
+      columns: 3;
+      column-gap: 64px;
+    }
+  }
+
+  &__category {
+    display: block;
+    padding: 8px 0;
+  }
+
+  &_visible {
+    display: block;
+  }
+}

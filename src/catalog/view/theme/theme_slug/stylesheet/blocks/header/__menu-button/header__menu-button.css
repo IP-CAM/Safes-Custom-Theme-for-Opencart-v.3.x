@@ -1,8 +1,8 @@
-.header__catalog {
-  display: none;
+.header__menu-button {
+  order: -1;
 
   @media (min-width: $tablet-portrait) {
-    display: block;
+    order: initial;
     margin-right: 40px;
   }
 }

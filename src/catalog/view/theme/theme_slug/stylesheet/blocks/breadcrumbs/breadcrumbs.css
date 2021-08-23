@@ -1,0 +1,17 @@
+.breadcrumbs {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 14px;
+
+    &:not(:last-child)::after {
+      display: inline;
+      content: ' —';
+      color: #ccc;
+    }
+  }
+}

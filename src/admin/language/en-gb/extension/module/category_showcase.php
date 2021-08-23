@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']    = 'Categories Grid';
+$_['heading_title']    = 'Category showcase';
 
 // Text
 $_['text_extension']   = 'Extensions';
 $_['text_success']     = 'Success: You have modified module!';
-$_['text_edit']        = 'Edit Categories Grid Module';
+$_['text_edit']        = 'Edit';
 
 // Entry
 $_['entry_status']     = 'Status';

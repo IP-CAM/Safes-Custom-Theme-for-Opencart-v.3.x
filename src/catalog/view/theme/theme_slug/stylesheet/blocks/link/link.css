@@ -1,13 +1,20 @@
 .link {
-  color: var(--blue);
   text-decoration: none;
-  border-bottom: 1px solid rgba(42, 106, 158, .2);
-
-  &:hover {
-    border-bottom: 1px solid rgba(42, 106, 158, .9);
-  }
 
   &_theme {
+    &_standard {
+      color: var(--blue);
+      border-bottom: 1px solid rgba(42, 106, 158, .2);
+
+      &:hover {
+        border-bottom: 1px solid rgba(42, 106, 158, .9);
+      }
+    }
+
+    &_context {
+      color: inherit;
+    }
+
     &_ghost {
       color: #808d9a;
       border-bottom: 1px solid rgba(168, 176, 178, .1);

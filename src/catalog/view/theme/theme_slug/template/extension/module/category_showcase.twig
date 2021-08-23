@@ -1,0 +1,29 @@
+<div class="category-showcase">
+  {% if heading_title %}
+  <h2 class="c-categories-grid__caption">
+    {{ heading_title }}
+  </h2>
+  {% endif %}
+  {% if categories %}
+    <div class="category-showcase__grid">
+      {% for category in categories %}
+        <div class="category-showcase__item">
+          <div class="category-card">
+            <img
+              src="{{ category.image }}"
+              class="category-card__image"
+            />
+            <h3 class="category-card__title">
+              <a
+                href="{{ category.href }}"
+                class="category-card__link link"
+              >
+                {{ category.name }}
+              </a>
+            </h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,13 @@
+<file path="catalog/controller/common/header.php">
+    <operation>
+        <search index="0">
+        <![CDATA[
+$data['menu'] = $this->load->controller('common/menu');
+        ]]>
+        </search>
+        <add position="replace"><![CDATA[
+$data['menu'] = $this->load->controller('extension/menu/menu');
+        ]]>
+        </add>
+    </operation>
+</file>

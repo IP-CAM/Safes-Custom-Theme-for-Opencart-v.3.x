@@ -1,0 +1,29 @@
+.category-layout {
+  &__title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    margin: 4px 0 0;
+  }
+
+  &__content {
+    margin-top: 18px;
+  }
+
+  &__products {
+    margin-top: 24px;
+  }
+
+
+  &__description {
+    margin-top: 32px;
+  }
+
+  &__products {
+    margin-top: 24px;
+  }
+
+  &__pagination {
+    margin-top: 32px;
+  }
+}

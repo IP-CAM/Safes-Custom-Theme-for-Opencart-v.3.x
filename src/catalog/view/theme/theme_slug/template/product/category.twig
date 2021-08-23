@@ -1,149 +1,144 @@
 {{ header }}
-<div class="l-wrapper">
-  <div class="l-container l-container_padding">
-    <div class="grid">
-      {% if column_right %}
-        {% set class='grid__col--3-of-4' %}
-      {% else %}
-        {% set class='grid__col--4-of-4' %}
-      {% endif %}
-      <div class="grid__col {{ class }}">
-        <div class="grid">
+<div class="page__row">
+  <div class="wrapper">
+    <div class="category-layout">
+      <ul class="breadcrumbs">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumbs__item">
+            <a
+              href="{{ breadcrumb.href }}"
+              class="link link_theme_standard"
+            >
+              {{ breadcrumb.text }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <h2 class="category-layout__title">
+        {{ heading_title }}
+      </h2>
+
+      <div class="page-layout category-layout__content">
         {% if column_left %}
-          <div class="grid__col grid__col--3-of-4 grid__col--push-1-of-4">
-        {% else %}
-          <div class="grid__col grid__col--4-of-4">
-        {% endif %}
-            {# Хлебные крошки #}
-            <ul class="breadcrumbs">
-              {% for breadcrumb in breadcrumbs %}
-                <li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
-              {% endfor %}
-            </ul>
-            <h2 class="category__title">{{ heading_title }}</h2>
-            {# Подкатегории #}
-            {% if categories %}
-            {{ text_refine }}
-            <div class="grid">
-              {% for category in categories %}
-              <div class="grid__col grid__col--1-of-4 grid__col--m-1-of-4 grid__col--s-1-of-3">
-                <div class="catalog__item">
-                  <div class="catalog__image">
-                    <a href="{{ category.href }}">
-                      <div class="catalog__img" style="background-image: url('{{ category.image }}');"></div>
-                    </a>
-                  </div>
-                  <h3 class="catalog__caption">
-                    <a href="{{ category.href }}" class="link">{{ category.name }}</a>
-                  </h3>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
+        <div class="page-layout__sidebar">
+          {{ column_left }}
         </div>
-        <div class="grid">
-        {% if column_left %}
-          {% set class='grid__col--3-of-4' %}
-        {% else %}
-          {% set class='grid__col--4-of-4' %}
         {% endif %}
-          <div class="grid__col {{ class }}">
-          {#Основной контент#}
+
+        <div class="page-layout__main">
           {{ content_top }}
-          {# Товары #}
+
           {% if products %}
-            {# Сортировка #}
-            {{ text_sort }}
-            <select class="c-products__sort" onchange="location = this.value;">
-              {% for sorts in sorts %}
-                {% if sorts.value == '%s-%s'|format(sort, order) %}
-                  <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
-                {% else %}
-                  <option value="{{ sorts.href }}">{{ sorts.text }}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
-            {# Как выбрать #}
-            <div class="help">
-              <a href="/kak-vybrat" class="help__icon"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-help"></use></svg></a>
-              <a href="/kak-vybrat" class="link link_help">Как выбрать сейф?</a>
-            </div>
-            {# Товары #}
-            <div class="grid">
-              {% for product in products %}
-                <div class="grid__col grid__col--1-of-3 grid__col--m-1-of-3 grid__col--s-1-of-2">
-                  <div class="catalog__item" data-hint="{{ product.product_id }}">
-                    <div class="catalog__image">
-                      <a href="{{ product.href }}">
-                        <div class="catalog__img" style="background-image: url('{{ product.thumb }}');"></div>
-                      </a>
-                    </div>
-                    <h3 class="catalog__caption">
-                      <a href="{{ product.href }}" class="link">{{ product.name }}</a>
-                    </h3>
-                    {% if product.special %}
-                    <span class="catalog__price">{{ product.special }}</span>
-                    <span class="catalog__price catalog__price_old">{{ product.special }}</span>
-                    {% else %}
-                    <span class="catalog__price">{{ product.price }}</span>
-                    {% endif %}
-                  </div>
-                  {% if product.attribute_groups %}
-                  <div class="hint" id="hint_{{ product.product_id }}">
-                    {% for attribute_group in product.attribute_groups %}
-                    {# attribute_group.name #}
-                    <table>
+          <ul class="sort category-layout__sort">
+          {% for sorts in sorts %}
+            <li class="sort__item">
+              {% if sorts.value == '%s-%s'|format(sort, order) %}
+              <mark class="sort__current">
+                {{ sorts.text }}
+              </mark>
+              {% else %}
+              <a
+                href="{{ sorts.href }}"
+                class="link link_theme_context"
+              >
+                {{ sorts.text }}
+              </a>
+              {% endif %}
+            </li>
+          {% endfor %}
+          </ul>
+
+          <div class="product-grid category-layout__products">
+            {% for product in products %}
+            <div class="product-grid__item">
+              <div
+                class="product-card"
+                data-hint="{{ product.product_id }}"
+              >
+                <img
+                  src="{{ product.thumb }}"
+                  class="product-card__image"
+                />
+                <h3 class="product-card__title">
+                  <a
+                    href="{{ product.href }}"
+                    class="product-card__link link link_theme_context"
+                  >
+                    {{ product.name }}
+                  </a>
+                </h3>
+                <p class="product-card__price">
+                  <span class="product-card__hidden-text">
+                    Стоимость:
+                  </span>
+                  {% if product.special %}
+                  <span class="product-card__price-value">
+                    {{ product.special }}
+                  </span>
+                  <span class="product-card__original-price">
+                    {{ product.price }}
+                  </span>
+                  {% else %}
+                  <span class="product-card__price-value">
+                    {{ product.price }}
+                  </span>
+                  {% endif %}
+                </p>
+                {% if product.attribute_groups %}
+                <div class="hint" id="hint_{{ product.product_id }}">
+                  {% for attribute_group in product.attribute_groups %}
+                  <table>
                     {% for attribute in attribute_group.attribute %}
                     <tr>
-                      <td>{{ attribute.name }}
-                      <td>{{ attribute.text }}
+                      <td>
+                        {{ attribute.name }}
+                      </td>
+                      <td>
+                        {{ attribute.text }}
+                      </td>
                     {% endfor %}
-                    </table>
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-
-
+                  </table>
+                  {% endfor %}
                 </div>
-              {% endfor %}
+                {% endif %}
+              </div>
             </div>
-            {# Пагинация #}
-            <div class="pagination__wrapper">
-              {{ pagination }}{{ results }}
-            </div>
-          {% endif %}
-          {% if not categories and not products %}
-            <div class="catalog__empty">
-              В этой категории пока пусто
-            </div>
-          {% endif %}
-          {% if description %}
-            <div class="category__description">
-            {{ description }}
-            </div>
-          {% endif %}
-          {{ content_bottom }}
+            {% endfor %}
           </div>
-          {% if column_left %}
-          <aside class="grid__col grid__col--1-of-4 grid__col--d-first">
-            {{ column_left }}
-          </aside>
+
+          <div class="category-layout__pagination">
+            {{ pagination }}
+            {{ results }}
+          </div>
           {% endif %}
+
+          {% if not categories and not products %}
+            <p class="catalog__empty">
+              В этой категории пока пусто
+            </p>
+          {% endif %}
+
+          {{ content_bottom }}
         </div>
+
+        {% if column_right %}
+        <div class="page-layout__sidebar">
+          {{ column_right }}
+        </div>
+        {% endif %}
       </div>
-      {% if column_right %}
-      <aside class="grid__col grid__col--1-of-4">
-        {{ column_right }}
-      </aside>
+
+      {% if description %}
+      <div class="category-layout__description">
+        {{ description }}
+      </div>
       {% endif %}
     </div>
   </div>
 </div>
+
 <script>
 $(document).ready(function(){
-  //Показываем хинт
   $('.catalog__item').mousemove(function(e){
     var top = e.pageY  + 10 + 'px';
     var left = e.pageX  + 10 + 'px';

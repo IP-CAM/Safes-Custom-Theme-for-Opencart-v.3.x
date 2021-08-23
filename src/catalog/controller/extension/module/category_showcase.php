@@ -1,7 +1,7 @@
 <?php
-class ControllerExtensionModuleCategoriesGrid extends Controller {
+class ControllerExtensionModuleCategoryShowcase extends Controller {
 	public function index() {
-		$this->load->language('extension/module/categories_grid');
+		$this->load->language('extension/module/category_showcase');
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
@@ -22,6 +22,6 @@ class ControllerExtensionModuleCategoriesGrid extends Controller {
 				);
 			}
     }
-		return $this->load->view('extension/module/categories_grid', $data);
+		return $this->load->view('extension/module/category_showcase', $data);
 	}
 }

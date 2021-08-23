@@ -1,6 +1,6 @@
 {{ header }}
-<div class="l-wrapper">
-  <div class="l-container l-container_padding">
+<div class="page__row">
+  <div class="wrapper">
     <div class="grid">
       {% if column_left %}
         <div class="grid__col grid__col--1-of-4">
@@ -15,28 +15,26 @@
         {% set class = 'grid__col--4-of-4' %}
       {% endif %}
       <div class="grid__col {{ class }}">
+        <ul class="breadcrumbs">
+          {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumbs__item">
+            <a
+              href="{{ breadcrumb.href }}"
+              class="link"
+            >
+              {{ breadcrumb.text }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
         {{ content_top }}
         <div class="product">
           <div class="product__col">
-            <div class="help">
-              <a href="/kak-vybrat" class="help__icon"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#i-help"></use></svg></a>
-              <a href="/kak-vybrat" class="link link_help">Как выбрать сейф?</a>
-            </div>
-          </div>
-          <div class="product__col">
-            {#Хлебные крошки#}
-            <ul class="breadcrumbs">
-              {% for breadcrumb in breadcrumbs %}
-                <li class="breadcrumbs__item"><a href="{{ breadcrumb.href }}" class="link link_breadcrumbs">{{ breadcrumb.text }}</a></li>
-              {% endfor %}
-            </ul>
           </div>
         </div>
         <div class="product" itemscope itemtype="http://schema.org/Product">
-          {#Изображения#}
           <div class="product__col">
             <div class="product__images">
-              {#Слайдер изображений товара#}
               <div id="js-product-images" class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
@@ -71,49 +69,59 @@
             </div>
           </div>
 
-          {# Карточка #}
           <div class="product__col">
-            {# Производитель + модель - скрыто #}
             <h1 class="visually-hidden" itemprop="name">{% if manufacturer %}{% endif %}{{ heading_title }}</h1>
             <span itemprop="image" content="{{ popup }}" />
-            {# Производитель #}
-            <div class="ui__group">
+
+            <dl class="product__summary">
               {% if manufacturer %}
-              {# text_manufacturer #}
-              <a href="{{ manufacturers }}" class="link link__manufacturer" itemprop="manufacturer">{{ manufacturer }}</a>
-              {% endif %}
-              {# Модель #}
-              <p class="product__title">{{ model }}</p>
-              {# Наличие #}
-              <p class="product__stock">
-              {# text_stock #} {{ stock }}
-              </p>
-              <button
-                class="order-dialog-button button"
-                itemprop="offers"
-                itemscope
-                itemtype="http://schema.org/Offer"
-              >
-                <span class="oneclick__title">
-                  Купить в один клик
-                </span>
-                <span
-                  class="oneclick__price"
-                  itemprop="price"
-                  content="{{ special ?: price }}"
+              <dt class="product__hidden-text">
+                {{ text_brand }}
+              </dt>
+              <dd class="product__manufacturer">
+                <a
+                  class="link link_theme_ghost"
+                  href="{{ manufacturers }}"
+                  itemprop="manufacturer"
                 >
-                  {{ special ?: price }}
-                </span>
-                <span itemprop="priceCurrency" content="RUB" />
-              </button>
-              {% if special %}
-              <div class="product__price_old">
-                <span class="h-block">Старая цена:</span>
-                <span class="h-block product__price_through">{{ price }}</span>
-              </div>
+                  {{ manufacturer }}
+                </a>
+              </dd>
               {% endif %}
-            {# Товар #}
+
+              <dt class="product__hidden-text">
+                {{ text_model }}
+              </dt>
+              <dd class="product__title">
+                {{ model }}
+              </dd>
+
+              <dt class="product__hidden-text">
+                Цена
+              </dt>
+              <dd
+                class="product__price"
+                itemprop="price"
+                content="{{ special ?: price }}"
+              >
+                {{ special ?: price }}
+              </dd>
+
+              <dt class="product__hidden-text">
+                {{ text_stock }}
+              </dt>
+              <dd class="product__stock">
+                {{ stock }}
+              </dd>
+            </dl>
+
+            {% if special %}
+            <div class="product__price_old">
+              <span class="h-block">Старая цена:</span>
+              <span class="h-block product__price_through">{{ price }}</span>
             </div>
+            {% endif %}
+
             <form class="product-form ui__group">
               {# Опции #}
               {% if options %}
@@ -395,6 +403,11 @@
                     Добавить к заказу
                   </span>
                 </button>
+                <button class="order-dialog-button button">
+                  <span class="button__text">
+                    Купить в один клик
+                  </span>
+                </button>
               </div>
 
               {% if minimum > 1 %}
@@ -434,16 +447,18 @@
                 {% endfor %}
                 {% endif %}
 
-
-
-
-                {# Прикрепленные файлы#}
                 <tr class="product__attachments">
                   <td colspan="2">
                     {% if downloads %}
                       {% for download in downloads %}
-                      <a href="{{ download.href }}" class="link" title="Загрузить ({{ download.size }})">{{ download.name }}</a>
-                    {% endfor %}
+                      <a
+                        href="{{ download.href }}"
+                        class="link"
+                        title="Загрузить ({{ download.size }})"
+                      >
+                        {{ download.name }}
+                      </a>
+                      {% endfor %}
                     {% endif %}
                   </td>
                 </tr>
@@ -470,50 +485,19 @@
 {{ footer }}
 <script src="catalog/view/theme/THEME_SLUG/javascript/product.js"></script>
 <script>
-//Слайдер изображений товара
-$(document).ready(function(){
-  //Слайдер
-  var productImages = new Swiper('#js-product-images', {
-    spaceBetween: 20,
-    lazy: true
+  $('.ui-quantity__down').click(function () {
+    var $input = $(this).parent().find('input');
+    var count = parseInt($input.val()) - 1;
+    count = count < {{ minimum }} ? {{ minimum }} : count;
+    $input.val(count);
+    $input.change();
+    return false;
   });
-  //Миниатюры
-  var productThumbs = new Swiper('#js-product-thumbs', {
-      spaceBetween: 20,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      touchRatio: 0.2,
-      slideToClickedSlide: true,
-    });
 
-  productImages.controller.control = productThumbs;
-  productThumbs.controller.control = productImages;
-});
-
-
-//-
-$('.ui-quantity__down').click(function () {
-  var $input = $(this).parent().find('input');
-  var count = parseInt($input.val()) - 1;
-  count = count < {{ minimum }} ? {{ minimum }} : count;
-  $input.val(count);
-  $input.change();
-  return false;
-});
-//+
-$('.ui-quantity__up').click(function () {
-  var $input = $(this).parent().find('input');
-  $input.val(parseInt($input.val()) + 1);
-  $input.change();
-  return false;
-});
-
-//Отступ изображения в зависимости от высоты шапки
-$(document).ready(function() {
-  $('.product__images').css('top', $('.header_sticky').height() + 20);
-});
-$(window).on('resize', function(){
-  $('.product__images').css('top', $('.header_sticky').height() + 20);
-});
-
+  $('.ui-quantity__up').click(function () {
+    var $input = $(this).parent().find('input');
+    $input.val(parseInt($input.val()) + 1);
+    $input.change();
+    return false;
+  });
 </script>
