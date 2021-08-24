@@ -34,6 +34,7 @@
     "postcss-easy-import": "3.0.0",
     "postcss-nested": "5.0.5",
     "postcss-simple-vars": "6.0.3",
+    "webpack": "5.51.1",
     "webpack-stream": "6.1.2"
   },
   "dependencies": {
