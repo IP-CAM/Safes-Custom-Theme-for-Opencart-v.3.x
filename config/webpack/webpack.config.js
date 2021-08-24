@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const { themeSlug, srcPath } = require('../../config')
 
 module.exports = {
+  mode: 'development',
   entry: {
     bundle: path.resolve(`${srcPath}/catalog/view/theme/theme_slug/javascript/index.js`),
     product: path.resolve(`${srcPath}/catalog/view/theme/theme_slug/javascript/product.js`),
