@@ -8,8 +8,8 @@
 @import 'button/{__*,_*}/**/*.css';
 @import 'cart-dialog/cart-dialog.css';
 @import 'cart-dialog/{__*,_*}/**/*.css';
-@import 'promo-banner-carousel/promo-banner-carousel.css';
-@import 'promo-banner-carousel/{__*,_*}/**/*.css';
+@import 'slideshow/slideshow.css';
+@import 'slideshow/{__*,_*}/**/*.css';
 @import 'text-field/text-field.css';
 @import 'header/header.css';
 @import 'header/{__*,_*}/**/*.css';

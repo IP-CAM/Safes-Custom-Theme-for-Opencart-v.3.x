@@ -1,0 +1,12 @@
+<file path="catalog/controller/extension/module/slideshow.php">
+  <operation>
+    <search>
+      <![CDATA[
+$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+      ]]>
+    </search>
+    <add position="replace" offset="2">
+      <![CDATA[]]>
+    </add>
+  </operation>
+</file>

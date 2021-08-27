@@ -1,43 +1,37 @@
-<div
-  id="promo-banner-carousel-{{ module }}"
-  class="promo-banner-carousel swiper-container"
->
-  <ul class="promo-banner-carousel__list swiper-wrapper">
+<div class="slideshow slideshow-{{ module }} swiper">
+  <ul class="slideshow__list swiper-wrapper">
     {% for banner in banners %}
     <li
-      class="promo-banner-carousel__item swiper-slide swiper-lazy"
-      data-background="{{ banner.image }}"
+      class="slideshow__item swiper-slide"
     >
-      {% if banner.link %}
-      <a
-        class="promo-banner-carousel__link"
-        href="{{ banner.link }}"
-      >
-        <h2 class="promo-banner-carousel__title">
+      <div class="swiper-lazy-preloader"></div>
+      <img
+        class="slideshow__image swiper-lazy"
+        data-src="{{ banner.image }}"
+      />
+      <h2 class="slideshow__title">
+        <a
+          class="slideshow__link"
+          href="{{ banner.link }}"
+        >
           {{ banner.title }}
-        </h2>
-      </a>
-      {% else %}
-      <h2 class="promo-banner-carousel__title">
-        {{ banner.title }}
+        </a>
       </h2>
-      {% endif %}
-      <span class="swiper-lazy-preloader"></span>
     </li>
     {% endfor %}
   </ul>
-  <div class="promo-banner-carousel__pagination"></div>
+  <div class="slideshow__pagination"></div>
 </div>
 
 <script>
   $(document).ready(function() {
-    const promoBannerCarousel{{ module }} = new Swiper('#promo-banner-carousel-{{ module }}', {
+    const promoBannerCarousel{{ module }} = new Swiper('.slideshow-{{ module }}', {
       spaceBetween: 20,
       loop: true,
       preloadImages: false,
       lazy: true,
       pagination: {
-        el: '#promo-banner-carousel-{{ module }} .promo-banner-carousel__pagination',
+        el: '.slideshow-{{ module }} .slideshow__pagination',
         clickable: true,
       },
     });

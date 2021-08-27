@@ -1,0 +1,7 @@
+.slideshow__item {
+  display: flex;
+  place-items: flex-end;
+  padding: 32px 48px;
+  box-sizing: border-box;
+  z-index: 1;
+}
