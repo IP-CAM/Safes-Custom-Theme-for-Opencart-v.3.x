@@ -1,0 +1,11 @@
+.label {
+  display: inline-block;
+  background-color: #ed6569;
+  color: #fff;
+  padding: 2px 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  border-radius: 2px;
+}

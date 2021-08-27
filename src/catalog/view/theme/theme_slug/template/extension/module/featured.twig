@@ -1,28 +1,35 @@
 <h3 class="visually-hidden">{{ heading_title }}</h3>
-<div id="js-featured" class="swiper-container">
-  <div class="swiper-wrapper">
+<div class="featured featured-{{ module }} swiper">
+  <div class="featured__list swiper-wrapper">
     {% for product in products %}
-      <div class="swiper-slide">
-        <div class="catalog__item catalog__item_featured">
-          <div class="catalog__item-badge">
-            Рекомендуем
-          </div>
-          <div class="catalog__image">
-            <a href="{{ product.href }}">
-              <div class="catalog__img" style="background-image: url('{{ product.thumb }}');"></div>
-            </a>
-          </div>
-          <h4 class="catalog__caption">
-            <a href="{{ product.href }}" class="link link_featured">{{ product.name }}</a>
-          </h4>
-          {% if product.special %}
-            <span class="catalog__price catalog__price_featured">{{ product.special }}</span>
-            <span class="catalog__price catalog__price_old catalog__price_featured">{{ product.price }}</span>
-          {% else %}
-            <span class="catalog__price catalog__price_featured">{{ product.price }}</span>
-          {% endif %}
-
-        </div>
+      <div class="featured__item featured-product-card swiper-slide">
+        <span class="featured-product-card__label label">
+          Рекомендуем
+        </span>
+        <img
+          class="featured-product-card__image"
+          src="{{ product.thumb }}"
+        />
+        <h3 class="featured-product-card__title">
+          <a
+            href="{{ product.href }}"
+            class="featured-product-card__link link"
+          >
+            {{ product.name }}
+          </a>
+        </h3>
+        {% if product.special %}
+          <span class="featured-product-card__price">
+            {{ product.special }}
+          </span>
+          <span class="featured-product-card__original-price">
+            {{ product.price }}
+          </span>
+        {% else %}
+          <span class="featured-product-card__price">
+            {{ product.price }}
+          </span>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -32,7 +39,7 @@
 <script>
 $(document).ready(function() {
   //swiper.js
-  var featuredSlider = new Swiper('#js-featured', {
+  var featuredSlider = new Swiper('.featured-{{ module }}', {
     loop: true,
     spaceBetween: 20,
     autoplay: {

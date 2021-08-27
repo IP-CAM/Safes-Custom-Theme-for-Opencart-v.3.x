@@ -151,14 +151,7 @@ form {
   background-size: contain;
   background-position: 50% 50%;
 }
-.catalog__item-badge {
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 0 0 5px 0;
-  background-color: #ed6569;
-  border-radius: 5px;
-  font-size: 90%;
-}
+
 .catalog__price {
   font-weight: 700;
   padding: 0;
@@ -484,27 +477,6 @@ form {
 .button_cart {
   padding: 10px 20px;
 }
-
-/*modules/featured*/
-.catalog__item_featured {
-  background-color: rgb(101, 84, 84);
-  border-radius: 10px;
-  margin: 0;
-  padding: 15px 20px;
-  color: #fff;
-}
-.link_featured {
-  color: currentColor;
-  border-bottom: 1px solid rgba(255, 255, 255, .3)
-}
-.link_featured:hover {
-  border-bottom: 1px solid rgba(255, 255, 255, .9)
-}
-.catalog__price_featured {
-  font-size: 120%;
-  margin: 10px 0 0 0;
-}
-
 
 /*modules/category*/
 .c-categories {

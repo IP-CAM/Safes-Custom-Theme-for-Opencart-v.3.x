@@ -41,6 +41,9 @@
 @import 'category-layout/category-layout.css';
 @import 'category-card/category-card.css';
 @import 'menu/menu.css';
+@import 'featured/featured.css';
+@import 'featured-product-card/featured-product-card.css';
+@import 'label/label.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';
