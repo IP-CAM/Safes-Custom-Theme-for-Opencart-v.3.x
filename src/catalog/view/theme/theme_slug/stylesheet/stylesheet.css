@@ -45,7 +45,9 @@
 @import 'featured-product-card/featured-product-card.css';
 @import 'label/label.css';
 @import 'product-photo-thumb-carousel/product-photo-thumb-carousel.css';
+@import 'product-photo-carousel/product-photo-carousel.css';
 @import 'product-photo-gallery/product-photo-gallery.css';
+@import 'product-attributes/product-attributes.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

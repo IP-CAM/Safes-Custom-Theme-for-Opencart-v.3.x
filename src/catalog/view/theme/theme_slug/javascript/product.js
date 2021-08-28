@@ -53,6 +53,7 @@ const handleProductOptionErrors = (errors) => {
 
 $(() => {
   const productThumbCarousel = new Swiper('.product-photo-thumb-carousel', {
+    direction: 'vertical',
     spaceBetween: 20,
     slidesPerView: 4,
     breakpoints: {

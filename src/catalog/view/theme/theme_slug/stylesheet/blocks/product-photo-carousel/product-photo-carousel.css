@@ -1,0 +1,5 @@
+.product-photo-carousel {
+  &__item {
+    text-align: center;
+  }
+}

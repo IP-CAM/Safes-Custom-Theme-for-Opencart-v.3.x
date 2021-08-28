@@ -1,0 +1,26 @@
+.product-attributes {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__name {
+    display: flex;
+    flex-basis: 40%;
+    box-sizing: border-box;
+    padding: 8px 0;
+
+    &::after {
+      display: inline-block;
+      content: '';
+      flex-grow: 1;
+      border-bottom: 1px dashed var(--gray);
+      margin-left: 1ch;
+    }
+  }
+
+  &__value {
+    flex-basis: 60%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 8px 0;
+  }
+}

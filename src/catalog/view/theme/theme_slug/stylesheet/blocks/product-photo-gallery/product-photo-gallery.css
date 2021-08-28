@@ -1,5 +1,13 @@
 .product-photo-gallery {
+  display: flex;
+  flex-direction: row-reverse;
+
+  &__photo {
+    flex: 1 0;
+  }
+
   &__thumbs {
-    margin-top: 12px;
+    width: 64px;
+    margin-right: 16px;
   }
 }

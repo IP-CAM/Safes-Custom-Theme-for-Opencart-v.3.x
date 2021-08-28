@@ -1,4 +1,31 @@
 .product {
+  display: flex;
+
+  &__info {
+    width: 60%;
+    margin-right: 48px;
+  }
+
+  &__order {
+    position: sticky;
+    top: 24px;
+    align-self: flex-start;
+  }
+
+  &__order-button {
+    margin-bottom: 24px;
+  }
+
+  &__quick-order-button {
+    margin-bottom: 8px;
+  }
+
+  &__quick-order-description {
+    font-size: 14px;
+    line-height: 18px;
+    color: #ccc;
+  }
+
   &__summary {
 
   }
@@ -27,5 +54,9 @@
 
   &__manufacturer {
     margin: 0;
+  }
+
+  &__photo {
+    margin-bottom: 32px;
   }
 }

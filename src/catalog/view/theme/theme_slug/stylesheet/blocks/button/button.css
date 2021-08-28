@@ -1,5 +1,6 @@
 .button {
   display: inline-flex;
+  place-content: center;
   background-color: #456df1;
   color: #fff;
   border-radius: 5px;
