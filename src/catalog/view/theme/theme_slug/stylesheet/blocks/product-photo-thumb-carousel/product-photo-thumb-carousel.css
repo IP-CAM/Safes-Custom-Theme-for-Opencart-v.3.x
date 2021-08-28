@@ -1,0 +1,21 @@
+.product-photo-thumb-carousel {
+  &__item {
+    position: relative;
+    border: 2px solid transparent;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__item {
+    &_current {
+      border-color: var(--gray);
+    }
+  }
+
+  &__image {
+    width: 64px;
+    height: 64px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}

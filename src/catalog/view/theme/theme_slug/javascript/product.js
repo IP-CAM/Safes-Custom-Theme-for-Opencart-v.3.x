@@ -1,6 +1,7 @@
 const { logAjaxError } = require('./helpers/log-ajax-error')
-const { removeFormErrors } = require('./helpers/remove-form-errors');
-const { refreshCart } = require('./helpers/refresh-cart');
+const { removeFormErrors } = require('./helpers/remove-form-errors')
+const { refreshCart } = require('./helpers/refresh-cart')
+
 
 require('./modules/order-dialog')
 
@@ -51,22 +52,28 @@ const handleProductOptionErrors = (errors) => {
 }
 
 $(() => {
-  const productImages = new Swiper('#js-product-images', {
+  const productThumbCarousel = new Swiper('.product-photo-thumb-carousel', {
     spaceBetween: 20,
-    lazy: true
+    slidesPerView: 4,
+    breakpoints: {
+      768: {
+        slidesPerView: 6,
+      },
+      992: {
+        slidesPerView: 8,
+      }
+    }
   });
 
-  const productThumbs = new Swiper('#js-product-thumbs', {
-      spaceBetween: 20,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      touchRatio: 0.2,
-      slideToClickedSlide: true,
-    });
-
-  productImages.controller.control = productThumbs;
-  productThumbs.controller.control = productImages;
-});
+  new Swiper('.product-photo-carousel', {
+    spaceBetween: 20,
+    lazy: true,
+    thumbs: {
+      swiper: productThumbCarousel,
+      slideThumbActiveClass: 'product-photo-thumb-carousel__item_current'
+    }
+  })
+})
 
 module.exports = {
   handleProductOptionErrors,

@@ -1,11 +1,11 @@
 require('jquery-ui/ui/widgets/autocomplete')
 
-const { Swiper, Pagination, Lazy } = require('swiper')
+const { Swiper, Pagination, Lazy, Thumbs } = require('swiper')
 
 const cart = require('./modules/cart')
-const { search } = require('./modules/search');
+const { search } = require('./modules/search')
 
-Swiper.use([Pagination, Lazy])
+Swiper.use([Pagination, Lazy, Thumbs])
 
 window.cart = cart
 window.LiveSearchJs = search

@@ -554,20 +554,6 @@ form {
   font-size: 120%;
   font-weight: 700;
 }
-.product__thumbs {
-  margin: 10px 0 0 0;
-}
-#js-product-images .swiper-slide {
-  min-height: 300px;
-}
-#js-product-thumbs .swiper-slide {
-  width: 25%;
-  height: 100%;
-  opacity: 0.4;
-}
-#js-product-thumbs .swiper-slide-active {
-  opacity: 1;
-}
 
 .product__price_old {
   display: inline-block;

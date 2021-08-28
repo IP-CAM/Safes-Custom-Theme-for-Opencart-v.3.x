@@ -34,32 +34,49 @@
         </div>
         <div class="product" itemscope itemtype="http://schema.org/Product">
           <div class="product__col">
-            <div class="product__images">
-              <div id="js-product-images" class="swiper-container">
+
+            <div class="product__images product-photo-gallery">
+              <div class="product-photo-carousel product-photo-gallery__photo swiper">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-src="{{ popup }}" class="swiper-lazy" title="{{ heading_title }}" alt="{{ heading_title }}" />
+                    <img
+                      data-src="{{ popup }}"
+                      class="swiper-lazy"
+                      alt=""
+                    />
                     <div class="swiper-lazy-preloader"></div>
                   </div>
                   {% for image in images %}
                   <div class="swiper-slide">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-src="{{ image.popup }}" class="swiper-lazy" alt="{{ heading_title }}" />
+                    <img
+                      data-src="{{ image.popup }}"
+                      class="swiper-lazy"
+                      alt=""
+                    />
                     <div class="swiper-lazy-preloader"></div>
                   </div>
                   {% endfor %}
                 </div>
               </div>
-              {#Миниатюры#}
+
               {% if images %}
-              <div class="product__thumbs">
-                <div id="js-product-thumbs" class="swiper-container">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img class="product__thumb" src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+              <div class="product-photo-gallery__thumbs">
+                <div class="swiper product-photo-thumb-carousel">
+                  <div class="swiper-wrapper product-photo-thumb-carousel__wrapper">
+                    <div class="swiper-slide product-photo-thumb-carousel__item">
+                      <img
+                        class="product-photo-thumb-carousel__image"
+                        src="{{ thumb }}"
+                        alt=""
+                      />
                     </div>
                     {% for image in images %}
-                    <div class="swiper-slide">
-                      <img class="product__thumb" src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+                    <div class="swiper-slide product-photo-thumb-carousel__item">
+                      <img
+                        class="product-photo-thumb-carousel__image"
+                        src="{{ image.thumb }}"
+                        alt=""
+                      />
                     </div>
                     {% endfor %}
                   </div>
@@ -67,6 +84,8 @@
               </div>
               {% endif %}
             </div>
+
+
           </div>
 
           <div class="product__col">
