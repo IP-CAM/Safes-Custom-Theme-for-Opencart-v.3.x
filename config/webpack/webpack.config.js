@@ -24,5 +24,16 @@ module.exports = {
     new webpack.DefinePlugin({
       THEME_SLUG: JSON.stringify(themeSlug),
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+        },
+      },
+    },
+  },
 }
