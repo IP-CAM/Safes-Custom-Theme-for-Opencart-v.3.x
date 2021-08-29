@@ -50,6 +50,7 @@
 @import 'product-attributes/product-attributes.css';
 @import 'notification/notification.css';
 @import 'raw-markup/raw-markup.css';
+@import 'product-quantity-field/product-quantity-field.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

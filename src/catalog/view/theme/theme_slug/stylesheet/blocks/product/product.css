@@ -59,4 +59,8 @@
   &__photo {
     margin-bottom: 32px;
   }
+
+  &__quantity {
+    margin-bottom: 16px;
+  }
 }

@@ -434,10 +434,26 @@
               {% endfor %}
               {% endif %}
 
-              <div class="ui__quantity">
-                <button class="ui-quantity__down">-</button>
-                <input type="text" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" />
-                <button class="ui-quantity__up">+</button>
+              <div class="product-quantity-field product__quantity">
+                <button
+                  type="button"
+                  class="product-quantity-field__button product-quantity-field__button_decrement"
+                >
+                  -
+                </button>
+                <input
+                  id="input-quantity"
+                  class="product-quantity-field__input"
+                  type="number"
+                  name="quantity"
+                  value="{{ minimum }}"
+                />
+                <button
+                  type="button"
+                  class="product-quantity-field__button product-quantity-field__button_increment"
+                >
+                  +
+                </button>
               </div>
 
               <div class="product__order-button">
@@ -499,19 +515,18 @@
 {{ footer }}
 <script src="catalog/view/theme/THEME_SLUG/javascript/product.js"></script>
 <script>
-  $('.ui-quantity__down').click(function () {
-    var $input = $(this).parent().find('input');
-    var count = parseInt($input.val()) - 1;
-    count = count < {{ minimum }} ? {{ minimum }} : count;
-    $input.val(count);
-    $input.change();
-    return false;
-  });
+  function handleQuantityChange() {
+    const quantityInputeNode = $('.product-quantity-field__input')
+    let quantity = parseInt(quantityInputeNode.val())
 
-  $('.ui-quantity__up').click(function () {
-    var $input = $(this).parent().find('input');
-    $input.val(parseInt($input.val()) + 1);
-    $input.change();
-    return false;
-  });
+    if ($(this).hasClass('product-quantity-field__button_increment')) {
+      quantity += 1;
+    } else if ($(this).hasClass('product-quantity-field__button_decrement') && quantity > {{ minimum }}) {
+      quantity -= 1;
+    }
+
+    quantityInputeNode.val(quantity)
+  }
+
+  $('.product-quantity-field .product-quantity-field__button').on('click', handleQuantityChange)
 </script>

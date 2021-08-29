@@ -1,0 +1,30 @@
+.product-quantity-field {
+  display: inline-flex;
+  border: 2px solid var(--gray);
+
+  &__input {
+    font: inherit;
+    border: 0;
+    background-color: transparent;
+    text-align: center;
+    width: 4ch;
+    padding: 10px;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  &__button {
+    font: inherit;
+    border: 0;
+    padding: 10px;
+    background-color: transparent;
+  }
+}
