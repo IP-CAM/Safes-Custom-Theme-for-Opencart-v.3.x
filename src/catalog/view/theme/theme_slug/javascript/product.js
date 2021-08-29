@@ -1,7 +1,7 @@
 const { logAjaxError } = require('./helpers/log-ajax-error')
 const { removeFormErrors } = require('./helpers/remove-form-errors')
 const { refreshCart } = require('./helpers/refresh-cart')
-
+const { pushNotification } = require('./modules/notifications')
 
 require('./modules/order-dialog')
 
@@ -30,7 +30,7 @@ $('.product-form').on('submit', function(event) {
       }
 
       if (response.success) {
-        console.log(response.success)
+        pushNotification(response.success)
 
         refreshCart(response)
       }

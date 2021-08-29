@@ -1,0 +1,31 @@
+.notification {
+  position: relative;
+  background-color: #fed9b7;
+  padding: 20px;
+  width: 360px;
+  max-width: 100%;
+  min-width: 240px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  animation: notification .25s ease-in-out;
+
+  &:last-child {
+    margin-bottom: 36px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@keyframes notification {
+  from {
+    transform: translateY(12px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

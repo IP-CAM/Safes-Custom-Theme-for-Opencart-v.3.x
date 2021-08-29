@@ -187,6 +187,7 @@
             {% endif %}
 
             <form class="product__form product-form">
+              <input type="hidden" name="product_id" value="{{ product_id }}" />
               {% if options %}
               <h2>
                 {{ text_option }}
@@ -443,7 +444,6 @@
                 <button
                   type="submit"
                   class="button button_view_action"
-                  style="width: 320px;"
                 >
                   <span class="button__text">
                     Добавить к заказу

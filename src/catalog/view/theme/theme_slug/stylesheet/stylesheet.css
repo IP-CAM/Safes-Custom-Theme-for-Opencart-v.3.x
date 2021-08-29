@@ -48,6 +48,8 @@
 @import 'product-photo-carousel/product-photo-carousel.css';
 @import 'product-photo-gallery/product-photo-gallery.css';
 @import 'product-attributes/product-attributes.css';
+@import 'notification/notification.css';
+@import 'raw-markup/raw-markup.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/components/lazy/lazy.min.css';

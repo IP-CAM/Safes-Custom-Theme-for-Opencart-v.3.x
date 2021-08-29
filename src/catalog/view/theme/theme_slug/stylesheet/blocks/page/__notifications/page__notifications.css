@@ -1,0 +1,5 @@
+.page__notifications {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+}
