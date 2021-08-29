@@ -1,19 +1,10 @@
+{% from 'THEME_SLUG/blocks/breadcrumbs/breadcrumbs.twig' import breadcrumbs %}
+
 {{ header }}
 <div class="page__row">
   <div class="wrapper">
     <div class="category-layout">
-      <ul class="breadcrumbs">
-        {% for breadcrumb in breadcrumbs %}
-          <li class="breadcrumbs__item">
-            <a
-              href="{{ breadcrumb.href }}"
-              class="link link_theme_standard"
-            >
-              {{ breadcrumb.text }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+      {{ breadcrumbs(breadcrumbs) }}
       <h2 class="category-layout__title">
         {{ heading_title }}
       </h2>

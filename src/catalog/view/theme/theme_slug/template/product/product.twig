@@ -1,3 +1,5 @@
+{% from 'THEME_SLUG/blocks/breadcrumbs/breadcrumbs.twig' import breadcrumbs %}
+
 {{ header }}
 <div class="page__row">
   <div class="wrapper">
@@ -16,18 +18,7 @@
       {% endif %}
       <div class="grid__col {{ class }}">
         <div class="page__breadcrumbs">
-          <ul class="breadcrumbs">
-            {% for breadcrumb in breadcrumbs %}
-            <li class="breadcrumbs__item">
-              <a
-                href="{{ breadcrumb.href }}"
-                class="link"
-              >
-                {{ breadcrumb.text }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
+          {{ breadcrumbs(breadcrumbs) }}
         </div>
         {{ content_top }}
         <div
