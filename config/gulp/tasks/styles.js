@@ -17,7 +17,7 @@ function styles() {
       require('postcss-nested'),
       require('postcss-easy-import')({
         path: [
-          `${srcPath}/catalog/view/theme/theme_slug/stylesheet/blocks`
+          `${srcPath}/catalog/view/theme/theme_slug/blocks`
         ]
       }),
       require('postcss-simple-vars')({
