@@ -53,6 +53,6 @@
 @import 'product-quantity-field/product-quantity-field.css';
 
 @import 'swiper/swiper.min.css';
-@import 'swiper/components/lazy/lazy.min.css';
+@import 'swiper/modules/lazy/lazy.min.css';
 @import 'vendor/toast/grid.css';
 @import 'jquery-ui/themes/base/autocomplete.css';
