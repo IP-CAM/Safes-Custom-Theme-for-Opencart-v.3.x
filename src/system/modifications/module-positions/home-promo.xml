@@ -2,8 +2,8 @@
   Контроллеры и вьюхи:
   - catalog/controller/common/promo_left.php
   - catalog/controller/common/promo_left.php
-  - catalog/view/theme/*/template/common/promo_right.twig
-  - catalog/view/theme/*/template/common/promo_right.twig
+  - catalog/view/theme/theme_slug/template/common/promo_right.twig
+  - catalog/view/theme/theme_slug/template/common/promo_right.twig
 -->
 <file path="admin/view/template/design/layout_form.twig">
   <operation>
