@@ -71,16 +71,6 @@ textarea {
 .l-module:last-of-type {
   margin-bottom: 0;
 }
-.l-footer {
-  padding: 20px 0 40px 0;
-}
-.l-footer__column {
-  margin: 20px 0 0 0;
-}
-.l-footer__row {
-  display: block;
-  margin: 3px 0;
-}
 .l-reference {
   margin: 25px 0 0 0;
 }
