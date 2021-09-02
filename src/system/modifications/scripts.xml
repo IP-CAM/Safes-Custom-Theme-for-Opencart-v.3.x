@@ -1,0 +1,24 @@
+<file path="catalog/controller/common/header.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['scripts'] = $this->document->getScripts('header');
+      ]]>
+    </search>
+    <add position="replace">
+      <![CDATA[]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/controller/common/footer.php">
+  <operation>
+    <search>
+      <![CDATA[
+$data['scripts'] = $this->document->getScripts('footer');
+      ]]>
+    </search>
+    <add position="replace">
+$data['scripts'] = array_merge($this->document->getScripts('header'), $this->document->getScripts('footer'));
+    </add>
+  </operation>
+</file>
