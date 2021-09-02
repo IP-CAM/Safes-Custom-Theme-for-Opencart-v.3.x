@@ -1,4 +1,8 @@
-FROM php:8-fpm
+ARG php_version=7.4
+
+FROM php:${php_version}-fpm
+
+ARG php_version
 
 RUN set -ex; \
   apt update; \
@@ -8,6 +12,14 @@ RUN set -ex; \
   docker-php-ext-install gd; \
   pecl install mcrypt-1.0.4; \
   docker-php-ext-enable mcrypt;
+
+RUN cd /tmp \
+  && curl -o ioncube.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz \
+  && tar -xvvzf ioncube.tar.gz \
+  && mkdir -p /usr/local/ioncube \
+  && mv "ioncube/ioncube_loader_lin_${php_version}.so" /usr/local/ioncube/ \
+  && rm -rf ioncube.tar.gz ioncube \
+  && echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_${php_version}.so" > /usr/local/etc/php/conf.d/00-ioncube.ini
 
 WORKDIR /var/www/html
 
