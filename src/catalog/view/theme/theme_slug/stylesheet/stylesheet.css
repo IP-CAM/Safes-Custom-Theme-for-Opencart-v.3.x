@@ -51,9 +51,12 @@
 @import 'notification/notification.css';
 @import 'raw-markup/raw-markup.css';
 @import 'product-quantity-field/product-quantity-field.css';
+@import 'header-search-suggestions/header-search-suggestions.css';
+@import 'dropdown/dropdown.css';
+@import 'spinner/spinner.css';
 
 @import 'swiper/swiper.min.css';
 @import 'swiper/modules/lazy/lazy.min.css';
 @import 'vendor/toast/grid.css';
-@import 'jquery-ui/themes/base/autocomplete.css';
+
 @import 'vendor/simple/simple.css';

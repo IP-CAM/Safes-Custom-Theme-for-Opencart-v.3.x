@@ -15,21 +15,18 @@ const closeMenu = () => {
 }
 
 const handleMenuToggle = (event) => {
-  event.stopPropagation();
-
   if (isMenuOpen) {
     closeMenu()
-  } else {
-    openMenu()
+    return
   }
+
+  openMenu()
 }
 
 const handleOutsideClick = (event) => {
   if ($(event.target).closest('.menu').length > 0) return
 
-  console.log($(event.target))
-
   closeMenu()
 }
 
-$('.menu-button').on('click', handleMenuToggle)
+$(document).on('click', '.menu-button', handleMenuToggle)

@@ -1,0 +1,21 @@
+.dropdown {
+  position: relative;
+
+  &__content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+  }
+
+  &_opened {
+    .dropdown__content {
+      display: block;
+    }
+  }
+}

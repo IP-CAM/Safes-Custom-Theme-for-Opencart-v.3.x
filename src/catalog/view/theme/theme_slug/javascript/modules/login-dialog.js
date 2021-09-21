@@ -8,8 +8,8 @@ const handleLoginDialogLinkClick = event => {
   openModal('.login-dialog-modal')
 }
 
-$('.login-dialog-link').on('click', handleLoginDialogLinkClick)
-$('.login-dialog .dialog__close').on('click', closeModal)
+$(document).on('click', '.login-dialog-link', handleLoginDialogLinkClick)
+$(document).on('click', '.login-dialog .dialog__close', closeModal)
 
 const handleLoginFormSubmit = function(event) {
   const removeMessages = () => {

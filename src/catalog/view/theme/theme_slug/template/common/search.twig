@@ -1,10 +1,12 @@
 <form class="header-search">
-  <input
-    type="text"
-    name="search"
-    class="header-search__input"
-    value="{{ search }}"
-    placeholder="{{ text_search }}"
-  />
-  <div class="header-search__suggestions"></div>
+  <div class="dropdown header-search__dropdown">
+    <input
+      type="text"
+      name="search"
+      class="header-search__input"
+      value="{{ search }}"
+      placeholder="{{ text_search }}"
+    />
+    <div class="dropdown__content header-search__suggestions"></div>
+  </div>
 </form>
