@@ -1,0 +1,45 @@
+<file path="catalog/language/ru-ru/ru-ru.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$_['text_home']             = '<i class="fa fa-home"></i>';
+      ]]>
+    </search>
+    <add position="replace">
+      <![CDATA[
+$_['text_home']             = 'Главная';
+      ]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/language/ru-ru/common/header.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$_['text_login']         = 'Авторизация';
+      ]]>
+    </search>
+    <add position="replace">
+      <![CDATA[
+$_['text_login']         = 'Войти с паролем';
+      ]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/language/ru-ru/product/category.php">
+  <operation>
+    <search index="0">
+      <![CDATA[
+$_['text_name_asc']     = 'Название (А - Я)';
+      ]]>
+    </search>
+    <add position="replace" offset="3">
+      <![CDATA[
+$_['text_name_asc']     = 'А &rarr; Я';
+$_['text_name_desc']    = 'Я &rarr; А';
+$_['text_price_asc']    = 'Сначала дешевые';
+$_['text_price_desc']   = 'Сначала дорогие';
+      ]]>
+    </add>
+  </operation>
+</file>
