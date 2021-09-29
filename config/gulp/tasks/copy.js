@@ -38,6 +38,7 @@ function copyThemeLanguage(cb) {
 
 const restGlobs = [
   `${srcPath}/**/*`,
+  `!${srcPath}/**/{blocks,blocks/**/*}`,
   `!${srcPath}/**/{stylesheet,stylesheet/**/*}`,
   `!${srcPath}/**/{javascript,javascript/**/*}`,
   `!${srcPath}/**/{svg-sprites,svg-sprites/**/*}`,
