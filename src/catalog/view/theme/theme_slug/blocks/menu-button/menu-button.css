@@ -9,10 +9,14 @@
   align-items: center;
 
   &__burger-icon {
-    margin-right: 8px;
     width: 24px;
     height: 2px;
     position: relative;
+    padding: 11px 0;
+
+    @media (min-width: $tablet-portrait) {
+      margin-right: 8px;
+    }
 
     &::after,
     &::before {
@@ -23,7 +27,7 @@
   &__burger-icon::before,
   &__burger-icon::after,
   &__burger-line {
-    transition: all .2s ease-in-out;
+    transition: transform .2s ease-in-out;
     position: absolute;
     display: block;
     background-color: #000;
@@ -52,12 +56,10 @@
 
   &_active {
     .menu-button__burger-icon::before {
-      top: 0;
       transform: rotate(45deg);
     }
 
     .menu-button__burger-icon::after {
-      top: 0;
       transform: rotate(-45deg);
     }
 
