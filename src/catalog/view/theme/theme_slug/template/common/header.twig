@@ -26,96 +26,94 @@
 
 <div class="page">
   <div class="page__header">
-    <div class="wrapper">
-      <header class="header">
-        <div class="header__first-line">
-          <nav class="header__information information-links">
-            <ul class="top-navigation-menu link-group link-group_direction_row">
-            {% for link in top_navigation_links %}
-              <li class="link-group__item">
-                <a
-                  class="information-links__item link link_theme_ghost"
-                  href="{{ link.url }}"
-                  target="{{ link.target }}"
-                  {{ link.attributes }}
-                >
-                  {{ link.text }}
-                </a>
-              </li>
-            {% endfor %}
-            </ul>
-          </nav>
-          <div class="header__contacts">
-            <a
-              class="link link_theme_standard"
-              href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
-            >
-              {{ telephone }}
-            </a>
-          </div>
-        </div>
-        <div class="header__second-line">
-          <a
-            class="header__logotype"
-            href="{{ home }}"
-          >
-            {% if logo %}
-            <img
-              src="{{ logo }}"
-              title="{{ name }}"
-              alt="{{ name }}"
-            />
-            {% else %}
-              {{ name }}
-            {% endif %}
-          </a>
-          <div class="header__menu-button">
-            <button type="button" class="menu-button">
-              <span class="menu-button__burger-icon">
-                <span class="menu-button__burger-line"></span>
-              </span>
-              <span class="menu-button__text">
-                Каталог
-              </span>
-            </button>
-          </div>
-          <div class="header__search">
-            {{ search }}
-          </div>
-          <ul class="nav header__account">
-            {% if logged %}
-            <li class="nav__item">
+    <header class="header">
+      <div class="wrapper header__first-line">
+        <nav class="header__top-navigation">
+          <ul class="menu menu_type_header-top-navigation">
+          {% for link in top_navigation_links %}
+            <li class="menu__item">
               <a
-                href="{{ account }}"
-                class="link link_theme_standard"
+                class="menu__link link link_theme_context"
+                href="{{ link.url }}"
+                target="{{ link.target }}"
+                {{ link.attributes }}
               >
-                {{ text_account }}
+                {{ link.text }}
               </a>
             </li>
-            <li class="nav__item">
-              <a
-                href="{{ logout }}"
-                class="link  link_theme_standard"
-              >
-                {{ text_logout }}
-              </a>
-            </li>
-            {% else %}
-            <li class="nav__item">
-              <a
-                class="login-dialog-link link link_theme_standard"
-                href={{ login }}
-              >
-                {{ text_login }}
-              </a>
-            </li>
-            {% endif %}
+          {% endfor %}
           </ul>
-          <div class="header__cart">
-            {{ cart }}
-          </div>
+        </nav>
+        <div class="header__contacts">
+          <a
+            class="link link_theme_context"
+            href="tel:{{ telephone|replace({'-':"",'(':"",')':"",' ':""}) }}"
+          >
+            {{ telephone }}
+          </a>
         </div>
-      </header>
+      </div>
+      <div class="wrapper header__second-line">
+        <a
+          class="header__logotype"
+          href="{{ home }}"
+        >
+          {% if logo %}
+          <img
+            src="{{ logo }}"
+            title="{{ name }}"
+            alt="{{ name }}"
+          />
+          {% else %}
+            {{ name }}
+          {% endif %}
+        </a>
+        <div class="header__menu-button">
+          <button type="button" class="menu-button">
+            <span class="menu-button__burger-icon">
+              <span class="menu-button__burger-line"></span>
+            </span>
+            <span class="menu-button__text">
+              Каталог
+            </span>
+          </button>
+        </div>
+        <div class="header__search">
+          {{ search }}
+        </div>
+        <ul class="nav header__account">
+          {% if logged %}
+          <li class="nav__item">
+            <a
+              href="{{ account }}"
+              class="link link_theme_context"
+            >
+              {{ text_account }}
+            </a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="{{ logout }}"
+              class="link  link_theme_context"
+            >
+              {{ text_logout }}
+            </a>
+          </li>
+          {% else %}
+          <li class="nav__item">
+            <a
+              class="login-dialog-link link link_theme_context"
+              href={{ login }}
+            >
+              {{ text_login }}
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        <div class="header__cart">
+          {{ cart }}
+        </div>
+      </div>
       {{ menu }}
-    </div>
+    </header>
   </div>

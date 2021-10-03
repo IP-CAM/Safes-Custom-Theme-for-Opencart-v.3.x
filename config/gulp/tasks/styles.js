@@ -6,7 +6,7 @@ const path = require('path')
 
 const { browserSync } = require('../helpers/browser-sync')
 const { srcPath, destPath, themeSlug } = require('../../../config')
-const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/stylesheet/global/breakpoints`))
+const breakpoints = require(path.resolve(`./${srcPath}/catalog/view/theme/theme_slug/shared/breakpoints`))
 
 const entryPath = `${srcPath}/catalog/view/theme/theme_slug/stylesheet/stylesheet.css`
 

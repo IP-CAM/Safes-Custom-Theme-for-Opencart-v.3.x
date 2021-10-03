@@ -1,7 +1,6 @@
-{% if categories %}
-<nav class="menu">
-  <div class="wrapper menu__inner">
-    <div class="menu__search">
+<div class="catalog-menu">
+  <div class="wrapper catalog-menu__inner">
+    <div class="catalog-menu__search">
       <form class="mobile-search">
         <label for="mobile-search">
           <input
@@ -13,12 +12,13 @@
         </label>
       </form>
     </div>
+    {% if categories %}
 
-    <ul class="menu__category-list">
+    <ul class="catalog-menu__menu menu menu_type_catalog-categories">
       {% for category in categories %}
-      <li class="menu__category">
+      <li class="menu__item">
         <a
-          class="menu__category-link link link_theme_context"
+          class="menu__link link link_theme_context"
           href="{{ category.href }}"
         >
           {{ category.name }}
@@ -26,6 +26,7 @@
       </li>
       {% endfor %}
     </ul>
+
+    {% endif %}
   </div>
-</nav>
-{% endif %}
+</div>

@@ -1,57 +1,94 @@
 {% from 'THEME_SLUG/blocks/breadcrumbs/breadcrumbs.twig' import breadcrumbs %}
 
+{% macro description(attribute_groups, weight, length, width, height, description) %}
+  {% if attribute_groups or weight or length or width or height  %}
+  <div class="product__attributes">
+    <h2>
+      Характеристики
+    </h2>
+    <dl class="product-attributes">
+      {% if weight %}
+      <dt class="product-attributes__name">
+        Вес
+      </dt>
+      <dd class="product-attributes__value">
+        {{ weight }}
+      </dd>
+      {% endif %}
+      {% if length and width and height %}
+      <dt class="product-attributes__name">
+        Размеры (ВxШxГ)
+      </dt>
+      <dd class="product-attributes__value">
+        {{ height }}x{{ width }}x{{ length }}
+      </dd>
+      {% endif %}
+      {% if attribute_groups %}
+      {% for attribute_group in attribute_groups %}
+      {% for attribute in attribute_group.attribute %}
+      <dt class="product-attributes__name">
+        {{ attribute.name }}
+      </dt>
+      <dd class="product-attributes__value">
+        {{ attribute.text }}
+      </dd>
+      {% endfor %}
+      {% endfor %}
+      {% endif %}
+    </dl>
+  </div>
+  {% endif %}
+  <div
+    class="product__description"
+    itemprop="description"
+  >
+    <h2>
+      О товаре
+    </h2>
+    {{ description }}
+  </div>
+{% endmacro %}
+
 {{ header }}
 <div class="page__row">
   <div class="wrapper">
-    <div class="grid">
-      {% if column_left %}
-        <div class="grid__col grid__col--1-of-4">
-          {{ column_left }}
-        </div>
-      {% endif %}
-      {% if column_left and column_right %}
-        {% set class = 'grid__col--2-of-4' %}
-      {% elseif column_left or column_right %}
-        {% set class = 'grid__col--3-of-4' %}
-      {% else %}
-        {% set class = 'grid__col--4-of-4' %}
-      {% endif %}
-      <div class="grid__col {{ class }}">
-        <div class="page__breadcrumbs">
-          {{ breadcrumbs(breadcrumbs) }}
-        </div>
-        {{ content_top }}
-        <div
-          class="product"
-          itemscope
-          itemtype="http://schema.org/Product"
-        >
-          <div class="product__info">
-            <div class="product__photo product-photo-gallery">
-              <div class="product-photo-carousel product-photo-gallery__photo swiper">
-                <div class="swiper-wrapper product-photo-carousel__wrapper">
-                  <div class="swiper-slide product-photo-carousel__item">
-                    <img
-                      data-src="{{ popup }}"
-                      class="swiper-lazy"
-                      alt=""
-                    />
-                    <div class="swiper-lazy-preloader"></div>
-                  </div>
-                  {% for image in images %}
-                  <div class="swiper-slide product-photo-carousel__item">
-                    <img
-                      data-src="{{ image.popup }}"
-                      class="swiper-lazy"
-                      alt=""
-                    />
-                    <div class="swiper-lazy-preloader"></div>
-                  </div>
-                  {% endfor %}
-                </div>
+    <div class="page__breadcrumbs">
+      {{ breadcrumbs(breadcrumbs) }}
+    </div>
+    {{ content_top }}
+    <div
+      class="product"
+      itemscope
+      itemtype="http://schema.org/Product"
+    >
+      <div class="product__info">
+        <div class="product__photo">
+          <div class="product__photo-carousel product-photo-carousel swiper">
+            <div class="swiper-wrapper product-photo-carousel__wrapper">
+              <div class="swiper-slide product-photo-carousel__item">
+                <img
+                  data-src="{{ popup }}"
+                  class="swiper-lazy"
+                  alt=""
+                />
+                <div class="swiper-lazy-preloader"></div>
               </div>
-              {% if images %}
-              <div class="product-photo-thumb-carousel product-photo__thumbs swiper">
+              {% for image in images %}
+              <div class="swiper-slide product-photo-carousel__item">
+                <img
+                  data-src="{{ image.popup }}"
+                  class="swiper-lazy"
+                  alt=""
+                />
+                <div class="swiper-lazy-preloader"></div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% if images %}
+          <div class="product__photo-thumb-carousel-holder">
+            <div class="product__photo-thumb-carousel-canvas">
+              <div class="product__photo-thumb-carousel product-photo-thumb-carousel">
                 <div class="swiper-wrapper product-photo-thumb-carousel__wrapper">
                   <div class="swiper-slide product-photo-thumb-carousel__item">
                     <img
@@ -71,435 +108,393 @@
                   {% endfor %}
                 </div>
               </div>
-              {% endif %}
-            </div>
-            <div class="product__attributes">
-              <h2>Характеристики</h2>
-              <dl class="product-attributes">
-                {% if weight %}
-                <dt class="product-attributes__name">
-                  Вес
-                </dt>
-                <dd class="product-attributes__value">
-                  {{ weight }}
-                </dd>
-                {% endif %}
-                {% if length and width and height %}
-                <dt class="product-attributes__name">
-                  Размеры (ВxШxГ)
-                </dt>
-                <dd class="product-attributes__value">
-                  {{ height }}x{{ width }}x{{ length }}
-                </dd>
-                {% endif %}
-                {% if attribute_groups %}
-                {% for attribute_group in attribute_groups %}
-                {% for attribute in attribute_group.attribute %}
-                <dt class="product-attributes__name">
-                  {{ attribute.name }}
-                </dt>
-                <dd class="product-attributes__value">
-                  {{ attribute.text }}
-                </dd>
-                {% endfor %}
-                {% endfor %}
-                {% endif %}
-              </dl>
-            </div>
-            <div
-              class="product__description"
-              itemprop="description"
-            >
-              <h2>О товаре</h2>
-              {{ description }}
             </div>
           </div>
+          {% endif %}
+        </div>
+        <div class="product__desktop-description">
+          {{ _self.description(attribute_groups, weight, length, width, height, description) }}
+        </div>
+      </div>
 
-          <div class="product__order">
-            <h1
-              class="product__hidden-text"
-              itemprop="name"
+      <div class="product__order">
+        <h1
+          class="product__hidden-text"
+          itemprop="name"
+        >
+          {% if manufacturer %}
+            {{ manufacturer }}
+          {% endif %}
+          {{ heading_title }}
+        </h1>
+
+        <span itemprop="image" content="{{ popup }}"></span>
+
+        <dl class="product__summary">
+          {% if manufacturer %}
+          <dt class="product__hidden-text">
+            {{ text_brand }}
+          </dt>
+          <dd class="product__manufacturer">
+            <a
+              class="link link_theme_context"
+              href="{{ manufacturers }}"
+              itemprop="manufacturer"
             >
-              {% if manufacturer %}
-                {{ manufacturer }}
-              {% endif %}
-              {{ heading_title }}
-            </h1>
+              {{ manufacturer }}
+            </a>
+          </dd>
+          {% endif %}
 
-            <span itemprop="image" content="{{ popup }}"></span>
+          <dt class="product__hidden-text">
+            {{ text_model }}
+          </dt>
+          <dd class="product__title">
+            {{ model }}
+          </dd>
 
-            <dl class="product__summary">
-              {% if manufacturer %}
-              <dt class="product__hidden-text">
-                {{ text_brand }}
-              </dt>
-              <dd class="product__manufacturer">
-                <a
-                  class="link link_theme_ghost"
-                  href="{{ manufacturers }}"
-                  itemprop="manufacturer"
-                >
-                  {{ manufacturer }}
-                </a>
-              </dd>
-              {% endif %}
+          <dt class="product__hidden-text">
+            Цена
+          </dt>
+          <dd
+            class="product__price"
+            itemprop="price"
+            content="{{ special ?: price }}"
+          >
+            {{ special ?: price }}
+          </dd>
 
-              <dt class="product__hidden-text">
-                {{ text_model }}
-              </dt>
-              <dd class="product__title">
-                {{ model }}
-              </dd>
+          <dt class="product__hidden-text">
+            {{ text_stock }}
+          </dt>
+          <dd class="product__stock">
+            {{ stock }}
+          </dd>
+        </dl>
 
-              <dt class="product__hidden-text">
-                Цена
-              </dt>
-              <dd
-                class="product__price"
-                itemprop="price"
-                content="{{ special ?: price }}"
+        {% if special %}
+        <div class="product__price_old">
+          <span class="h-block">Старая цена:</span>
+          <span class="h-block product__price_through">{{ price }}</span>
+        </div>
+        {% endif %}
+
+        <form class="product__form product-form">
+          <input type="hidden" name="product_id" value="{{ product_id }}" />
+          {% if options %}
+          <h2>
+            {{ text_option }}
+          </h2>
+          {% for option in options %}
+          {% if option.type == 'select' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
               >
-                {{ special ?: price }}
-              </dd>
-
-              <dt class="product__hidden-text">
-                {{ text_stock }}
-              </dt>
-              <dd class="product__stock">
-                {{ stock }}
-              </dd>
-            </dl>
-
-            {% if special %}
-            <div class="product__price_old">
-              <span class="h-block">Старая цена:</span>
-              <span class="h-block product__price_through">{{ price }}</span>
-            </div>
-            {% endif %}
-
-            <form class="product__form product-form">
-              <input type="hidden" name="product_id" value="{{ product_id }}" />
-              {% if options %}
-              <h2>
-                {{ text_option }}
-              </h2>
-              {% for option in options %}
-              {% if option.type == 'select' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <select
-                      name="option[{{ option.product_option_id }}]"
-                      id="input-option{{ option.product_option_id }}"
-                    >
-                      <option value="">
-                        {{ text_select }}
-                      </option>
-                      {% for option_value in option.product_option_value %}
-                      <option value="{{ option_value.product_option_value_id }}">
-                        {{ option_value.name }}
-                        {% if option_value.price %}
-                        ({{ option_value.price_prefix }}{{ option_value.price }})
-                        {% endif %}
-                      </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'radio' %}
-              <div class="form__field">
-                <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <legend class="form-field__label">
-                    {{ option.name }}
-                  </legend>
-                  <div
-                    class="form-field__controls"
-                    id="input-option{{ option.product_option_id }}"
-                  >
-                    {% for option_value in option.product_option_value %}
-                    <label class="form-field__control">
-                      <input
-                        type="radio"
-                        name="option[{{ option.product_option_id }}]"
-                        value="{{ option_value.product_option_value_id }}"
-                      />
-                      {% if option_value.image %}
-                        <img
-                          src="{{ option_value.image }}"
-                          alt="{{ option_value.name }}
-                          {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
-                        />
-                      {% endif %}
-                      {{ option_value.name }}
-                      {% if option_value.price %}
-                      ({{ option_value.price_prefix }}{{ option_value.price }})
-                      {% endif %}
-                    </label>
-                    {% endfor %}
-                  </div>
-                </fieldset>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'checkbox' %}
-              <div class="form__field">
-                <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <legend class="form-field__label">
-                    {{ option.name }}
-                  </legend>
-                  <div
-                    class="form-field__controls"
-                    id="input-option{{ option.product_option_id }}"
-                  >
-                    {% for option_value in option.product_option_value %}
-                    <div class="form-field__control">
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="option[{{ option.product_option_id }}][]"
-                          value="{{ option_value.product_option_value_id }}"
-                        />
-                        {% if option_value.image %}
-                        <img
-                          src="{{ option_value.image }}"
-                          alt="{{ option_value.name }}
-                          {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
-                          />
-                        {% endif %}
-                        {{ option_value.name }}
-                        {% if option_value.price %}
-                        ({{ option_value.price_prefix }}{{ option_value.price }})
-                        {% endif %}
-                      </label>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </fieldset>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'text' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <input
-                      class="text-field"
-                      type="text"
-                      name="option[{{ option.product_option_id }}]"
-                      value="{{ option.value }}"
-                      placeholder="{{ option.name }}"
-                      id="input-option{{ option.product_option_id }}"
-                    />
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'textarea' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required {% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <textarea
-                      name="option[{{ option.product_option_id }}]"
-                      rows="5"
-                      placeholder="{{ option.name }}"
-                      id="input-option{{ option.product_option_id }}"
-                      class="text-field"
-                    >{{ option.value }}</textarea>
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'file' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label class="form-field__label">
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <button
-                      class="button"
-                      type="button"
-                      id="button-upload{{ option.product_option_id }}"
-                      data-loading-text="{{ text_loading }}"
-                    >
-                      {{ button_upload }}
-                    </button>
-                    <input
-                      type="hidden"
-                      name="option[{{ option.product_option_id }}]"
-                      value=""
-                      id="input-option{{ option.product_option_id }}"
-                    />
-                  <div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'date' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <input
-                      type="date"
-                      name="option[{{ option.product_option_id }}]"
-                      value="{{ option.value }}"
-                      id="input-option{{ option.product_option_id }}"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'datetime' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <input
-                      type="datetime-local"
-                      name="option[{{ option.product_option_id }}]"
-                      value="{{ option.value|replace({" ": "T"}) }}"
-                      id="input-option{{ option.product_option_id }}"
-                    />
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if option.type == 'time' %}
-              <div class="form__field">
-                <div class="form-field{% if option.required %} form-field_required{% endif %}">
-                  <label
-                    class="form-field__label"
-                    for="input-option{{ option.product_option_id }}"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <div class="form-field__controls">
-                    <input
-                      type="time"
-                      name="option[{{ option.product_option_id }}]"
-                      value="{{ option.value }}"
-                      id="input-option{{ option.product_option_id }}"
-                    />
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-
-              {% endfor %}
-              {% endif %}
-
-              <div class="product-quantity-field product__quantity">
-                <button
-                  type="button"
-                  class="product-quantity-field__button product-quantity-field__button_decrement"
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <select
+                  name="option[{{ option.product_option_id }}]"
+                  id="input-option{{ option.product_option_id }}"
                 >
-                  -
+                  <option value="">
+                    {{ text_select }}
+                  </option>
+                  {% for option_value in option.product_option_value %}
+                  <option value="{{ option_value.product_option_value_id }}">
+                    {{ option_value.name }}
+                    {% if option_value.price %}
+                    ({{ option_value.price_prefix }}{{ option_value.price }})
+                    {% endif %}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'radio' %}
+          <div class="form__field">
+            <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
+              <legend class="form-field__label">
+                {{ option.name }}
+              </legend>
+              <div
+                class="form-field__controls"
+                id="input-option{{ option.product_option_id }}"
+              >
+                {% for option_value in option.product_option_value %}
+                <label class="form-field__control">
+                  <input
+                    type="radio"
+                    name="option[{{ option.product_option_id }}]"
+                    value="{{ option_value.product_option_value_id }}"
+                  />
+                  {% if option_value.image %}
+                    <img
+                      src="{{ option_value.image }}"
+                      alt="{{ option_value.name }}
+                      {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
+                    />
+                  {% endif %}
+                  {{ option_value.name }}
+                  {% if option_value.price %}
+                  ({{ option_value.price_prefix }}{{ option_value.price }})
+                  {% endif %}
+                </label>
+                {% endfor %}
+              </div>
+            </fieldset>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'checkbox' %}
+          <div class="form__field">
+            <fieldset class="form-field{% if option.required %} form-field_required{% endif %}">
+              <legend class="form-field__label">
+                {{ option.name }}
+              </legend>
+              <div
+                class="form-field__controls"
+                id="input-option{{ option.product_option_id }}"
+              >
+                {% for option_value in option.product_option_value %}
+                <div class="form-field__control">
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="option[{{ option.product_option_id }}][]"
+                      value="{{ option_value.product_option_value_id }}"
+                    />
+                    {% if option_value.image %}
+                    <img
+                      src="{{ option_value.image }}"
+                      alt="{{ option_value.name }}
+                      {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}"
+                      />
+                    {% endif %}
+                    {{ option_value.name }}
+                    {% if option_value.price %}
+                    ({{ option_value.price_prefix }}{{ option_value.price }})
+                    {% endif %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+            </fieldset>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'text' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
+              >
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <input
+                  class="text-field"
+                  type="text"
+                  name="option[{{ option.product_option_id }}]"
+                  value="{{ option.value }}"
+                  placeholder="{{ option.name }}"
+                  id="input-option{{ option.product_option_id }}"
+                />
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'textarea' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required {% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
+              >
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <textarea
+                  name="option[{{ option.product_option_id }}]"
+                  rows="5"
+                  placeholder="{{ option.name }}"
+                  id="input-option{{ option.product_option_id }}"
+                  class="text-field"
+                >{{ option.value }}</textarea>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'file' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label class="form-field__label">
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <button
+                  class="button"
+                  type="button"
+                  id="button-upload{{ option.product_option_id }}"
+                  data-loading-text="{{ text_loading }}"
+                >
+                  {{ button_upload }}
                 </button>
                 <input
-                  id="input-quantity"
-                  class="product-quantity-field__input"
-                  type="number"
-                  name="quantity"
-                  value="{{ minimum }}"
+                  type="hidden"
+                  name="option[{{ option.product_option_id }}]"
+                  value=""
+                  id="input-option{{ option.product_option_id }}"
                 />
-                <button
-                  type="button"
-                  class="product-quantity-field__button product-quantity-field__button_increment"
-                >
-                  +
-                </button>
-              </div>
-
-              <div class="product__order-button">
-                <button
-                  type="submit"
-                  class="button button_view_action"
-                >
-                  <span class="button__text">
-                    Добавить к заказу
-                  </span>
-                </button>
-              </div>
-            </form>
-
-            {% if minimum > 1 %}
-            <div class="message">
-              {{ text_minimum }}
-            </div>
-            {% endif %}
-
-            <div class="product__quick-order-button">
-              <button class="order-dialog-button button">
-                <span class="button__text">
-                  Купить в один клик
-                </span>
-              </button>
-            </div>
-
-            <p class="product__quick-order-description">
-              Оставьте номер телефона и наш менеджер свяжется с вами для уточнения деталей заказа
-            </p>
-
-            <div class="product__downloads">
-              {% if downloads %}
-                {% for download in downloads %}
-                <a
-                  href="{{ download.href }}"
-                  class="link"
-                  title="Загрузить ({{ download.size }})"
-                >
-                  {{ download.name }}
-                </a>
-                {% endfor %}
-              {% endif %}
+              <div>
             </div>
           </div>
+          {% endif %}
+
+          {% if option.type == 'date' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
+              >
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <input
+                  type="date"
+                  name="option[{{ option.product_option_id }}]"
+                  value="{{ option.value }}"
+                  id="input-option{{ option.product_option_id }}"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'datetime' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
+              >
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <input
+                  type="datetime-local"
+                  name="option[{{ option.product_option_id }}]"
+                  value="{{ option.value|replace({" ": "T"}) }}"
+                  id="input-option{{ option.product_option_id }}"
+                />
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if option.type == 'time' %}
+          <div class="form__field">
+            <div class="form-field{% if option.required %} form-field_required{% endif %}">
+              <label
+                class="form-field__label"
+                for="input-option{{ option.product_option_id }}"
+              >
+                {{ option.name }}
+              </label>
+              <div class="form-field__controls">
+                <input
+                  type="time"
+                  name="option[{{ option.product_option_id }}]"
+                  value="{{ option.value }}"
+                  id="input-option{{ option.product_option_id }}"
+                />
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% endfor %}
+          {% endif %}
+
+          <div class="product-quantity-field product__quantity">
+            <button
+              type="button"
+              class="product-quantity-field__button product-quantity-field__button_decrement"
+            >
+              -
+            </button>
+            <input
+              id="input-quantity"
+              class="product-quantity-field__input"
+              type="number"
+              name="quantity"
+              value="{{ minimum }}"
+            />
+            <button
+              type="button"
+              class="product-quantity-field__button product-quantity-field__button_increment"
+            >
+              +
+            </button>
+          </div>
+
+          <div class="product__order-button">
+            <button
+              type="submit"
+              class="button button_theme_action button_size_xl button_wide"
+            >
+              <span class="button__text">
+                Добавить к заказу
+              </span>
+            </button>
+          </div>
+        </form>
+
+        {% if minimum > 1 %}
+        <div class="message">
+          {{ text_minimum }}
         </div>
-        {{ content_bottom }}
+        {% endif %}
+
+        <div class="product__quick-order-button">
+          <button class="order-dialog-button button">
+            <span class="button__text">
+              Купить в один клик
+            </span>
+          </button>
+        </div>
+
+        <div class="product__downloads">
+          {% if downloads %}
+            {% for download in downloads %}
+            <a
+              href="{{ download.href }}"
+              class="link"
+              title="Загрузить ({{ download.size }})"
+            >
+              {{ download.name }}
+            </a>
+            {% endfor %}
+          {% endif %}
+        </div>
       </div>
-      {% if column_right %}
-      <div class="grid__col grid__col--1-of-4">
-        {{ column_right }}
+
+      <div class="product__mobile-description">
+        {{ _self.description(attribute_groups, weight, length, width, height, description) }}
       </div>
-      {% endif %}
     </div>
+    {{ content_bottom }}
   </div>
 </div>
 {{ order_dialog }}

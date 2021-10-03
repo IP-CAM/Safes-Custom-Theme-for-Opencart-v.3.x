@@ -1,0 +1,9 @@
+.button_theme_pseudo {
+  border: 1px solid var(--gray);
+  background: transparent;
+  color: var(--dark-gray);
+
+  &:hover {
+    background-color: var(--gray);
+  }
+}

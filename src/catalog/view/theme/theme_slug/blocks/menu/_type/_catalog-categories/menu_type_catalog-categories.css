@@ -1,0 +1,18 @@
+.menu_type_catalog-categories {
+  padding-right: var(--page-padding-mobile);
+  padding-left: var(--page-padding-mobile);
+
+  @media (min-width: $tablet-portrait) {
+    display: inline-block;
+    columns: 3;
+    column-gap: 64px;
+  }
+
+  .menu__item {
+    padding: 12px 0;
+
+    @media (min-width: $tablet-portrait) {
+      padding: 8px 0;
+    }
+  }
+}

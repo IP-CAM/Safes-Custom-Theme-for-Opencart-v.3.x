@@ -2,8 +2,11 @@ const { logAjaxError } = require('./helpers/log-ajax-error')
 const { removeFormErrors } = require('./helpers/remove-form-errors')
 const { refreshCart } = require('./helpers/refresh-cart')
 const { pushNotification } = require('./modules/notifications')
+const breakpoints = require('../shared/breakpoints')
 
 require('./modules/order-dialog')
+
+const breakpoint = breakpoints['tablet-portrait'].split('px')[0];
 
 $('.product-form').on('submit', function(event) {
   event.preventDefault()
@@ -53,20 +56,20 @@ const handleProductOptionErrors = (errors) => {
 
 $(() => {
   const productThumbCarousel = new Swiper('.product-photo-thumb-carousel', {
-    direction: 'vertical',
+    direction: 'horizontal',
     spaceBetween: 20,
     slidesPerView: 4,
+    slideToClickedSlide: true,
     breakpoints: {
-      768: {
-        slidesPerView: 6,
-      },
-      992: {
+      [breakpoint]: {
+        direction: 'vertical',
         slidesPerView: 8,
-      }
+        centeredSlides: true,
+      },
     }
   });
 
-  new Swiper('.product-photo-carousel', {
+  const productPhotoCarousel = new Swiper('.product-photo-carousel', {
     spaceBetween: 20,
     lazy: true,
     thumbs: {
@@ -74,6 +77,13 @@ $(() => {
       slideThumbActiveClass: 'product-photo-thumb-carousel__item_current'
     }
   })
+
+  productPhotoCarousel.on('slideChangeTransitionStart', function() {
+    productThumbCarousel.slideTo(productPhotoCarousel.activeIndex);
+  });
+  productThumbCarousel.on('transitionStart', function() {
+    productPhotoCarousel.slideTo(productThumbCarousel.activeIndex);
+  });
 })
 
 module.exports = {

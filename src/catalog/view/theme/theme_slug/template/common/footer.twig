@@ -10,11 +10,11 @@
           </a>
         </div>
         <div class="footer__row">
-          <ul class="information-links link-group link-group_direction_row">
+          <ul class="menu menu_type_footer-navigation">
           {% for information in informations %}
-            <li class="link-group__item">
+            <li class="menu__item">
               <a
-                class="information-links__item link link_theme_ghost"
+                class="menu__link link link_theme_standard"
                 href="{{ information.href }}"
               >
                 {{ information.title }}

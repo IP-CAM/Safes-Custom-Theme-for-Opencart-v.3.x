@@ -1,6 +1,6 @@
 <div class="category-showcase">
   {% if heading_title %}
-  <h2 class="c-categories-grid__caption">
+  <h2 class="category-showcase__title">
     {{ heading_title }}
   </h2>
   {% endif %}
@@ -16,7 +16,7 @@
             <h3 class="category-card__title">
               <a
                 href="{{ category.href }}"
-                class="category-card__link link"
+                class="category-card__link link link_theme_context"
               >
                 {{ category.name }}
               </a>

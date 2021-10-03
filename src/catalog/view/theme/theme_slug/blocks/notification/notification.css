@@ -1,6 +1,6 @@
 .notification {
   position: relative;
-  background-color: #f1faee;
+  background-color: var(--cian);
   padding: 20px;
   width: 360px;
   max-width: 100%;

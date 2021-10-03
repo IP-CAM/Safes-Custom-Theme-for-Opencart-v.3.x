@@ -1,9 +1,0 @@
-.button_view_pseudo {
-  border: 1px solid #ededed;
-  background: transparent;
-  color: #80808c;
-
-  &:hover {
-    background-color: #ededed;
-  }
-}

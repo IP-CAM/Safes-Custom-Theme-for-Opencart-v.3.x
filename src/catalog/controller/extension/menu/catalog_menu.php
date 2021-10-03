@@ -1,7 +1,6 @@
 <?php
-class ControllerExtensionMenuMenu extends Controller {
+class ControllerExtensionMenuCatalogMenu extends Controller {
   public function index() {
-    // Menu
     $this->load->model('catalog/category');
 
     $this->load->model('catalog/product');
@@ -12,7 +11,6 @@ class ControllerExtensionMenuMenu extends Controller {
 
     foreach ($categories as $category) {
       if ($category['top']) {
-        // Level 2
         $children_data = array();
 
         $children = $this->model_catalog_category->getCategories($category['category_id']);
@@ -29,7 +27,6 @@ class ControllerExtensionMenuMenu extends Controller {
           );
         }
 
-        // Level 1
         $data['categories'][] = array(
           'name'     => $category['name'],
           'children' => $children_data,
@@ -39,6 +36,6 @@ class ControllerExtensionMenuMenu extends Controller {
       }
     }
 
-    return $this->load->view('extension/menu/menu', $data);
+    return $this->load->view('extension/menu/catalog_menu', $data);
   }
 }

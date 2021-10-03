@@ -39,7 +39,7 @@ const renderSearchResult = (searchQuery, result) => {
             <div class="header-search-suggestions__info">
               <a
                 href="${product.url}"
-                class="header-search-suggestions__link">
+                class="header-search-suggestions__link link link_theme_context">
                 ${product.name}
               </a>
             </div>
@@ -49,7 +49,7 @@ const renderSearchResult = (searchQuery, result) => {
       <div class="header-search-suggestions__actions">
         <a
           href="/index.php?search=${searchQuery}"
-          class="link"
+          class="button button_wide button_theme_pseudo"
         >
           Показать все (${result.total})
         </a>

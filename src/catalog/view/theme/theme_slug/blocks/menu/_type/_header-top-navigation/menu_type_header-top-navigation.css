@@ -1,0 +1,12 @@
+.menu_type_header-top-navigation {
+  display: flex;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--dark-gray);
+
+  .menu__item {
+    &:not(:last-child) {
+      margin-right: 18px;
+    }
+  }
+}

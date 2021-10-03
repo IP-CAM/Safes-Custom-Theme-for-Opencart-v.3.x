@@ -1,4 +1,8 @@
 .header {
-  padding: 16px 0 24px;
   position: relative;
+  padding: 12px 0;
+
+  @media (min-width: $tablet-portrait) {
+    padding: 16px 0 24px;
+  }
 }

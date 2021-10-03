@@ -1,29 +1,87 @@
 .product {
-  display: flex;
+  @media (min-width: $tablet-portrait) {
+    display: flex;
+  }
 
   &__info {
-    width: 60%;
-    margin-right: 48px;
+    @media (min-width: $tablet-portrait) {
+      width: 60%;
+      margin-right: 48px;
+    }
   }
 
   &__order {
-    position: sticky;
-    top: 24px;
-    align-self: flex-start;
+    @media (min-width: $tablet-portrait) {
+      position: sticky;
+      top: 24px;
+      align-self: flex-start;
+    }
+  }
+
+  &__desktop-description {
+    display: none;
+
+    @media (min-width: $tablet-portrait) {
+      display: block;
+    }
+  }
+
+  &__mobile-description {
+    @media (min-width: $tablet-portrait) {
+      display: none;
+    }
+  }
+
+  &__photo {
+    margin-bottom: 32px;
+
+    @media (min-width: $tablet-portrait) {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__photo-carousel {
+    @media (min-width: $tablet-portrait) {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &__photo-thumb-carousel-holder {
+    @media (min-width: $tablet-portrait) {
+      flex: 0 0 64px;
+      margin-right: 16px;
+      position: relative;
+    }
+  }
+
+  &__photo-thumb-carousel-canvas {
+    overflow: hidden;
+
+    @media (min-width: $tablet-portrait) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__photo-thumb-carousel {
+    @media (min-width: $tablet-portrait) {
+      height: 100%;
+    }
   }
 
   &__order-button {
     margin-bottom: 24px;
+    width: 270px;
+    max-width: 100%;
   }
 
   &__quick-order-button {
     margin-bottom: 8px;
-  }
-
-  &__quick-order-description {
-    font-size: 14px;
-    line-height: 18px;
-    color: #ccc;
   }
 
   &__summary {
@@ -54,10 +112,6 @@
 
   &__manufacturer {
     margin: 0;
-  }
-
-  &__photo {
-    margin-bottom: 32px;
   }
 
   &__quantity {

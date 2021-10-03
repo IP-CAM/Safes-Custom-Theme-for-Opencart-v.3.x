@@ -6,7 +6,7 @@ $data['menu'] = $this->load->controller('common/menu');
         ]]>
         </search>
         <add position="replace"><![CDATA[
-$data['menu'] = $this->load->controller('extension/menu/menu');
+$data['menu'] = $this->load->controller('extension/menu/catalog_menu');
         ]]>
         </add>
     </operation>

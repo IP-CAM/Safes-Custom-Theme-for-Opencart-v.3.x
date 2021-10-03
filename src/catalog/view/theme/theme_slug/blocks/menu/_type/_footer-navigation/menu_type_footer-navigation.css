@@ -1,0 +1,17 @@
+.menu_type_footer-navigation {
+  font-size: 14px;
+  line-height: 18px;
+
+  @media (min-width: $tablet-portrait) {
+    display: flex;
+    color: var(--dark-gray);
+  }
+
+  .menu__item {
+    &:not(:last-child) {
+      @media (min-width: $tablet-portrait) {
+        margin-right: 18px;
+      }
+    }
+  }
+}
